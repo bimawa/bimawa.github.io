@@ -25,17 +25,18 @@
 
     <!-- remove or comment it to disable ajaxification -->   
     <script src="/javascripts/ajaxify.js"></script>
-   
-    <link href="/stylesheets/connectThree.css" rel="stylesheet" type="text/css">
-<script src="/javascript/connectThree.js"></script>
+       
+    
     
 
 </head>
 
-
-<body>
-    <div id="wrapper">
-    <header id="header" class="inner"><!-- for more effects see _animate.scss -->
+<body >
+<div id="large-header" class="large-header">
+<canvas id="demo-canvas"></canvas>
+</div>
+<div id="wrapper">
+<header id="header" class="inner"><!-- for more effects see _animate.scss -->
 <h1 class="animated bounceInDown">
     <div id="headerbg">
         Maxim Bunkov
@@ -85,11 +86,10 @@
 
 
 </header>
-
-<div id="toload">
-<!-- begin toload --> 
-    <div id="content" class="inner">
-        
+	<div id="toload">
+	<!-- begin toload -->
+	<div id="content" class="inner">
+		
 	
 
 
@@ -109,19 +109,25 @@
 </article>
 
 
-    </div>
-    <footer id="footer">
-    <div style="display:inline">
+	</div>
+	<footer id="footer">
+		<div style="display:inline">
     Copyright &copy; 2015
 
     Maxim Bunkov
 . Powered by <a href="http://octopress.org">Octopress</a> | 
     Theme <a href="http://github.com/panks/fabric">fabric</a> by <a href="http://panks.me">Pankaj Kumar</a>
 </div>
+<!-- connect Three libs -->
+<script type="text/javascript" src="/javascripts/connectThree.js"></script>
+<script type="text/javascript" src="/javascripts/greenSock/EasePack.min.js"></script>
+<script type="text/javascript" src="/javascripts/greenSock/rAF.js"></script>
+<script type="text/javascript" src="/javascripts/greenSock/TweenLite.min.js"></script>
+<link href='/stylesheets/connectThree.css' rel='stylesheet' type='text/css'>
 
 
-    </footer>
-    <script src="/javascripts/fabric.js"></script>
+	</footer>
+	<script src="/javascripts/fabric.js"></script>
 <script src="/javascripts/jquery.fancybox.pack.js"></script>
 <script type="text/javascript">
 (function($){
@@ -146,14 +152,14 @@
 
 
 
-
-<!-- end toload --> 
+	<!-- end toload -->
+</div>
 </div>
 </div>
 <script src="/javascripts/jquery.ui.totop.js" type="text/javascript"></script>
 <script type="text/javascript">
 /*<![CDATA[*/
-;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery); 
+;(function($){$().UItoTop({easingType:'easeOutCirc'});})(jQuery);
 /*]]>*/
 </script><!-- remove it to remove the scroll to top button -->
 </body>
