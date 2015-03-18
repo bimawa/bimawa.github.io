@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[My Octopress Blog]]></title>
+  <link href="http://bimawa.github.io/atom.xml" rel="self"/>
+  <link href="http://bimawa.github.io/"/>
+  <updated>2015-03-19T01:47:18+05:00</updated>
+  <id>http://bimawa.github.io/</id>
+  <author>
+    <name><![CDATA[Maxim Bunkov]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Hello]]></title>
+    <link href="http://bimawa.github.io/blog/2014/07/18/hello/"/>
+    <updated>2014-07-18T21:54:56+06:00</updated>
+    <id>http://bimawa.github.io/blog/2014/07/18/hello</id>
+    <content type="html"><![CDATA[<h1>Hello, Welcom to my block!</h1>
+]]></content>
+  </entry>
+  
+</feed>
