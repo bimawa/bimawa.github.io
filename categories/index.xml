@@ -2,38 +2,38 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Categories on tranquilpeak theme</title>
-    <link>https://example.org/categories/</link>
+    <link>https://bimawa.com/categories/</link>
     <description>Recent content in Categories on tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     
-	<atom:link href="https://example.org/categories/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bimawa.com/categories/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Features</title>
-      <link>https://example.org/categories/features/</link>
+      <link>https://bimawa.com/categories/features/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/categories/features/</guid>
+      <guid>https://bimawa.com/categories/features/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Releases</title>
-      <link>https://example.org/categories/releases/</link>
+      <link>https://bimawa.com/categories/releases/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/categories/releases/</guid>
+      <guid>https://bimawa.com/categories/releases/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tranquilpeak</title>
-      <link>https://example.org/categories/tranquilpeak/</link>
+      <link>https://bimawa.com/categories/tranquilpeak/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/categories/tranquilpeak/</guid>
+      <guid>https://bimawa.com/categories/tranquilpeak/</guid>
       <description></description>
     </item>
     

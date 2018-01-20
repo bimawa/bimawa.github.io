@@ -2,210 +2,210 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Tags on tranquilpeak theme</title>
-    <link>https://example.org/tags/</link>
+    <link>https://bimawa.com/tags/</link>
     <description>Recent content in Tags on tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 02 Oct 2013 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://example.org/tags/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://bimawa.com/tags/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Chinese</title>
-      <link>https://example.org/tags/chinese/</link>
+      <link>https://bimawa.com/tags/chinese/</link>
       <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/chinese/</guid>
+      <guid>https://bimawa.com/tags/chinese/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Cover Image</title>
-      <link>https://example.org/tags/cover-image/</link>
+      <link>https://bimawa.com/tags/cover-image/</link>
       <pubDate>Wed, 13 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/cover-image/</guid>
+      <guid>https://bimawa.com/tags/cover-image/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Dailymotion</title>
-      <link>https://example.org/tags/dailymotion/</link>
+      <link>https://bimawa.com/tags/dailymotion/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/dailymotion/</guid>
+      <guid>https://bimawa.com/tags/dailymotion/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Disqus</title>
-      <link>https://example.org/tags/disqus/</link>
+      <link>https://bimawa.com/tags/disqus/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/disqus/</guid>
+      <guid>https://bimawa.com/tags/disqus/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Github Theme</title>
-      <link>https://example.org/tags/github-theme/</link>
+      <link>https://bimawa.com/tags/github-theme/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/github-theme/</guid>
+      <guid>https://bimawa.com/tags/github-theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Google Analytics</title>
-      <link>https://example.org/tags/google-analytics/</link>
+      <link>https://bimawa.com/tags/google-analytics/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/google-analytics/</guid>
+      <guid>https://bimawa.com/tags/google-analytics/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Gravatar</title>
-      <link>https://example.org/tags/gravatar/</link>
+      <link>https://bimawa.com/tags/gravatar/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/gravatar/</guid>
+      <guid>https://bimawa.com/tags/gravatar/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Hexo Theme</title>
-      <link>https://example.org/tags/hexo-theme/</link>
+      <link>https://bimawa.com/tags/hexo-theme/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/hexo-theme/</guid>
+      <guid>https://bimawa.com/tags/hexo-theme/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Highlight Code</title>
-      <link>https://example.org/tags/highlight-code/</link>
+      <link>https://bimawa.com/tags/highlight-code/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/highlight-code/</guid>
+      <guid>https://bimawa.com/tags/highlight-code/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Html Elements</title>
-      <link>https://example.org/tags/html-elements/</link>
+      <link>https://bimawa.com/tags/html-elements/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/html-elements/</guid>
+      <guid>https://bimawa.com/tags/html-elements/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Image Gallery</title>
-      <link>https://example.org/tags/image-gallery/</link>
+      <link>https://bimawa.com/tags/image-gallery/</link>
       <pubDate>Mon, 18 Feb 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/image-gallery/</guid>
+      <guid>https://bimawa.com/tags/image-gallery/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Japanese</title>
-      <link>https://example.org/tags/japanese/</link>
+      <link>https://bimawa.com/tags/japanese/</link>
       <pubDate>Wed, 02 Jan 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/japanese/</guid>
+      <guid>https://bimawa.com/tags/japanese/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Markdown</title>
-      <link>https://example.org/tags/markdown/</link>
+      <link>https://bimawa.com/tags/markdown/</link>
       <pubDate>Thu, 28 May 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/markdown/</guid>
+      <guid>https://bimawa.com/tags/markdown/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Pagination</title>
-      <link>https://example.org/tags/pagination/</link>
+      <link>https://bimawa.com/tags/pagination/</link>
       <pubDate>Fri, 15 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/pagination/</guid>
+      <guid>https://bimawa.com/tags/pagination/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Responsive</title>
-      <link>https://example.org/tags/responsive/</link>
+      <link>https://bimawa.com/tags/responsive/</link>
       <pubDate>Mon, 15 Jun 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/responsive/</guid>
+      <guid>https://bimawa.com/tags/responsive/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Social</title>
-      <link>https://example.org/tags/social/</link>
+      <link>https://bimawa.com/tags/social/</link>
       <pubDate>Sun, 17 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/social/</guid>
+      <guid>https://bimawa.com/tags/social/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tag Plugins</title>
-      <link>https://example.org/tags/tag-plugins/</link>
+      <link>https://bimawa.com/tags/tag-plugins/</link>
       <pubDate>Wed, 29 Oct 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/tag-plugins/</guid>
+      <guid>https://bimawa.com/tags/tag-plugins/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Tags</title>
-      <link>https://example.org/tags/tags/</link>
+      <link>https://bimawa.com/tags/tags/</link>
       <pubDate>Sat, 16 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/tags/</guid>
+      <guid>https://bimawa.com/tags/tags/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Test</title>
-      <link>https://example.org/tags/test/</link>
+      <link>https://bimawa.com/tags/test/</link>
       <pubDate>Mon, 23 Mar 2015 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/test/</guid>
+      <guid>https://bimawa.com/tags/test/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Videos Integration</title>
-      <link>https://example.org/tags/videos-integration/</link>
+      <link>https://bimawa.com/tags/videos-integration/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/videos-integration/</guid>
+      <guid>https://bimawa.com/tags/videos-integration/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Vimeo</title>
-      <link>https://example.org/tags/vimeo/</link>
+      <link>https://bimawa.com/tags/vimeo/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/vimeo/</guid>
+      <guid>https://bimawa.com/tags/vimeo/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Youtube</title>
-      <link>https://example.org/tags/youtube/</link>
+      <link>https://bimawa.com/tags/youtube/</link>
       <pubDate>Sat, 09 Aug 2014 00:00:00 +0000</pubDate>
       
-      <guid>https://example.org/tags/youtube/</guid>
+      <guid>https://bimawa.com/tags/youtube/</guid>
       <description></description>
     </item>
     
