@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Chinese on tranquilpeak theme</title>
-    <link>https://bimawa.com/tags/chinese/</link>
+    <link>http://bimawa.com/tags/chinese/</link>
     <description>Recent content in Chinese on tranquilpeak theme</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 02 Oct 2013 00:00:00 +0000</lastBuildDate>
     
-	<atom:link href="https://bimawa.com/tags/chinese/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://bimawa.com/tags/chinese/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>中文測試</title>
-      <link>https://bimawa.com/2013/10/chinese-test/</link>
+      <link>http://bimawa.com/2013/10/chinese-test/</link>
       <pubDate>Wed, 02 Oct 2013 00:00:00 +0000</pubDate>
       
-      <guid>https://bimawa.com/2013/10/chinese-test/</guid>
+      <guid>http://bimawa.com/2013/10/chinese-test/</guid>
       <description>&lt;p&gt;This is a chinese test post to show you how chinese is displayed.
 &lt;/p&gt;</description>
     </item>
