@@ -16,3 +16,23 @@ highlight_code = true
 
 [extra]
 # Put all your custom variables here
+accent_color = "blue-light"
+background_color = "dark"
+author = "Maxim Bunkov aka Bimawa"
+copyright_html = "IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b>"
+menu_items = [
+    {name = "Blog", url = "$BASE_URL"},
+    {name = "Tags", url = "$BASE_URL/tags"},
+    {name = "Archive", url = "$BASE_URL/archive"},
+    {name = "About me", url = "$BASE_URL/about"},
+    {name = "CV", url = "$BASE_URL/CV"},
+    {name = "Github", url = "https://github.com/bimawa", newtab = true},
+]
+
+taxonomies = [
+    {name = "tags"},
+]
+use_full_hack_font = true
+favicon = "/favicon.ico"
+favicon_mimetype = "image/ico"
+logo_text = "Bimawa Blog"
