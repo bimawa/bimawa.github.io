@@ -26,7 +26,7 @@ menu_items = [
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "About me", url = "$BASE_URL/about"},
     {name = "CV", url = "$BASE_URL/CV"},
-    {name = "Github", url = "https://github.com/bimawa", newtab = true},
+    {name = "Contacts", url = "$BASE_URL/contacts"},
 ]
 
 taxonomies = [
@@ -35,4 +35,4 @@ taxonomies = [
 use_full_hack_font = true
 favicon = "/favicon.ico"
 favicon_mimetype = "image/ico"
-logo_text = "Bimawa Blog"
+logo_text = "Bimawa's blog"
