@@ -5,7 +5,7 @@ title = "About me"
 # About me
 Greetings. My name is Max, aka bimawa.
 
-I'm passionate about crafting robust and user-centric mobile solutions, particularly for the iOS platform. With over 12 years of experience as a software developer, I've evolved from a junior coder tackling complex AMQP protocols to a senior iOS engineer leading SDK development for sports applications at Makeomatic.
+I'm passionate about crafting robust and user-centric mobile solutions, particularly for the iOS platform. With over 12 years of experience as a software developer, I've evolved from a junior coder tackling complex AMQP protocols to a senior iOS engineer leading SDK development for sports applications at Makeomatic for startups.
 
 My journey began in web and backend technologies—working with Flash, PHP, Java, and more at companies like Sberbank and P2P Technology—but it naturally gravitated toward mobile development. As a Lead iOS Developer at startups such as HappyMama and TradeAndChat, I've architected apps from scratch, refactored legacy codebases, and integrated advanced features like WebRTC, real-time messaging, and advertising SDKs.
 
