@@ -25,7 +25,7 @@ menu_items = [
     {name = "Tags", url = "$BASE_URL/tags"},
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "About me", url = "$BASE_URL/about"},
-    {name = "CV", url = "$BASE_URL/CV"},
+    {name = "CV", url = "$BASE_URL/cv"},
     {name = "Contacts", url = "$BASE_URL/contacts"},
 ]
 
