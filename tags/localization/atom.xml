@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - localization</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.github.io/tags/localization/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-11-16T00:00:00+00:00</updated>
+    <id>https://bimawa.github.io/tags/localization/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Building a Localization Sync Tool for iOS&#x2F;macOS</title>
+        <published>2025-11-16T00:00:00+00:00</published>
+        <updated>2025-11-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.github.io/blog/ios-strings-sync/"/>
+        <id>https://bimawa.github.io/blog/ios-strings-sync/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h1&gt;
+&lt;p&gt;Managing localization files in iOS and macOS projects can become challenging as your app grows. When you add new strings to your base language file, keeping all translation files synchronized becomes tedious and error-prone. This article explores &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;syncLproj&quot;&gt;syncLproj&lt;&#x2F;a&gt;, a Rust-based CLI tool designed to automate this synchronization process.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-localization-problem&quot;&gt;The Localization Problem&lt;&#x2F;h2&gt;
+&lt;p&gt;In iOS&#x2F;macOS development, localization uses &lt;code&gt;.strings&lt;&#x2F;code&gt; files with a simple key-value format:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;swift&quot; style=&quot;background-color:#2b303b;color:#c0c5ce;&quot; class=&quot;language-swift &quot;&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&lt;span style=&quot;color:#65737e;&quot;&gt;&#x2F;* User interface strings *&#x2F;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;welcome_message&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;Welcome to our app!&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;login_button&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;Log In&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;signup_button&amp;quot; &lt;&#x2F;span&gt;&lt;span&gt;= &lt;&#x2F;span&gt;&lt;span style=&quot;color:#a3be8c;&quot;&gt;&amp;quot;Sign Up&amp;quot;&lt;&#x2F;span&gt;&lt;span&gt;;
+&lt;&#x2F;span&gt;&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;When managing multiple languages, several problems emerge:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Missing keys&lt;&#x2F;strong&gt;: New keys added to the base language don&#x27;t automatically appear in translations&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Key order inconsistency&lt;&#x2F;strong&gt;: Different files have keys in different orders, making diffs harder to review&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Orphaned keys&lt;&#x2F;strong&gt;: Removed keys remain in translation files&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Manual work&lt;&#x2F;strong&gt;: Copy-pasting keys across dozens of files is time-consuming and error-prone&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Traditional approaches involve manual editing or Xcode&#x27;s built-in tools, which lack automation capabilities for CI&#x2F;CD pipelines.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

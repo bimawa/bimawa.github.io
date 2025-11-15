@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.github.io/style.css">
+    <link rel="stylesheet" href="https://bimawa.github.io/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.github.io/font-hack.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bimawa.github.io/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.github.io">
+    <meta property="twitter:url" content="https://bimawa.github.io/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.github.io">Blog</a></li>
+            
+                <li><a href="https://bimawa.github.io/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.github.io/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.github.io/about">About me</a></li>
+            
+                <li><a href="https://bimawa.github.io/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.github.io/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="posts">
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.github.io/blog/youtrack-workflow/">Automating Project Workflows with YouTrack JavaScript Rules</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/automation/">#automation</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/javascript/">#javascript</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/project-management/">#project-management</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/workflow/">#workflow</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/youtrack/">#youtrack</a></span>
+    
+
+            
+        <div class="post-content">
+            <h1 id="introduction">Introduction</h1>
+<p>JetBrains YouTrack provides a powerful workflow engine that allows teams to automate and enforce project management policies using JavaScript. Unlike simple status transitions, YouTrack workflows can validate data, enforce business rules, and ensure consistency across your development process.</p>
+<p>This article explores practical workflow automation through three real-world examples: validating test environment deployments, enforcing time tracking, and ensuring task estimation. These patterns are applicable to any team using YouTrack for agile development.</p>
+<h2 id="why-workflow-automation">Why Workflow Automation?</h2>
+<p>Manual enforcement of project policies is error-prone and time-consuming. Common problems include:</p>
+<ul>
+<li><strong>Incomplete time tracking</strong>: Developers forget to log spent time</li>
+<li><strong>Missing estimations</strong>: Tasks move to "In Progress" without effort estimates</li>
+<li><strong>Incorrect state transitions</strong>: Test builds deployed to production accidentally</li>
+<li><strong>Inconsistent processes</strong>: Different team members follow different workflows</li>
+</ul>
+<p>YouTrack's JavaScript-based workflows solve these problems by:</p>
+<ol>
+<li><strong>Preventing invalid transitions</strong>: Block state changes that violate policies</li>
+<li><strong>Enforcing required fields</strong>: Ensure critical data is captured</li>
+<li><strong>Validating business logic</strong>: Implement complex rules programmatically</li>
+<li><strong>Providing immediate feedback</strong>: Show clear error messages to users</li>
+</ol>
+        </div>
+        <div>
+            <!-- &#xFE0E; -- force text style - some devices render this as emoji -->
+            <a class="read-more button" href="https://bimawa.github.io/blog/youtrack-workflow/">
+                <span class="button__text">Read more</span>&nbsp;
+                <span class="button__icon">&#8617;&#xFE0E;</span>
+            </a>
+        </div>
+    
+
+        </div>
+    
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.github.io/blog/ios-strings-sync/">Building a Localization Sync Tool for iOS&#x2F;macOS</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/i18n/">#i18n</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/ios/">#ios</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/localization/">#localization</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/rust/">#rust</a></span>
+    
+
+            
+        <div class="post-content">
+            <h1 id="introduction">Introduction</h1>
+<p>Managing localization files in iOS and macOS projects can become challenging as your app grows. When you add new strings to your base language file, keeping all translation files synchronized becomes tedious and error-prone. This article explores <a href="https://github.com/bimawa/syncLproj">syncLproj</a>, a Rust-based CLI tool designed to automate this synchronization process.</p>
+<h2 id="the-localization-problem">The Localization Problem</h2>
+<p>In iOS/macOS development, localization uses <code>.strings</code> files with a simple key-value format:</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">/* User interface strings */
+</span><span style="color:#a3be8c;">&quot;welcome_message&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Welcome to our app!&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;login_button&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Log In&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;signup_button&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Sign Up&quot;</span><span>;
+</span></code></pre>
+<p>When managing multiple languages, several problems emerge:</p>
+<ul>
+<li><strong>Missing keys</strong>: New keys added to the base language don't automatically appear in translations</li>
+<li><strong>Key order inconsistency</strong>: Different files have keys in different orders, making diffs harder to review</li>
+<li><strong>Orphaned keys</strong>: Removed keys remain in translation files</li>
+<li><strong>Manual work</strong>: Copy-pasting keys across dozens of files is time-consuming and error-prone</li>
+</ul>
+<p>Traditional approaches involve manual editing or Xcode's built-in tools, which lack automation capabilities for CI/CD pipelines.</p>
+        </div>
+        <div>
+            <!-- &#xFE0E; -- force text style - some devices render this as emoji -->
+            <a class="read-more button" href="https://bimawa.github.io/blog/ios-strings-sync/">
+                <span class="button__text">Read more</span>&nbsp;
+                <span class="button__icon">&#8617;&#xFE0E;</span>
+            </a>
+        </div>
+    
+
+        </div>
+    
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.github.io/blog/cli-rust-research/">Building a Terminal File Manager with Rust</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-15
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/rust/">#rust</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/tui/">#tui</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/tutorial/">#tutorial</a></span>
+    
+
+            
+        <div class="post-content">
+            <h1 id="introduction">Introduction</h1>
+<p>This post explores the journey of building a terminal user interface (TUI) file manager in Rust. We'll examine <a href="https://github.com/bimawa/blaze-file-manager">Blaze Ultra</a>, a practical CLI application that demonstrates key concepts in Rust development including terminal manipulation, event handling, and modern UI frameworks.</p>
+<h2 id="why-rust-for-cli-applications">Why Rust for CLI Applications?</h2>
+<p>Rust has become increasingly popular for CLI tools due to several compelling advantages:</p>
+<ul>
+<li><strong>Performance</strong>: Near C-level performance with zero-cost abstractions</li>
+<li><strong>Safety</strong>: Memory safety without garbage collection prevents common bugs</li>
+<li><strong>Ergonomics</strong>: Modern tooling with Cargo makes distribution trivial</li>
+<li><strong>Cross-platform</strong>: Write once, compile anywhere with minimal platform-specific code</li>
+<li><strong>Rich Ecosystem</strong>: Mature crates like <code>clap</code>, <code>ratatui</code>, and <code>tokio</code> accelerate development</li>
+</ul>
+<p>Popular examples include <code>ripgrep</code>, <code>fd</code>, <code>bat</code>, and <code>exa</code> - all demonstrating Rust's capability to create fast, reliable command-line tools.</p>
+        </div>
+        <div>
+            <!-- &#xFE0E; -- force text style - some devices render this as emoji -->
+            <a class="read-more button" href="https://bimawa.github.io/blog/cli-rust-research/">
+                <span class="button__text">Read more</span>&nbsp;
+                <span class="button__icon">&#8617;&#xFE0E;</span>
+            </a>
+        </div>
+    
+
+        </div>
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - automation</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.github.io/tags/automation/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.github.io"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-11-16T04:28:00+00:00</updated>
+    <id>https://bimawa.github.io/tags/automation/atom.xml</id>
+    <entry xml:lang="en">
+        <title>Automating Project Workflows with YouTrack JavaScript Rules</title>
+        <published>2025-11-16T04:28:00+00:00</published>
+        <updated>2025-11-16T04:28:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.github.io/blog/youtrack-workflow/"/>
+        <id>https://bimawa.github.io/blog/youtrack-workflow/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;introduction&quot;&gt;Introduction&lt;&#x2F;h1&gt;
+&lt;p&gt;JetBrains YouTrack provides a powerful workflow engine that allows teams to automate and enforce project management policies using JavaScript. Unlike simple status transitions, YouTrack workflows can validate data, enforce business rules, and ensure consistency across your development process.&lt;&#x2F;p&gt;
+&lt;p&gt;This article explores practical workflow automation through three real-world examples: validating test environment deployments, enforcing time tracking, and ensuring task estimation. These patterns are applicable to any team using YouTrack for agile development.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;why-workflow-automation&quot;&gt;Why Workflow Automation?&lt;&#x2F;h2&gt;
+&lt;p&gt;Manual enforcement of project policies is error-prone and time-consuming. Common problems include:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Incomplete time tracking&lt;&#x2F;strong&gt;: Developers forget to log spent time&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Missing estimations&lt;&#x2F;strong&gt;: Tasks move to &quot;In Progress&quot; without effort estimates&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Incorrect state transitions&lt;&#x2F;strong&gt;: Test builds deployed to production accidentally&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Inconsistent processes&lt;&#x2F;strong&gt;: Different team members follow different workflows&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;YouTrack&#x27;s JavaScript-based workflows solve these problems by:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Preventing invalid transitions&lt;&#x2F;strong&gt;: Block state changes that violate policies&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Enforcing required fields&lt;&#x2F;strong&gt;: Ensure critical data is captured&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Validating business logic&lt;&#x2F;strong&gt;: Implement complex rules programmatically&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Providing immediate feedback&lt;&#x2F;strong&gt;: Show clear error messages to users&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;</summary>
+        
+    </entry>
+</feed>

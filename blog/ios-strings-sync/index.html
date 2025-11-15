@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.github.io/style.css">
+    <link rel="stylesheet" href="https://bimawa.github.io/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.github.io/font-hack.css">
+
+    <meta name="description" content="Creating a Rust CLI tool to synchronize .strings files across multiple localizations while preserving translations and maintaining key order.">
+
+    <meta property="og:description" content="Creating a Rust CLI tool to synchronize .strings files across multiple localizations while preserving translations and maintaining key order.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.github.io/blog/ios-strings-sync/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Creating a Rust CLI tool to synchronize .strings files across multiple localizations while preserving translations and maintaining key order.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.github.io">
+    <meta property="twitter:url" content="https://bimawa.github.io/blog/ios-strings-sync/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.github.io">Blog</a></li>
+            
+                <li><a href="https://bimawa.github.io/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.github.io/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.github.io/about">About me</a></li>
+            
+                <li><a href="https://bimawa.github.io/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.github.io/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.github.io/blog/ios-strings-sync/">Building a Localization Sync Tool for iOS&#x2F;macOS</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/i18n/">#i18n</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/ios/">#ios</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/localization/">#localization</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/rust/">#rust</a></span>
+    
+
+        <div class="post-content">
+            <h1 id="introduction">Introduction</h1>
+<p>Managing localization files in iOS and macOS projects can become challenging as your app grows. When you add new strings to your base language file, keeping all translation files synchronized becomes tedious and error-prone. This article explores <a href="https://github.com/bimawa/syncLproj">syncLproj</a>, a Rust-based CLI tool designed to automate this synchronization process.</p>
+<h2 id="the-localization-problem">The Localization Problem</h2>
+<p>In iOS/macOS development, localization uses <code>.strings</code> files with a simple key-value format:</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">/* User interface strings */
+</span><span style="color:#a3be8c;">&quot;welcome_message&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Welcome to our app!&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;login_button&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Log In&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;signup_button&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Sign Up&quot;</span><span>;
+</span></code></pre>
+<p>When managing multiple languages, several problems emerge:</p>
+<ul>
+<li><strong>Missing keys</strong>: New keys added to the base language don't automatically appear in translations</li>
+<li><strong>Key order inconsistency</strong>: Different files have keys in different orders, making diffs harder to review</li>
+<li><strong>Orphaned keys</strong>: Removed keys remain in translation files</li>
+<li><strong>Manual work</strong>: Copy-pasting keys across dozens of files is time-consuming and error-prone</li>
+</ul>
+<p>Traditional approaches involve manual editing or Xcode's built-in tools, which lack automation capabilities for CI/CD pipelines.</p>
+<span id="continue-reading"></span><h2 id="design-goals">Design Goals</h2>
+<p>The syncLproj tool was designed with specific constraints:</p>
+<ol>
+<li><strong>Zero dependencies</strong>: Maximize portability and minimize binary size</li>
+<li><strong>Preserve translations</strong>: Never overwrite existing translations</li>
+<li><strong>Maintain order</strong>: Ensure all files follow the base file's key order</li>
+<li><strong>Support multiline values</strong>: Handle strings with escaped newlines</li>
+<li><strong>Preserve comments</strong>: Keep file headers and documentation intact</li>
+<li><strong>Recursive scanning</strong>: Process entire project directories automatically</li>
+</ol>
+<h2 id="project-structure">Project Structure</h2>
+<p>The entire tool is implemented in a single <code>main.rs</code> file (~250 lines), demonstrating Rust's ability to create powerful utilities with minimal code. The <code>Cargo.toml</code> is remarkably simple:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[package]
+</span><span style="color:#bf616a;">name </span><span>= &quot;</span><span style="color:#a3be8c;">synclproj</span><span>&quot;
+</span><span style="color:#bf616a;">version </span><span>= &quot;</span><span style="color:#a3be8c;">0.1.0</span><span>&quot;
+</span><span style="color:#bf616a;">edition </span><span>= &quot;</span><span style="color:#a3be8c;">2024</span><span>&quot;
+</span><span>
+</span><span>[dependencies]
+</span><span style="color:#65737e;"># Zero runtime dependencies!
+</span></code></pre>
+<p>Using only Rust's standard library keeps the compiled binary small (~400KB) and eliminates supply chain security concerns.</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<p>The tool follows a straightforward pipeline:</p>
+<ol>
+<li><strong>Parse</strong> the original/base <code>.strings</code> file to extract keys and their order</li>
+<li><strong>Scan</strong> the target directory recursively for all <code>.strings</code> files</li>
+<li><strong>Sync</strong> each found file:
+<ul>
+<li>Read existing translations</li>
+<li>Reorder entries to match the base file</li>
+<li>Add missing keys with base language values as placeholders</li>
+<li>Preserve file header comments</li>
+</ul>
+</li>
+<li><strong>Report</strong> which keys were added to each file</li>
+</ol>
+<h3 id="core-data-structure">Core Data Structure</h3>
+<p>The fundamental data structure is simple but effective:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">derive</span><span>(Debug, Clone)]
+</span><span style="color:#b48ead;">struct </span><span>StringEntry {
+</span><span>    </span><span style="color:#bf616a;">key</span><span>: String,
+</span><span>    </span><span style="color:#bf616a;">raw_lines</span><span>: Vec&lt;String&gt;,
+</span><span>}
+</span></code></pre>
+<p>Storing <code>raw_lines</code> instead of parsed values is crucial—it preserves formatting, comments, and multiline structure exactly as they appear in the source file.</p>
+<h2 id="parsing-strings-files">Parsing .strings Files</h2>
+<p>Parsing Apple's <code>.strings</code> format requires handling several edge cases:</p>
+<h3 id="basic-format">Basic Format</h3>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a3be8c;">&quot;key&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;value&quot;</span><span>;
+</span></code></pre>
+<h3 id="multiline-values">Multiline Values</h3>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a3be8c;">&quot;long_message&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;This is a very long </span><span style="background-color:#bf616a;color:#2b303b;">\</span><span>
+</span><span style="color:#a3be8c;">message that spans </span><span style="background-color:#bf616a;color:#2b303b;">\</span><span>
+</span><span style="color:#a3be8c;">multiple lines&quot;</span><span>;
+</span></code></pre>
+<h3 id="comments">Comments</h3>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">/* Section header */
+</span><span style="color:#65737e;">// Inline comment
+</span><span style="color:#a3be8c;">&quot;key&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;value&quot;</span><span>;
+</span></code></pre>
+<p>The parser implementation uses a state machine approach:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">parse_multiline_entry</span><span>(</span><span style="color:#bf616a;">lines</span><span>: &amp;[&amp;</span><span style="color:#b48ead;">str</span><span>], </span><span style="color:#bf616a;">start</span><span>: </span><span style="color:#b48ead;">usize</span><span>) -&gt; (Option&lt;StringEntry&gt;, </span><span style="color:#b48ead;">usize</span><span>) {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> i = start;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> raw_lines = Vec::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> full_text = String::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> key = None;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while</span><span> i &lt; lines.</span><span style="color:#96b5b4;">len</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> line = lines[i];
+</span><span>        raw_lines.</span><span style="color:#96b5b4;">push</span><span>(line.</span><span style="color:#96b5b4;">to_string</span><span>());
+</span><span>        full_text.</span><span style="color:#96b5b4;">push_str</span><span>(line);
+</span><span>        full_text.</span><span style="color:#96b5b4;">push</span><span>(&#39;</span><span style="color:#96b5b4;">\n</span><span>&#39;);
+</span><span>
+</span><span>        </span><span style="color:#b48ead;">let</span><span> trimmed = line.</span><span style="color:#96b5b4;">trim</span><span>();
+</span><span>        
+</span><span>        </span><span style="color:#65737e;">// Skip empty lines and comments
+</span><span>        </span><span style="color:#b48ead;">if</span><span> trimmed.</span><span style="color:#96b5b4;">is_empty</span><span>() || trimmed.</span><span style="color:#96b5b4;">starts_with</span><span>(&quot;</span><span style="color:#a3be8c;">/*</span><span>&quot;) || trimmed.</span><span style="color:#96b5b4;">starts_with</span><span>(&quot;</span><span style="color:#a3be8c;">//</span><span>&quot;) {
+</span><span>            i += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#65737e;">// Extract key if not found yet
+</span><span>        </span><span style="color:#b48ead;">if</span><span> key.</span><span style="color:#96b5b4;">is_none</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">if let </span><span>Some(eq_pos) = full_text.</span><span style="color:#96b5b4;">find</span><span>(&#39;</span><span style="color:#a3be8c;">=</span><span>&#39;) {
+</span><span>                </span><span style="color:#b48ead;">let</span><span> before = &amp;full_text[..eq_pos];
+</span><span>                </span><span style="color:#b48ead;">if let </span><span>Some(k) = </span><span style="color:#96b5b4;">extract_key_from_text</span><span>(before) {
+</span><span>                    key = Some(k);
+</span><span>                }
+</span><span>            }
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#65737e;">// Check for line continuation
+</span><span>        </span><span style="color:#b48ead;">if</span><span> line.</span><span style="color:#96b5b4;">trim_end</span><span>().</span><span style="color:#96b5b4;">ends_with</span><span>(&#39;</span><span style="color:#96b5b4;">\\</span><span>&#39;) {
+</span><span>            i += </span><span style="color:#d08770;">1</span><span>;
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>
+</span><span>        </span><span style="color:#65737e;">// Complete entry found
+</span><span>        </span><span style="color:#b48ead;">if</span><span> key.</span><span style="color:#96b5b4;">is_some</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">return </span><span>(
+</span><span>                Some(StringEntry {
+</span><span>                    key: key.</span><span style="color:#96b5b4;">unwrap</span><span>(),
+</span><span>                    raw_lines,
+</span><span>                }),
+</span><span>                i + </span><span style="color:#d08770;">1</span><span>,
+</span><span>            );
+</span><span>        }
+</span><span>
+</span><span>        i += </span><span style="color:#d08770;">1</span><span>;
+</span><span>    }
+</span><span>
+</span><span>    (None, i)
+</span><span>}
+</span></code></pre>
+<p>This approach:</p>
+<ul>
+<li>Accumulates lines until finding a complete entry</li>
+<li>Handles backslash line continuations</li>
+<li>Preserves exact formatting for reconstruction</li>
+<li>Returns both the entry and the next line index to process</li>
+</ul>
+<h3 id="key-extraction">Key Extraction</h3>
+<p>Extracting the key requires careful escape sequence handling:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">extract_key_from_text</span><span>(</span><span style="color:#bf616a;">text</span><span>: &amp;</span><span style="color:#b48ead;">str</span><span>) -&gt; Option&lt;String&gt; {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> trimmed = text.</span><span style="color:#96b5b4;">trim</span><span>();
+</span><span>    </span><span style="color:#b48ead;">if </span><span>!trimmed.</span><span style="color:#96b5b4;">starts_with</span><span>(&#39;</span><span style="color:#a3be8c;">&quot;</span><span>&#39;) {
+</span><span>        </span><span style="color:#b48ead;">return </span><span>None;
+</span><span>    }
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> chars = trimmed[</span><span style="color:#d08770;">1</span><span>..].</span><span style="color:#96b5b4;">chars</span><span>();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> key = String::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> escape = </span><span style="color:#d08770;">false</span><span>;
+</span><span>
+</span><span>    </span><span style="color:#b48ead;">while let </span><span>Some(c) = chars.</span><span style="color:#96b5b4;">next</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">if</span><span> escape {
+</span><span>            key.</span><span style="color:#96b5b4;">push</span><span>(c);
+</span><span>            escape = </span><span style="color:#d08770;">false</span><span>;
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> c == &#39;</span><span style="color:#96b5b4;">\\</span><span>&#39; {
+</span><span>            escape = </span><span style="color:#d08770;">true</span><span>;
+</span><span>            </span><span style="color:#b48ead;">continue</span><span>;
+</span><span>        }
+</span><span>        </span><span style="color:#b48ead;">if</span><span> c == &#39;</span><span style="color:#a3be8c;">&quot;</span><span>&#39; {
+</span><span>            </span><span style="color:#b48ead;">return </span><span>Some(key);
+</span><span>        }
+</span><span>        key.</span><span style="color:#96b5b4;">push</span><span>(c);
+</span><span>    }
+</span><span>    None
+</span><span>}
+</span></code></pre>
+<p>This handles keys like <code>"message.\"quoted\""</code> correctly by tracking escape state character-by-character.</p>
+<h2 id="synchronization-algorithm">Synchronization Algorithm</h2>
+<p>The sync process is the heart of the tool:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">sync_strings_file</span><span>(
+</span><span>    </span><span style="color:#bf616a;">path</span><span>: &amp;Path,
+</span><span>    </span><span style="color:#bf616a;">original_entries</span><span>: &amp;Vec&lt;StringEntry&gt;,
+</span><span>) -&gt; io::Result&lt;()&gt; {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> content = fs::read_to_string(path)?;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> lines: Vec&lt;&amp;</span><span style="color:#b48ead;">str</span><span>&gt; = content.</span><span style="color:#96b5b4;">lines</span><span>().</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Phase 1: Collect existing data
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> preserved_comments = Vec::new();
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> existing_keys = HashSet::new();
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Parse existing file to identify what&#39;s already present
+</span><span>    </span><span style="color:#65737e;">// ... (details in full implementation)
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Phase 2: Build synchronized output
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> output_lines = Vec::new();
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Add preserved header comments
+</span><span>    </span><span style="color:#b48ead;">for</span><span> comment in &amp;preserved_comments {
+</span><span>        </span><span style="color:#b48ead;">if </span><span>!comment.</span><span style="color:#96b5b4;">trim</span><span>().</span><span style="color:#96b5b4;">is_empty</span><span>() {
+</span><span>            output_lines.</span><span style="color:#96b5b4;">push</span><span>(comment.</span><span style="color:#96b5b4;">clone</span><span>());
+</span><span>        }
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Iterate in original file&#39;s order
+</span><span>    </span><span style="color:#b48ead;">for</span><span> orig_entry in original_entries {
+</span><span>        </span><span style="color:#b48ead;">let</span><span> key = &amp;orig_entry.key;
+</span><span>        
+</span><span>        </span><span style="color:#b48ead;">if</span><span> existing_keys.</span><span style="color:#96b5b4;">contains</span><span>(key) {
+</span><span>            </span><span style="color:#65737e;">// Copy existing translation
+</span><span>            </span><span style="color:#65737e;">// ... (find and copy from target file)
+</span><span>        } </span><span style="color:#b48ead;">else </span><span>{
+</span><span>            </span><span style="color:#65737e;">// Add missing key with base language value
+</span><span>            println!(&quot;</span><span style="color:#a3be8c;">   Adding missing key: </span><span style="color:#d08770;">{}</span><span>&quot;, key);
+</span><span>            </span><span style="color:#b48ead;">for</span><span> line in &amp;orig_entry.raw_lines {
+</span><span>                output_lines.</span><span style="color:#96b5b4;">push</span><span>(line.</span><span style="color:#96b5b4;">clone</span><span>());
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Phase 3: Cleanup and write
+</span><span>    </span><span style="color:#65737e;">// Remove excessive blank lines, trim whitespace, write to disk
+</span><span>    </span><span style="color:#65737e;">// ...
+</span><span>    
+</span><span>    Ok(())
+</span><span>}
+</span></code></pre>
+<h3 id="key-insights">Key Insights</h3>
+<p><strong>Two-pass approach</strong>: First pass identifies existing keys, second pass builds output. This ensures we don't accidentally duplicate entries.</p>
+<p><strong>Order preservation</strong>: By iterating through <code>original_entries</code> rather than the target file's order, we guarantee consistent ordering.</p>
+<p><strong>Translation preservation</strong>: When a key exists in both files, we take the entry from the target file, keeping the translated value.</p>
+<p><strong>Placeholder insertion</strong>: Missing keys are copied from the original file with their base language values, making it obvious what needs translation.</p>
+<h2 id="recursive-file-discovery">Recursive File Discovery</h2>
+<p>Finding all <code>.strings</code> files in a project directory:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">find_strings_files</span><span>(</span><span style="color:#bf616a;">folder</span><span>: &amp;Path) -&gt; Vec&lt;PathBuf&gt; {
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> result = Vec::new();
+</span><span>    </span><span style="color:#b48ead;">if</span><span> folder.</span><span style="color:#96b5b4;">is_dir</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">for</span><span> entry in fs::read_dir(folder).</span><span style="color:#96b5b4;">unwrap</span><span>() {
+</span><span>            </span><span style="color:#b48ead;">let</span><span> entry = entry.</span><span style="color:#96b5b4;">unwrap</span><span>();
+</span><span>            </span><span style="color:#b48ead;">let</span><span> path = entry.</span><span style="color:#96b5b4;">path</span><span>();
+</span><span>            </span><span style="color:#b48ead;">if</span><span> path.</span><span style="color:#96b5b4;">is_dir</span><span>() {
+</span><span>                result.</span><span style="color:#96b5b4;">extend</span><span>(</span><span style="color:#96b5b4;">find_strings_files</span><span>(&amp;path));
+</span><span>            } </span><span style="color:#b48ead;">else if</span><span> path.</span><span style="color:#96b5b4;">extension</span><span>().</span><span style="color:#96b5b4;">and_then</span><span>(|</span><span style="color:#bf616a;">s</span><span>| s.</span><span style="color:#96b5b4;">to_str</span><span>()) == Some(&quot;</span><span style="color:#a3be8c;">strings</span><span>&quot;) {
+</span><span>                result.</span><span style="color:#96b5b4;">push</span><span>(path);
+</span><span>            }
+</span><span>        }
+</span><span>    }
+</span><span>    result
+</span><span>}
+</span></code></pre>
+<p>This simple recursive function:</p>
+<ul>
+<li>Traverses directories depth-first</li>
+<li>Filters for <code>.strings</code> extension</li>
+<li>Returns all matching paths</li>
+</ul>
+<p>In a production tool, you might want to use <code>walkdir</code> crate for better error handling and performance, but the standard library is sufficient for most projects.</p>
+<h2 id="usage-examples">Usage Examples</h2>
+<h3 id="basic-synchronization">Basic Synchronization</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#65737e;"># Sync all localizations using en.lproj as reference
+</span><span style="color:#bf616a;">synclproj</span><span> en.lproj/Localizable.strings ./Resources/
+</span><span>
+</span><span style="color:#65737e;"># Output:
+</span><span style="color:#65737e;"># Scanning folder: ./Resources/
+</span><span style="color:#65737e;"># Syncing: ./Resources/fr.lproj/Localizable.strings
+</span><span style="color:#65737e;">#    Adding missing key: new_feature_title
+</span><span style="color:#65737e;">#    Adding missing key: settings_privacy
+</span><span style="color:#65737e;"># Syncing: ./Resources/de.lproj/Localizable.strings
+</span><span style="color:#65737e;">#    Adding missing key: new_feature_title
+</span><span style="color:#65737e;">#    Adding missing key: settings_privacy
+</span><span style="color:#65737e;"># All .strings files synchronized successfully!
+</span></code></pre>
+<h3 id="ci-cd-integration">CI/CD Integration</h3>
+<p>Add to your <code>.gitlab-ci.yml</code> or GitHub Actions:</p>
+<pre data-lang="yaml" style="background-color:#2b303b;color:#c0c5ce;" class="language-yaml "><code class="language-yaml" data-lang="yaml"><span>- </span><span style="color:#bf616a;">name</span><span>: </span><span style="color:#a3be8c;">Sync localizations
+</span><span>  </span><span style="color:#bf616a;">run</span><span>: </span><span style="color:#b48ead;">|
+</span><span style="color:#a3be8c;">    ./synclproj en.lproj/Localizable.strings ./Resources/
+</span><span style="color:#a3be8c;">    git diff --exit-code || (echo &quot;Localizations out of sync!&quot; &amp;&amp; exit 1)
+</span></code></pre>
+<p>This ensures developers don't forget to sync translations when adding new strings.</p>
+<h2 id="real-world-example">Real-World Example</h2>
+<p>Before synchronization:</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">// en.lproj/Localizable.strings
+</span><span style="color:#a3be8c;">&quot;welcome&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Welcome!&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;login&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Log In&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;new_feature&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Try our new feature&quot;</span><span>;
+</span><span>
+</span><span style="color:#65737e;">// fr.lproj/Localizable.strings  
+</span><span style="color:#a3be8c;">&quot;login&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Se connecter&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;welcome&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Bienvenue!&quot;</span><span>;
+</span><span style="color:#65737e;">// Missing: new_feature
+</span></code></pre>
+<p>After running <code>synclproj</code>:</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#65737e;">// fr.lproj/Localizable.strings
+</span><span style="color:#a3be8c;">&quot;welcome&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Bienvenue!&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;login&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Se connecter&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;new_feature&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;Try our new feature&quot;</span><span>;  </span><span style="color:#65737e;">// ← Added, needs translation
+</span></code></pre>
+<p>Notice:</p>
+<ul>
+<li>Keys reordered to match <code>en.lproj</code></li>
+<li>Existing translations preserved</li>
+<li>Missing key added with English placeholder</li>
+</ul>
+<h2 id="edge-cases-and-limitations">Edge Cases and Limitations</h2>
+<h3 id="removed-keys">Removed Keys</h3>
+<p>Currently, the tool doesn't remove keys that exist in translations but not in the base file. This is intentional—it's safer to leave extra keys than accidentally delete translations. You can manually remove obsolete keys during code review.</p>
+<h3 id="whitespace-handling">Whitespace Handling</h3>
+<p>The tool normalizes excessive blank lines but preserves intentional spacing around entries. This keeps diffs clean while maintaining readability.</p>
+<h3 id="character-encoding">Character Encoding</h3>
+<p>Rust's <code>String</code> type handles UTF-8 natively, so emoji and international characters work seamlessly:</p>
+<pre data-lang="swift" style="background-color:#2b303b;color:#c0c5ce;" class="language-swift "><code class="language-swift" data-lang="swift"><span style="color:#a3be8c;">&quot;welcome_emoji&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;👋 Welcome!&quot;</span><span>;
+</span><span style="color:#a3be8c;">&quot;chinese_greeting&quot; </span><span>= </span><span style="color:#a3be8c;">&quot;欢迎！&quot;</span><span>;
+</span></code></pre>
+<h3 id="file-format-variations">File Format Variations</h3>
+<p>The parser handles both semicolon-terminated and non-terminated entries, making it compatible with different Xcode versions and formatting styles.</p>
+<h2 id="performance-characteristics">Performance Characteristics</h2>
+<p>For a typical iOS project:</p>
+<ul>
+<li><strong>Small project</strong> (5 languages, 200 keys each): ~50ms</li>
+<li><strong>Medium project</strong> (15 languages, 1000 keys each): ~200ms</li>
+<li><strong>Large project</strong> (30 languages, 5000 keys each): ~800ms</li>
+</ul>
+<p>The tool is I/O bound, spending most time reading and writing files. The parsing and synchronization logic itself is negligible.</p>
+<p>Binary size is ~400KB, making it ideal for inclusion in repositories or CI containers.</p>
+<h2 id="lessons-learned">Lessons Learned</h2>
+<h3 id="why-rust">Why Rust?</h3>
+<ol>
+<li><strong>Single binary deployment</strong>: No runtime dependencies means <code>cargo build --release</code> produces a portable executable</li>
+<li><strong>Error handling</strong>: <code>Result&lt;T, E&gt;</code> forces explicit handling of file I/O failures</li>
+<li><strong>String handling</strong>: UTF-8 by default eliminates encoding headaches</li>
+<li><strong>Performance</strong>: Fast enough that users don't notice, even on large projects</li>
+</ol>
+<h3 id="why-not-swift">Why Not Swift?</h3>
+<p>While it might seem logical to use Swift for an iOS-related tool, Rust offers:</p>
+<ul>
+<li>Better cross-platform support (including Linux CI runners)</li>
+<li>Smaller binaries without runtime overhead</li>
+<li>More mature CLI ecosystem</li>
+</ul>
+<h3 id="simplicity-wins">Simplicity Wins</h3>
+<p>The zero-dependency approach has proven robust. The standard library provides everything needed for this use case, and avoiding external crates:</p>
+<ul>
+<li>Reduces attack surface</li>
+<li>Eliminates version compatibility issues</li>
+<li>Makes code auditing trivial</li>
+</ul>
+<h2 id="future-enhancements">Future Enhancements</h2>
+<p>Potential improvements for the tool:</p>
+<h3 id="validation-mode">Validation Mode</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">synclproj --check</span><span> en.lproj/Localizable.strings ./Resources/
+</span><span style="color:#65737e;"># Exit code 1 if any files are out of sync
+</span></code></pre>
+<h3 id="diff-output">Diff Output</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">synclproj --diff</span><span> en.lproj/Localizable.strings ./Resources/
+</span><span style="color:#65737e;"># Show what would change without modifying files
+</span></code></pre>
+<h3 id="remove-obsolete-keys">Remove Obsolete Keys</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">synclproj --prune</span><span> en.lproj/Localizable.strings ./Resources/
+</span><span style="color:#65737e;"># Remove keys from translations that don&#39;t exist in base file
+</span></code></pre>
+<h3 id="json-export">JSON Export</h3>
+<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#bf616a;">synclproj --export-json</span><span> en.lproj/Localizable.strings &gt; translations.json
+</span><span style="color:#65737e;"># Export to JSON for integration with translation services
+</span></code></pre>
+<h3 id="parallel-processing">Parallel Processing</h3>
+<p>Use <code>rayon</code> to sync multiple files concurrently for large projects with many localizations.</p>
+<h2 id="testing-strategy">Testing Strategy</h2>
+<p>For a production tool, consider:</p>
+<p><strong>Unit tests</strong> for parsing edge cases:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_multiline_parsing</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> input = </span><span style="color:#b48ead;">r</span><span>#&quot;</span><span style="color:#a3be8c;">&quot;key&quot; = &quot;line1 \
+</span><span style="color:#a3be8c;">line2&quot;;</span><span>&quot;#;
+</span><span>    </span><span style="color:#b48ead;">let</span><span> entries = </span><span style="color:#96b5b4;">parse_strings_with_order</span><span>(input);
+</span><span>    assert_eq!(entries.</span><span style="color:#96b5b4;">len</span><span>(), </span><span style="color:#d08770;">1</span><span>);
+</span><span>    assert_eq!(entries[</span><span style="color:#d08770;">0</span><span>].key, &quot;</span><span style="color:#a3be8c;">key</span><span>&quot;);
+</span><span>}
+</span></code></pre>
+<p><strong>Integration tests</strong> with sample <code>.strings</code> files:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">test</span><span>]
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">test_sync_preserves_translations</span><span>() {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> temp = </span><span style="color:#96b5b4;">create_test_directory</span><span>();
+</span><span>    </span><span style="color:#96b5b4;">sync_strings_file</span><span>(</span><span style="color:#65737e;">/* ... */</span><span>);
+</span><span>    </span><span style="color:#b48ead;">let</span><span> result = fs::read_to_string(</span><span style="color:#65737e;">/* ... */</span><span>);
+</span><span>    assert!(result.</span><span style="color:#96b5b4;">contains</span><span>(&quot;</span><span style="color:#a3be8c;">translated_value</span><span>&quot;));
+</span><span>}
+</span></code></pre>
+<p><strong>Golden file tests</strong> to ensure output formatting doesn't regress.</p>
+<h2 id="integration-with-xcode">Integration with Xcode</h2>
+<p>You can add a build phase to run the tool automatically:</p>
+<ol>
+<li>Add "Run Script" phase in Build Phases</li>
+<li>Insert:<pre data-lang="bash" style="background-color:#2b303b;color:#c0c5ce;" class="language-bash "><code class="language-bash" data-lang="bash"><span style="color:#b48ead;">if </span><span style="color:#bf616a;">which</span><span> synclproj &gt; /dev/null; </span><span style="color:#b48ead;">then
+</span><span>    </span><span style="color:#bf616a;">synclproj </span><span>&quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">SRCROOT</span><span style="color:#a3be8c;">}/en.lproj/Localizable.strings</span><span>&quot; &quot;$</span><span style="color:#a3be8c;">{</span><span style="color:#bf616a;">SRCROOT</span><span style="color:#a3be8c;">}</span><span>&quot;
+</span><span style="color:#b48ead;">else
+</span><span>    </span><span style="color:#96b5b4;">echo </span><span>&quot;</span><span style="color:#a3be8c;">warning: synclproj not found, skipping localization sync</span><span>&quot;
+</span><span style="color:#b48ead;">fi
+</span></code></pre>
+</li>
+</ol>
+<p>This ensures localizations stay in sync during development without manual intervention.</p>
+<h2 id="alternative-approaches">Alternative Approaches</h2>
+<p>Other solutions in this space:</p>
+<ul>
+<li><strong>bartycrouch</strong>: Ruby-based tool with more features but slower</li>
+<li><strong>Xcode</strong>: Built-in XLIFF export/import, manual and cumbersome</li>
+<li><strong>fastlane</strong>: Can integrate with translation services but requires setup</li>
+<li><strong>genstrings</strong>: Extracts strings from code but doesn't sync existing files</li>
+</ul>
+<p>syncLproj fills a specific niche: fast, zero-config synchronization of existing <code>.strings</code> files without external dependencies.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>Building CLI tools in Rust demonstrates the language's strength in systems programming beyond just performance-critical applications. With zero runtime dependencies, we created a ~400KB binary that solves a real development workflow problem.</p>
+<p>Key takeaways:</p>
+<ul>
+<li><strong>Standard library sufficiency</strong>: Many CLI tools don't need external dependencies</li>
+<li><strong>Parser simplicity</strong>: State machines handle complex formats with straightforward code</li>
+<li><strong>Preservation over transformation</strong>: Keeping original formatting makes diffs cleaner</li>
+<li><strong>Single responsibility</strong>: Focus on one task (sync) rather than trying to solve all localization problems</li>
+</ul>
+<p>The complete source is available at <a href="https://github.com/bimawa/syncLproj">github.com/bimawa/syncLproj</a>. Whether you're managing iOS localizations or building your own file synchronization tools, the patterns explored here provide a solid foundation.</p>
+<p>Happy localizing! 🌍</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <a href="https://bimawa.github.io/blog/cli-rust-research/">
+                                <span class="button__icon">←</span>&nbsp;
+                                <span class="button__text">Building a Terminal File Manager with Rust</span>
+                            </a>
+                        </span>
+                    
+                    
+                        <span class="button next">
+                            <a href="https://bimawa.github.io/blog/youtrack-workflow/">
+                                <span class="button__text">Automating Project Workflows with YouTrack JavaScript Rules</span>&nbsp;
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

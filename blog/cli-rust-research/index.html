@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.github.io/style.css">
+    <link rel="stylesheet" href="https://bimawa.github.io/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.github.io/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.github.io/font-hack.css">
+
+    <meta name="description" content="A deep dive into building a blazing-fast TUI file manager using Rust, exploring async I/O, terminal manipulation, and modern CLI patterns.">
+
+    <meta property="og:description" content="A deep dive into building a blazing-fast TUI file manager using Rust, exploring async I/O, terminal manipulation, and modern CLI patterns.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.github.io/blog/cli-rust-research/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="A deep dive into building a blazing-fast TUI file manager using Rust, exploring async I/O, terminal manipulation, and modern CLI patterns.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.github.io">
+    <meta property="twitter:url" content="https://bimawa.github.io/blog/cli-rust-research/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.github.io" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+        </div>
+
+        
+        
+                <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.github.io">Blog</a></li>
+            
+                <li><a href="https://bimawa.github.io/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.github.io/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.github.io/about">About me</a></li>
+            
+                <li><a href="https://bimawa.github.io/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.github.io/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.github.io/blog/cli-rust-research/">Building a Terminal File Manager with Rust</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-15
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/rust/">#rust</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/tui/">#tui</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.github.io/tags/tutorial/">#tutorial</a></span>
+    
+
+        <div class="post-content">
+            <h1 id="introduction">Introduction</h1>
+<p>This post explores the journey of building a terminal user interface (TUI) file manager in Rust. We'll examine <a href="https://github.com/bimawa/blaze-file-manager">Blaze Ultra</a>, a practical CLI application that demonstrates key concepts in Rust development including terminal manipulation, event handling, and modern UI frameworks.</p>
+<h2 id="why-rust-for-cli-applications">Why Rust for CLI Applications?</h2>
+<p>Rust has become increasingly popular for CLI tools due to several compelling advantages:</p>
+<ul>
+<li><strong>Performance</strong>: Near C-level performance with zero-cost abstractions</li>
+<li><strong>Safety</strong>: Memory safety without garbage collection prevents common bugs</li>
+<li><strong>Ergonomics</strong>: Modern tooling with Cargo makes distribution trivial</li>
+<li><strong>Cross-platform</strong>: Write once, compile anywhere with minimal platform-specific code</li>
+<li><strong>Rich Ecosystem</strong>: Mature crates like <code>clap</code>, <code>ratatui</code>, and <code>tokio</code> accelerate development</li>
+</ul>
+<p>Popular examples include <code>ripgrep</code>, <code>fd</code>, <code>bat</code>, and <code>exa</code> - all demonstrating Rust's capability to create fast, reliable command-line tools.</p>
+<span id="continue-reading"></span><h2 id="project-overview-blaze-ultra">Project Overview: Blaze Ultra</h2>
+<p>Blaze Ultra is a TUI file manager that combines several powerful features:</p>
+<ul>
+<li><strong>Interactive file browsing</strong> with keyboard navigation</li>
+<li><strong>Fuzzy search</strong> powered by the <code>skim</code> library</li>
+<li><strong>Live preview</strong> of file contents</li>
+<li><strong>Multi-panel layout</strong> for efficient file management</li>
+<li><strong>Vim-style keybindings</strong> for power users</li>
+</ul>
+<p>The project structure is intentionally minimal, with the core logic contained in a single <code>main.rs</code> file (~200 lines), making it an excellent learning resource.</p>
+<h2 id="core-dependencies">Core Dependencies</h2>
+<p>Let's examine the key dependencies that power this application:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[dependencies]
+</span><span style="color:#bf616a;">clap </span><span>= { </span><span style="color:#bf616a;">version </span><span>= &quot;</span><span style="color:#a3be8c;">4.5</span><span>&quot;, </span><span style="color:#bf616a;">features </span><span>= [&quot;</span><span style="color:#a3be8c;">derive</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">wrap_help</span><span>&quot;, &quot;</span><span style="color:#a3be8c;">color</span><span>&quot;] }
+</span><span style="color:#bf616a;">ratatui </span><span>= &quot;</span><span style="color:#a3be8c;">0.28</span><span>&quot;
+</span><span style="color:#bf616a;">crossterm </span><span>= { </span><span style="color:#bf616a;">version </span><span>= &quot;</span><span style="color:#a3be8c;">0.27</span><span>&quot;, </span><span style="color:#bf616a;">features </span><span>= [&quot;</span><span style="color:#a3be8c;">event-stream</span><span>&quot;] }
+</span><span style="color:#bf616a;">tokio </span><span>= { </span><span style="color:#bf616a;">version </span><span>= &quot;</span><span style="color:#a3be8c;">1</span><span>&quot;, </span><span style="color:#bf616a;">features </span><span>= [&quot;</span><span style="color:#a3be8c;">full</span><span>&quot;] }
+</span><span style="color:#bf616a;">skim </span><span>= &quot;</span><span style="color:#a3be8c;">0.10</span><span>&quot;
+</span><span style="color:#bf616a;">walkdir </span><span>= &quot;</span><span style="color:#a3be8c;">2</span><span>&quot;
+</span><span style="color:#bf616a;">bytesize </span><span>= &quot;</span><span style="color:#a3be8c;">1.3</span><span>&quot;
+</span><span style="color:#bf616a;">syntect </span><span>= &quot;</span><span style="color:#a3be8c;">5.2</span><span>&quot;
+</span></code></pre>
+<h3 id="key-libraries-explained">Key Libraries Explained</h3>
+<p><strong>clap</strong>: The de-facto standard for command-line argument parsing. Using the derive macros makes defining CLI interfaces declarative and type-safe:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span>#[</span><span style="color:#bf616a;">derive</span><span>(Parser)]
+</span><span>#[</span><span style="color:#bf616a;">command</span><span>(name = &quot;</span><span style="color:#a3be8c;">blaze</span><span>&quot;, about = &quot;</span><span style="color:#a3be8c;">TUI File Commander 2025</span><span>&quot;, version)]
+</span><span style="color:#b48ead;">struct </span><span>Args {
+</span><span>    #[</span><span style="color:#bf616a;">arg</span><span>(default_value = &quot;</span><span style="color:#a3be8c;">.</span><span>&quot;)]
+</span><span>    </span><span style="color:#bf616a;">path</span><span>: PathBuf,
+</span><span>}
+</span></code></pre>
+<p><strong>ratatui</strong>: A modern TUI framework (fork of <code>tui-rs</code>) that provides widgets, layouts, and rendering primitives. It follows a retained-mode architecture where you describe what to render on each frame.</p>
+<p><strong>crossterm</strong>: Cross-platform terminal manipulation library handling raw mode, keyboard events, cursor control, and alternate screen buffers.</p>
+<p><strong>skim</strong>: A fuzzy finder library (similar to <code>fzf</code>) that enables fast, interactive searching through large datasets.</p>
+<p><strong>walkdir</strong>: Efficient directory traversal with configurable depth and filtering.</p>
+<h2 id="application-architecture">Application Architecture</h2>
+<h3 id="state-management">State Management</h3>
+<p>The application state is encapsulated in a simple struct:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">struct </span><span>App {
+</span><span>    </span><span style="color:#bf616a;">current_path</span><span>: PathBuf,
+</span><span>    </span><span style="color:#bf616a;">entries</span><span>: Vec&lt;walkdir::DirEntry&gt;,
+</span><span>    </span><span style="color:#bf616a;">selected</span><span>: </span><span style="color:#b48ead;">usize</span><span>,
+</span><span>    </span><span style="color:#bf616a;">active_panel</span><span>: Panel,
+</span><span>    </span><span style="color:#bf616a;">preview</span><span>: String,
+</span><span>    </span><span style="color:#bf616a;">search_query</span><span>: String,
+</span><span>}
+</span></code></pre>
+<p>This immutable-first approach makes state transitions predictable. When navigating to a new directory, we create a fresh <code>App</code> instance rather than mutating deeply nested state.</p>
+<h3 id="event-loop-pattern">Event Loop Pattern</h3>
+<p>The core of any TUI application is the event loop:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">loop </span><span>{
+</span><span>    terminal.</span><span style="color:#96b5b4;">draw</span><span>(|</span><span style="color:#bf616a;">f</span><span>| </span><span style="color:#96b5b4;">ui</span><span>(f, &amp;app))?;
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">if let </span><span>crossterm::event::Event::Key(key) = </span><span style="color:#96b5b4;">read</span><span>()? {
+</span><span>        </span><span style="color:#b48ead;">match</span><span> key.code {
+</span><span>            KeyCode::Char(&#39;</span><span style="color:#a3be8c;">q</span><span>&#39;) =&gt; </span><span style="color:#b48ead;">break</span><span>,
+</span><span>            KeyCode::Down =&gt; </span><span style="color:#65737e;">/* navigate down */</span><span>,
+</span><span>            KeyCode::Enter =&gt; </span><span style="color:#65737e;">/* open/preview */</span><span>,
+</span><span>            _ =&gt; {}
+</span><span>        }
+</span><span>    }
+</span><span>}
+</span></code></pre>
+<p>This pattern:</p>
+<ol>
+<li>Renders the current state</li>
+<li>Blocks waiting for user input</li>
+<li>Processes events and updates state</li>
+<li>Repeats</li>
+</ol>
+<p>This synchronous approach works well for keyboard-driven applications. For more complex scenarios with async I/O, you'd integrate <code>tokio</code> more deeply.</p>
+<h3 id="terminal-management">Terminal Management</h3>
+<p>Proper terminal setup and cleanup is critical:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">setup_terminal</span><span>() -&gt; Result&lt;Terminal&lt;CrosstermBackend&lt;std::io::Stdout&gt;&gt;, Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span>    </span><span style="color:#96b5b4;">enable_raw_mode</span><span>()?;
+</span><span>    </span><span style="color:#b48ead;">let mut</span><span> stdout = std::io::stdout();
+</span><span>    execute!(stdout, EnterAlternateScreen, Hide)?;
+</span><span>    Ok(Terminal::new(CrosstermBackend::new(stdout))?)
+</span><span>}
+</span><span>
+</span><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">restore_terminals</span><span>(</span><span style="color:#bf616a;">terminal</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Terminal&lt;CrosstermBackend&lt;std::io::Stdout&gt;&gt;) 
+</span><span>    -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+</span><span>    </span><span style="color:#96b5b4;">disable_raw_mode</span><span>()?;
+</span><span>    execute!(terminal.</span><span style="color:#96b5b4;">backend_mut</span><span>(), LeaveAlternateScreen, Show)?;
+</span><span>    Ok(())
+</span><span>}
+</span></code></pre>
+<p><strong>Raw mode</strong> disables line buffering and canonical processing, giving the application direct access to keypresses. The <strong>alternate screen</strong> preserves the user's terminal state, returning them to their original view on exit.</p>
+<h2 id="building-the-ui-with-ratatui">Building the UI with Ratatui</h2>
+<p>Ratatui uses a declarative layout system with constraints:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">ui</span><span>(</span><span style="color:#bf616a;">f</span><span>: &amp;</span><span style="color:#b48ead;">mut</span><span> Frame, </span><span style="color:#bf616a;">app</span><span>: &amp;App) {
+</span><span>    </span><span style="color:#b48ead;">let</span><span> chunks = Layout::default()
+</span><span>        .</span><span style="color:#96b5b4;">direction</span><span>(Direction::Horizontal)
+</span><span>        .</span><span style="color:#96b5b4;">constraints</span><span>([Constraint::Percentage(</span><span style="color:#d08770;">40</span><span>), Constraint::Percentage(</span><span style="color:#d08770;">60</span><span>)])
+</span><span>        .</span><span style="color:#96b5b4;">split</span><span>(f.</span><span style="color:#96b5b4;">area</span><span>());
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Left panel: file list
+</span><span>    </span><span style="color:#b48ead;">let</span><span> list = List::new(items)
+</span><span>        .</span><span style="color:#96b5b4;">block</span><span>(Block::default().</span><span style="color:#96b5b4;">title</span><span>(&quot;</span><span style="color:#a3be8c;">Files</span><span>&quot;).</span><span style="color:#96b5b4;">borders</span><span>(Borders::</span><span style="color:#d08770;">ALL</span><span>))
+</span><span>        .</span><span style="color:#96b5b4;">highlight_style</span><span>(Style::default().</span><span style="color:#96b5b4;">bg</span><span>(Color::Magenta));
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Right panel: preview
+</span><span>    </span><span style="color:#b48ead;">let</span><span> preview = Paragraph::new(app.preview.</span><span style="color:#96b5b4;">as_str</span><span>())
+</span><span>        .</span><span style="color:#96b5b4;">block</span><span>(Block::default().</span><span style="color:#96b5b4;">title</span><span>(&quot;</span><span style="color:#a3be8c;">Preview</span><span>&quot;).</span><span style="color:#96b5b4;">borders</span><span>(Borders::</span><span style="color:#d08770;">ALL</span><span>));
+</span><span>    
+</span><span>    f.</span><span style="color:#96b5b4;">render_widget</span><span>(list, chunks[</span><span style="color:#d08770;">0</span><span>]);
+</span><span>    f.</span><span style="color:#96b5b4;">render_widget</span><span>(preview, chunks[</span><span style="color:#d08770;">1</span><span>]);
+</span><span>}
+</span></code></pre>
+<p>The layout is recalculated on every frame based on terminal size, making the UI responsive without additional code.</p>
+<h2 id="advanced-features">Advanced Features</h2>
+<h3 id="fuzzy-search-integration">Fuzzy Search Integration</h3>
+<p>The fuzzy search temporarily exits the main TUI, launches <code>skim</code>'s interface, then returns:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">fuzzy_search</span><span>(</span><span style="color:#bf616a;">app</span><span>: &amp;</span><span style="color:#b48ead;">mut</span><span> App, </span><span style="color:#bf616a;">terminal</span><span>: &amp;</span><span style="color:#b48ead;">mut </span><span>Terminal&lt;</span><span style="background-color:#bf616a;color:#2b303b;">.</span><span>..&gt;) -&gt; Result&lt;</span><span style="background-color:#bf616a;color:#2b303b;">.</span><span>..&gt; {
+</span><span>    </span><span style="color:#96b5b4;">restore_terminals</span><span>(terminal)?;  </span><span style="color:#65737e;">// Exit TUI mode
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> items: Vec&lt;String&gt; = app.entries.</span><span style="color:#96b5b4;">iter</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">map</span><span>(|</span><span style="color:#bf616a;">e</span><span>| e.</span><span style="color:#96b5b4;">path</span><span>().</span><span style="color:#96b5b4;">display</span><span>().</span><span style="color:#96b5b4;">to_string</span><span>())
+</span><span>        .</span><span style="color:#96b5b4;">collect</span><span>();
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> options = SkimOptionsBuilder::default()
+</span><span>        .</span><span style="color:#96b5b4;">multi</span><span>(</span><span style="color:#d08770;">false</span><span>)
+</span><span>        .</span><span style="color:#96b5b4;">build</span><span>()?;
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let </span><span>(tx, rx) = </span><span style="color:#96b5b4;">unbounded</span><span>();
+</span><span>    </span><span style="color:#b48ead;">for</span><span> item in items {
+</span><span>        tx.</span><span style="color:#96b5b4;">send</span><span>(Arc::new(item))?;
+</span><span>    }
+</span><span>    
+</span><span>    </span><span style="color:#b48ead;">let</span><span> input = Skim::run_with(&amp;options, Some(rx));
+</span><span>    
+</span><span>    </span><span style="color:#65737e;">// Process selection...
+</span><span>    
+</span><span>    *terminal = </span><span style="color:#96b5b4;">setup_terminal</span><span>()?;  </span><span style="color:#65737e;">// Re-enter TUI mode
+</span><span>    Ok(())
+</span><span>}
+</span></code></pre>
+<p>This pattern of temporarily yielding terminal control to external tools is common in TUI applications.</p>
+<h3 id="file-preview-with-safety">File Preview with Safety</h3>
+<p>File reading includes error handling and size limits:</p>
+<pre data-lang="rust" style="background-color:#2b303b;color:#c0c5ce;" class="language-rust "><code class="language-rust" data-lang="rust"><span style="color:#b48ead;">fn </span><span style="color:#8fa1b3;">read_preview</span><span>(</span><span style="color:#bf616a;">path</span><span>: &amp;Path) -&gt; String {
+</span><span>    </span><span style="color:#b48ead;">if</span><span> path.</span><span style="color:#96b5b4;">is_dir</span><span>() {
+</span><span>        </span><span style="color:#b48ead;">return </span><span>&quot;</span><span style="color:#a3be8c;">📁 DIRECTORY</span><span>&quot;.</span><span style="color:#96b5b4;">to_string</span><span>();
+</span><span>    }
+</span><span>    std::fs::read_to_string(path)
+</span><span>        .</span><span style="color:#96b5b4;">unwrap_or_else</span><span>(|_| &quot;</span><span style="color:#a3be8c;">Cannot read file</span><span>&quot;.</span><span style="color:#96b5b4;">into</span><span>())
+</span><span>        .</span><span style="color:#96b5b4;">lines</span><span>()
+</span><span>        .</span><span style="color:#96b5b4;">take</span><span>(</span><span style="color:#d08770;">50</span><span>)  </span><span style="color:#65737e;">// Limit preview size
+</span><span>        .collect::&lt;Vec&lt;_&gt;&gt;()
+</span><span>        .</span><span style="color:#96b5b4;">join</span><span>(&quot;</span><span style="color:#96b5b4;">\n</span><span>&quot;)
+</span><span>}
+</span></code></pre>
+<p>This prevents loading massive files into memory and handles binary files gracefully.</p>
+<h2 id="performance-optimizations">Performance Optimizations</h2>
+<p>The release profile in <code>Cargo.toml</code> is aggressively optimized:</p>
+<pre data-lang="toml" style="background-color:#2b303b;color:#c0c5ce;" class="language-toml "><code class="language-toml" data-lang="toml"><span>[profile.release]
+</span><span style="color:#bf616a;">lto </span><span>= </span><span style="color:#d08770;">true              </span><span style="color:#65737e;"># Link-time optimization
+</span><span style="color:#bf616a;">opt-level </span><span>= &#39;</span><span style="color:#a3be8c;">z</span><span>&#39;         </span><span style="color:#65737e;"># Optimize for size
+</span><span style="color:#bf616a;">strip </span><span>= </span><span style="color:#d08770;">true            </span><span style="color:#65737e;"># Remove debug symbols
+</span><span style="color:#bf616a;">panic </span><span>= &quot;</span><span style="color:#a3be8c;">abort</span><span>&quot;         </span><span style="color:#65737e;"># Smaller panic handler
+</span><span style="color:#bf616a;">codegen-units </span><span>= </span><span style="color:#d08770;">1       </span><span style="color:#65737e;"># Better optimization (slower compile)
+</span></code></pre>
+<p>These settings produce a ~2MB binary that's blazingly fast while maintaining Rust's safety guarantees.</p>
+<h2 id="key-takeaways">Key Takeaways</h2>
+<p>Building CLI applications in Rust teaches several important concepts:</p>
+<ol>
+<li><strong>Terminal Abstractions</strong>: Understanding raw mode, alternate screens, and event handling</li>
+<li><strong>UI Frameworks</strong>: Declarative layouts with constraint-based sizing</li>
+<li><strong>State Management</strong>: Immutable patterns for predictable updates</li>
+<li><strong>Error Handling</strong>: <code>Result&lt;T, E&gt;</code> types force explicit error consideration</li>
+<li><strong>Zero-Cost Abstractions</strong>: High-level APIs that compile to efficient machine code</li>
+</ol>
+<h2 id="next-steps">Next Steps</h2>
+<p>To extend this project, consider:</p>
+<ul>
+<li><strong>Async file operations</strong>: Use <code>tokio::fs</code> for non-blocking I/O</li>
+<li><strong>Syntax highlighting</strong>: Integrate <code>syntect</code> for code preview</li>
+<li><strong>File operations</strong>: Add copy, move, delete with confirmation dialogs</li>
+<li><strong>Bookmarks</strong>: Persistent favorite directories with <code>serde</code></li>
+<li><strong>Configuration</strong>: User-customizable keybindings and colors</li>
+<li><strong>Testing</strong>: Unit tests for state transitions and integration tests for UI</li>
+</ul>
+<h2 id="resources">Resources</h2>
+<ul>
+<li><a href="https://github.com/bimawa/blaze-file-manager">Blaze Ultra Repository</a></li>
+<li><a href="https://ratatui.rs/">Ratatui Documentation</a></li>
+<li><a href="https://docs.rs/crossterm/">Crossterm Guide</a></li>
+<li><a href="https://rust-cli.github.io/book/">Command Line Apps in Rust</a></li>
+<li><a href="https://github.com/sxyazi/yazi">Yazi File Manager</a> - Advanced async TUI file manager</li>
+</ul>
+<h2 id="conclusion">Conclusion</h2>
+<p>Rust's combination of performance, safety, and excellent library ecosystem makes it ideal for CLI development. Projects like Blaze Ultra demonstrate that you can build sophisticated terminal applications with relatively little code while maintaining the robustness Rust is known for.</p>
+<p>The patterns explored here - event loops, terminal management, declarative UIs, and structured error handling - form the foundation for any Rust CLI application. Whether you're building file managers, system monitors, or development tools, these concepts will serve you well.</p>
+<p>Happy coding! 🦀</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                    
+                        <span class="button next">
+                            <a href="https://bimawa.github.io/blog/ios-strings-sync/">
+                                <span class="button__text">Building a Localization Sync Tool for iOS&#x2F;macOS</span>&nbsp;
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>
