@@ -23,7 +23,7 @@ title = "CV"
 November 2018 → Present, Canada
 [Makeomatic](https://makeomatic.ca)
 
-Working on a startup project StreamLayer. Developing SDK for iOS/Android, as well as a web version for sports applications. Expanding HostApp functionality with features like chat, video calls, game statistics, betting, and more.
+Working on a startup project [StreamLayer](https://streamlayer.io). Developing an SDK for iOS, as well as a web version for sports applications. Expanding HostApp functionality with features like chat, video calls, game statistics, betting, and more. We were the first to encounter a problem with SPM frameworks and solved it successfully. Of course, big thanks to the iOS community! That was my first huge startup where we came together and solved many problems, worked with a lot of tools, and gained massive experience.
 
 Tags: grpc, tinode, amqp, rabbitmq, webrtc, grpc-swift, tvos, objective-c, protofiles, MetalSDK, CI, semantic-release
 
