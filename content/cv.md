@@ -48,7 +48,7 @@ April 2012 - March 2017, Russia
 
 Joined this company as a Junior iOS Developer. Fully immersed myself in Objective-C from scratch; in this startup, I learned the entire foundation of iOS development. Tasks in the startup were very complex. Had to study AMQP, RabbitMQ, security, data exchange protocols, working with binary data. Also had to start my own project to implement the AMQP protocol from scratch for Objective-C (https://github.com/bimawa/AMQProtocol). Participated in VIPER adaptation, tested ReactNative, worked with designers using Sketch. Wrote code generators for styles. Before it became mainstream.
 
-Tags: objective-c, json, xml, rabbitmq, c++, c, yapDatabase, Core Data, REST
+Tags: objective-c, json, xml, rabbitmq, c++, c, yapDatabase, Core Data, REST, Wireshark, Charles.
 
 #### Senior Programmer - P2P Technology
 April 2011 - April 2012, Russia
