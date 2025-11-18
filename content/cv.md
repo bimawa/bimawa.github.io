@@ -8,7 +8,7 @@ title = "CV"
 
 | Section | Details |
 |---------|---------|
-| **Skills** | - Swift: ★★★★★<br>- Objective-C: ★★★★☆<br>- Ruby: ★★★★☆<br>- Shell: ★★★★☆<br>- SQL: ★★★★☆<br>- JS: ★★☆☆☆<br>- Rust: ★★☆☆☆<br>- Python: ★☆☆☆☆<br>- etc: |
+| **Skills** | - Swift: ★★★★★<br>- Objective-C: ★★★★★<br>- Ruby: ★★★★☆<br>- Shell: ★★★★☆<br>- SQL: ★★★★☆<br>- JS: ★★☆☆☆<br>- Rust: ★★☆☆☆<br>- Python: ★☆☆☆☆<br>- etc: |
 | **Education** | **Computer Engineering, RGPPU - [rsvpu.ru](https://rsvpu.ru), September 2001 - June 2006**<br>- Microcontrollers<br>- Databases<br>- Operating Systems<br>- File Systems<br>- Information Technology |
 | **Languages** | - Russian: ★★★★★<br>- English: ★★★☆☆ |
 | **Tools** | - IDEA IDE: ★★★★★<br>- Xcode: ★★★★★<br>- Emacs: ★★★★☆<br>- Org-mode: ★★★★☆<br>- Lookin/Reveal: ★★★★★<br>- Xcode Instruments: ★★★☆☆<br>- Figma/Sketch: ★★★★☆<br>- Documentation: ★★★★★<br>- PlantUML: ★★★★☆<br> |
