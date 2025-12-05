@@ -1,0 +1,61 @@
+/* Специальные стили для корректной работы ссылок в карточках проектов */
+
+/* Основные стили для карточек проектов */
+.project-card {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 1;
+}
+
+/* Стили для заголовков проектов и ссылок внутри них */
+.project-card h2 {
+    position: relative;
+    z-index: 2;
+}
+
+.project-card h2 a {
+    pointer-events: auto !important;
+    position: relative;
+    z-index: 10;
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+    height: 100%;
+}
+
+/* Стили для метаданных проектов */
+.project-meta {
+    pointer-events: none;
+    position: relative;
+    z-index: 1;
+}
+
+.project-meta * {
+    pointer-events: auto;
+    position: relative;
+    z-index: 10;
+}
+
+/* Стили для тегов проектов */
+.project-tags {
+    pointer-events: none;
+}
+
+.project-tags * {
+    pointer-events: auto;
+}
+
+/* Убедимся, что все элементы внутри карточки кликабельны */
+.project-card * {
+    pointer-events: auto !important;
+}
+
+/* Дополнительные стили для улучшения взаимодействия */
+.project-card:hover {
+    cursor: pointer;
+}
+
+.project-card h2 a:hover {
+    text-decoration: underline;
+}

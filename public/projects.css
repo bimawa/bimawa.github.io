@@ -1,0 +1,207 @@
+.projects-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.projects-intro {
+    margin-bottom: 2rem;
+    padding: 1.5rem;
+    background: var(--card-bg);
+    border-radius: 12px;
+    border-left: 4px solid var(--accent-color);
+    box-shadow: var(--card-shadow);
+}
+
+.project-card {
+    background: var(--card-bg);
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: var(--card-shadow);
+    transition: all 0.3s ease;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    transform: translateZ(0); /* Hardware acceleration */
+}
+
+.project-card::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, transparent 90%, rgba(139, 212, 255, 0.05) 100%);
+    z-index: 0;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.project-card:hover::before {
+    opacity: 1;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--card-shadow-hover);
+    border-color: var(--accent-color);
+}
+
+.project-card h2 {
+    margin-top: 0;
+    margin-bottom: 1rem;
+    font-size: 1.4rem;
+}
+
+.project-card h2 a {
+    color: var(--text);
+    text-decoration: none;
+    transition: color 0.2s ease;
+}
+
+.project-card h2 a:hover {
+    color: var(--accent-color);
+    cursor: pointer;
+}
+
+.project-author {
+    color: var(--accent-color);
+    margin-bottom: 1rem;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+}
+
+.project-author::before {
+    content: "👤";
+    margin-right: 0.5rem;
+}
+
+.project-description {
+    color: var(--text-secondary);
+    margin-bottom: 1.5rem;
+    font-size: 1rem;
+    line-height: 1.6;
+    flex-grow: 1;
+}
+
+.project-tags {
+    margin-top: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.tag {
+    background: var(--accent-color);
+    color: var(--bg);
+    padding: 0.3rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 500;
+    transition: all 0.2s ease;
+    text-decoration: none;
+}
+
+.tag:hover {
+    transform: scale(1.05);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+}
+
+.project-meta {
+    margin-top: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    border-top: 1px solid var(--border-color);
+    padding-top: 1rem;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+.project-date {
+    font-style: italic;
+    display: flex;
+    align-items: center;
+}
+
+.project-date::before {
+    content: "📅";
+    margin-right: 0.5rem;
+}
+
+.project-content {
+    margin-top: 1rem;
+}
+
+.project-content h2 {
+    margin-top: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.project-content h3 {
+    margin-top: 1.2rem;
+    margin-bottom: 0.8rem;
+}
+
+/* Стили для отдельной страницы проекта */
+.project-page .post-title {
+    margin-bottom: 1rem;
+}
+
+.project-page .project-author,
+.project-page .project-description {
+    margin-bottom: 1.5rem;
+}
+
+.project-page .project-tags {
+    margin-top: 2rem;
+}
+
+.project-page .tag {
+    background: var(--accent-color);
+    color: var(--bg);
+    padding: 0.25rem 0.7rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .projects-list {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .projects-intro {
+        padding: 1rem;
+    }
+
+    .project-card {
+        padding: 1.5rem;
+    }
+
+    .project-meta {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+
+    .project-card h2 {
+        font-size: 1.3rem;
+    }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+    .projects-list {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+}

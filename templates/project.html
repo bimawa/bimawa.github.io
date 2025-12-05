@@ -1,0 +1,43 @@
+{% extends "terminimal/templates/page.html" %}
+
+{% import "terminimal/templates/macros/title.html" as title_macros -%}
+{% import "terminimal/templates/macros/post.html" as post_macros -%}
+
+{%- block title -%}
+{{ title_macros::title(page_title=page.title, main_title=config.title) }}
+{%- endblock -%}
+
+{% block extra_head %}
+    <link rel="stylesheet" href="/projects.css">
+{% endblock %}
+
+{% block content %}
+<div class="post project-page">
+    <h1 class="post-title">{{ page.title }}</h1>
+
+    {% if page.extra.author %}
+    <div class="project-author">
+        <strong>author:</strong> {{ page.extra.author }}
+    </div>
+    {% endif %}
+
+    {% if page.extra.description %}
+    <div class="project-description">
+        {{ page.extra.description }}
+    </div>
+    {% endif %}
+
+    <div class="project-content">
+        {{ post_macros::content(page=page, summary=false, show_only_description=page.extra.show_only_description | default(value=false)) }}
+    </div>
+
+    {% if page.extra.tags %}
+    <div class="project-tags">
+        <strong>Теги:</strong>
+        {% for tag in page.extra.tags %}
+        <span class="tag">{{ tag }}</span>
+        {% endfor %}
+    </div>
+    {% endif %}
+</div>
+{% endblock content %}
