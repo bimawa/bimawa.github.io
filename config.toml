@@ -26,6 +26,7 @@ author = "Maxim Bunkov aka Bimawa"
 copyright_html = "IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b>"
 menu_items = [
     {name = "Blog", url = "$BASE_URL"},
+    {name = "Projects", url = "$BASE_URL/projects"},
     {name = "Tags", url = "$BASE_URL/tags"},
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "About me", url = "$BASE_URL/about"},

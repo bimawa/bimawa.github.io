@@ -3,6 +3,8 @@
 {% block extra_head %}
     <meta name="description" content="Bimawa's blog"/>
     <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
 {% endblock %}
 
 {% block content %}
@@ -16,3 +18,7 @@
     {% endfor -%}
 </div>
 {% endblock content %}
+
+{% block extra_body %}
+    <script src="/menu-projects.js"></script>
+{% endblock extra_body %}
