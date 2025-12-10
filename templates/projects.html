@@ -25,7 +25,7 @@
             {%- set projects_section = get_section(path="projects/_index.md") -%}
             {%- for page in projects_section.pages %}
                 <div class="project-card">
-                    <h2><a href="{{ page.permalink | safe }}">{{ page.title }}</a></h2>
+                    <h2><a href="{{ page.extra.link | safe }}">{{ page.title }}</a></h2>
                     {% if page.extra.description %}
                         <p class="project-description">{{ page.extra.description }}</p>
                     {% endif %}
