@@ -57,6 +57,7 @@
             { name: 'WireDeskVR', url: '/projects/WireDeskVR/', path: '/projects/WireDeskVR/' },
             { name: 'SyncLProj', url: '/projects/SyncLProj/', path: '/projects/SyncLProj/' },
             { name: 'BlazeFM', url: '/projects/BlazeFM/', path: '/projects/BlazeFM/' },
+            { name: 'NetMonRS', url: '/projects/Netmonrs/', path: '/projects/Netmonrs/' },
         ];
 
         // Добавляем проекты в меню
