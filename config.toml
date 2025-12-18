@@ -32,6 +32,8 @@ menu_items = [
     {name = "About me", url = "$BASE_URL/about"},
     {name = "CV", url = "$BASE_URL/cv"},
     {name = "Contacts", url = "$BASE_URL/contacts"},
+    {name = "Privacy Policy", url = "$BASE_URL/privacy"},
+    {name = "User Agreement", url = "$BASE_URL/terms"},
 ]
 
 use_full_hack_font = true
