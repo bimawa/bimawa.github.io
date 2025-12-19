@@ -1,0 +1,33 @@
+{% extends "index.html" %}
+
+{%- block title -%}
+{%- if lang == "ru" -%}
+{{ title_macros::title(page_title="Теги", main_title=config.title) }}
+{%- else -%}
+{{ title_macros::title(page_title="Tags", main_title=config.title) }}
+{%- endif -%}
+{%- endblock -%}
+
+{% block content %}
+    <div class="post">
+        {%- if lang == "ru" -%}
+        <h1 class="post-title">все теги</h1>
+        {%- else -%}
+        <h1 class="post-title">all tags</h1>
+        {%- endif -%}
+
+        <ul>
+            {% for term in terms %}
+            <li class="tag-list">
+                <a href="{{ term.permalink | safe }}">
+                    {%- if lang == "ru" -%}
+                    {{ term.name }} ({{ term.pages | length }} пост{{ term.pages | length | pluralize(singular="", plural="ов") }})
+                    {%- else -%}
+                    {{ term.name }} ({{ term.pages | length }} post{{ term.pages | length | pluralize }})
+                    {%- endif -%}
+                </a>
+            </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock content %}

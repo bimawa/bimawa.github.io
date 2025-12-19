@@ -4,7 +4,11 @@
 {% import "terminimal/templates/macros/post.html" as post_macros -%}
 
 {%- block title -%}
+{%- if lang == "ru" -%}
+{{ title_macros::title(page_title="Проекты", main_title=config.title) }}
+{%- else -%}
 {{ title_macros::title(page_title="Projects", main_title=config.title) }}
+{%- endif -%}
 {%- endblock -%}
 
 {% block extra_head %}
@@ -14,18 +18,29 @@
 
 {% block content %}
     <div class="post">
+        {%- if lang == "ru" -%}
+        <h1 class="post-title">Проекты</h1>
+
+        <div class="projects-intro">
+          <p>Здесь представлены мои проекты, каждый из которых имеет свою страницу с подробной информацией.</p>
+          <p>Нажмите на любой проект, чтобы изучить его детали и техническую реализацию.</p>
+        </div>
+        {%- set link_prefix = "/ru" -%}
+        {%- else -%}
         <h1 class="post-title">Projects</h1>
 
         <div class="projects-intro">
           <p>Here are my projects, each of which has its own page with detailed information.</p>
           <p>Click on any project to explore its details and technical implementation.</p>
         </div>
+        {%- set link_prefix = "" -%}
+        {%- endif -%}
 
         <div class="projects-list">
-            {%- set projects_section = get_section(path="projects/_index.md") -%}
+            {%- set projects_section = get_section(path="projects/_index.md", lang=lang) -%}
             {%- for page in projects_section.pages %}
                 <div class="project-card">
-                    <h2><a href="{{ page.extra.link | safe }}">{{ page.title }}</a></h2>
+                    <h2><a href="{{ link_prefix }}{{ page.extra.link | safe }}">{{ page.title }}</a></h2>
                     {% if page.extra.description %}
                         <p class="project-description">{{ page.extra.description }}</p>
                     {% endif %}

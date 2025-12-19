@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{%- block title -%}
+{%- if lang == "ru" -%}
+{% set title = "Тег: " ~ term.name %}
+{%- else -%}
+{% set title = "Tag: " ~ term.name %}
+{%- endif -%}
+{{ title_macros::title(page_title=title, main_title=config.title) }}
+{%- endblock -%}
+
+{% block content %}
+    <div class="post">
+        <h1 class="post-title">
+            {%- if lang == "ru" -%}
+            тег: #{{ term.name }}
+            ({{ term.pages | length }} пост{{ term.pages | length | pluralize(singular="", plural="ов") }})
+            {%- else -%}
+            tag: #{{ term.name }}
+            ({{ term.pages | length }} post{{ term.pages | length | pluralize }})
+            {%- endif -%}
+        </h1>
+
+        {%- if lang == "ru" -%}
+        <a href="{{ config.base_url | safe }}/ru/tags/">
+            Показать все теги
+        </a>
+        {%- else -%}
+        <a href="{{ config.base_url | safe }}/tags/">
+            Show all tags
+        </a>
+        {%- endif -%}
+
+        {{ post_macros::list_posts(pages=term.pages) }}
+    </div>
+{% endblock content %}

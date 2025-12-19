@@ -9,7 +9,7 @@
 
 {% block content %}
 <div class="posts">
-    {%- set blog_section = get_section(path="projects/SyncLProj/_index.md") -%}
+    {%- set blog_section = get_section(path="projects/SyncLProj/_index.md", lang=lang) -%}
     {%- for page in blog_section.pages %}
         <div class="post on-list">
             {{ post_macros::header(page=page) }}

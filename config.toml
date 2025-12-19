@@ -47,8 +47,6 @@ menu_items = [
     {name = "About me", url = "$BASE_URL/about"},
     {name = "CV", url = "$BASE_URL/cv"},
     {name = "Contacts", url = "$BASE_URL/contacts"},
-    {name = "Privacy Policy", url = "$BASE_URL/privacy"},
-    {name = "User Agreement", url = "$BASE_URL/terms"},
 ]
 
 menu_items_ru = [
@@ -59,8 +57,6 @@ menu_items_ru = [
     {name = "Обо мне", url = "$BASE_URL/ru/about"},
     {name = "Резюме", url = "$BASE_URL/ru/cv"},
     {name = "Контакты", url = "$BASE_URL/ru/contacts"},
-    {name = "Политика конфиденциальности", url = "$BASE_URL/ru/privacy"},
-    {name = "Пользовательское соглашение", url = "$BASE_URL/ru/terms"},
 ]
 
 use_full_hack_font = true

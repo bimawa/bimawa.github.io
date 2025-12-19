@@ -78,7 +78,7 @@ title = "Политика конфиденциальности"
 
 Если у вас есть вопросы о настоящей Политике конфиденциальности, пожалуйста, свяжитесь с нами:
 
-- **Email**: support@bimawa.net
+- **Email**: bimawa@gmail.com
 - **Сайт**: [https://bimawa.net/ru/contacts](/ru/contacts)
 
 ---

@@ -51,6 +51,27 @@
         .lang-switcher .separator {
             color: var(--font-color);
         }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
     </style>
 
     {%- block extra_head %}
@@ -127,6 +148,17 @@
                     </span>
                 </div>
             {% endif -%}
+            <div class="footer-links">
+                {%- if lang == "ru" %}
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+                {%- else %}
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+                {%- endif %}
+            </div>
         </div>
     </footer>
     {% endblock footer %}
