@@ -12,7 +12,7 @@ title = "Резюме"
 | **Образование** | **Вычислительная техника, РГППУ - [rsvpu.ru](https://rsvpu.ru), Сентябрь 2001 - Июнь 2006**<br>- Микроконтроллеры<br>- Базы данных<br>- Операционные системы<br>- Файловые системы<br>- Информационные технологии |
 | **Языки** | - Русский: ★★★★★<br>- Английский: ★★★☆☆ |
 | **Инструменты** | - IDEA IDE: ★★★★★<br>- Xcode: ★★★★★<br>- Emacs: ★★★★☆<br>- Org-mode: ★★★★☆<br>- Lookin/Reveal: ★★★★★<br>- Xcode Instruments: ★★★☆☆<br>- Figma/Sketch: ★★★★☆<br>- Документация: ★★★★★<br>- PlantUML: ★★★★☆<br> |
-| **Личная информация** | - **Сайт:** [bimawa.com](https://bimawa.com)<br>- **Email:** bimawa@gmail.com<br>- **Телефон:** +7 950 191 5459<br>- **Локация:** Удалённо<br>- **GitHub:** [bimawa](https://github.com/bimawa) |
+| **Личная информация** | - **Сайт:** [bimawa.net](https://bimawa.net)<br>- **Email:** bimawa@gmail.com<br>- **Телефон:** +7 950 191 5459<br>- **Локация:** Удалённо<br>- **GitHub:** [bimawa](https://github.com/bimawa) |
 
 ## Опыт работы
 

@@ -12,7 +12,7 @@ title = "CV"
 | **Education** | **Computer Engineering, RGPPU - [rsvpu.ru](https://rsvpu.ru), September 2001 - June 2006**<br>- Microcontrollers<br>- Databases<br>- Operating Systems<br>- File Systems<br>- Information Technology |
 | **Languages** | - Russian: ★★★★★<br>- English: ★★★☆☆ |
 | **Tools** | - IDEA IDE: ★★★★★<br>- Xcode: ★★★★★<br>- Emacs: ★★★★☆<br>- Org-mode: ★★★★☆<br>- Lookin/Reveal: ★★★★★<br>- Xcode Instruments: ★★★☆☆<br>- Figma/Sketch: ★★★★☆<br>- Documentation: ★★★★★<br>- PlantUML: ★★★★☆<br> |
-| **Personal Info** | - **Homepage:** [bimawa.com](https://bimawa.com)<br>- **Email:** bimawa@gmail.com<br>- **Phone:** +7 950 191 5459<br>- **Location:** Remote<br>- **GitHub:** [bimawa](https://github.com/bimawa) |
+| **Personal Info** | - **Homepage:** [bimawa.net](https://bimawa.net)<br>- **Email:** bimawa@gmail.com<br>- **Phone:** +7 950 191 5459<br>- **Location:** Remote<br>- **GitHub:** [bimawa](https://github.com/bimawa) |
 
 ## Experience
 
