@@ -38,3 +38,6 @@ yarn-error.log
 # Zola specific
 *.bak
 *.old
+
+# Private documents
+docs_notIndex/
