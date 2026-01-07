@@ -41,3 +41,6 @@ yarn-error.log
 
 # Private documents
 docs_notIndex/
+
+# Auto Claude data directory
+.auto-claude/
