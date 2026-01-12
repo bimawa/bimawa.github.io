@@ -44,3 +44,8 @@ docs_notIndex/
 
 # Auto Claude data directory
 .auto-claude/
+
+# Genie ephemeral files
+.genie/.tasks/
+.genie/state/token-cache.json
+/tmp/genie/
