@@ -1,0 +1,3 @@
+defaults:
+  executor: opencode
+  variant: DEFAULT

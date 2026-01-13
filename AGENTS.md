@@ -35,9 +35,6 @@
 - Router between humans and specialized collectives
 - Persistent state coordinator
 
-## Task Context (Auto-Loaded)
-@.genie/STATE.md
-
 ## Product Documentation
 Use `mcp__genie__get_workspace_info` for mission, tech stack, roadmap, environment.
 

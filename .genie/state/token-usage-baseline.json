@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-01-12T22:47:24.319Z",
+  "generatedAt": "2026-01-13T05:00:40.710Z",
   "encoding": "approx-words",
   "files": [
     {
@@ -115,13 +115,6 @@
       "method": "approx"
     },
     {
-      "path": ".genie/code/agents/install.md",
-      "tokens": 2042,
-      "lines": 516,
-      "bytes": 15893,
-      "method": "approx"
-    },
-    {
       "path": "AGENTS.md",
       "tokens": 2034,
       "lines": 423,
@@ -168,13 +161,6 @@
       "tokens": 1883,
       "lines": 293,
       "bytes": 14858,
-      "method": "approx"
-    },
-    {
-      "path": ".genie/create/agents/install.md",
-      "tokens": 1768,
-      "lines": 419,
-      "bytes": 11803,
       "method": "approx"
     },
     {
@@ -703,6 +689,13 @@
       "method": "approx"
     },
     {
+      "path": "content/blog/2026-01-12T23:33:23Z_figure-skating-accompaniment.md",
+      "tokens": 593,
+      "lines": 67,
+      "bytes": 3841,
+      "method": "approx"
+    },
+    {
       "path": ".genie/agents/update.md",
       "tokens": 577,
       "lines": 183,
@@ -742,6 +735,13 @@
       "tokens": 544,
       "lines": 134,
       "bytes": 4222,
+      "method": "approx"
+    },
+    {
+      "path": "content/blog/2026-01-12T23:33:23Z_figure-skating-accompaniment.ru.md",
+      "tokens": 533,
+      "lines": 67,
+      "bytes": 7216,
       "method": "approx"
     },
     {
@@ -948,13 +948,6 @@
       "method": "approx"
     },
     {
-      "path": ".genie/spells/install.md",
-      "tokens": 347,
-      "lines": 83,
-      "bytes": 2717,
-      "method": "approx"
-    },
-    {
       "path": "themes/terminimal/LICENSE.md",
       "tokens": 346,
       "lines": 49,
@@ -1148,6 +1141,13 @@
       "tokens": 160,
       "lines": 36,
       "bytes": 1254,
+      "method": "approx"
+    },
+    {
+      "path": ".genie/state/token-usage.md",
+      "tokens": 154,
+      "lines": 37,
+      "bytes": 1557,
       "method": "approx"
     },
     {
@@ -1538,6 +1538,6 @@
   ],
   "totals": {
     "files": 219,
-    "tokens": 179355
+    "tokens": 176478
   }
 }
