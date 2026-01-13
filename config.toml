@@ -42,7 +42,6 @@ copyright_html = "IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b
 menu_items = [
     {name = "Blog", url = "$BASE_URL"},
     {name = "Projects", url = "$BASE_URL/projects"},
-    {name = "F-Skating Acc", url = "https://bimawa.net/FSkatingAcc/", newtab = true},
     {name = "Tags", url = "$BASE_URL/tags"},
     {name = "Archive", url = "$BASE_URL/archive"},
     {name = "About me", url = "$BASE_URL/about"},
@@ -53,7 +52,6 @@ menu_items = [
 menu_items_ru = [
     {name = "Блог", url = "$BASE_URL/ru"},
     {name = "Проекты", url = "$BASE_URL/ru/projects"},
-    {name = "F-Skating Acc", url = "https://bimawa.net/FSkatingAcc/", newtab = true},
     {name = "Теги", url = "$BASE_URL/ru/tags"},
     {name = "Архив", url = "$BASE_URL/ru/archive"},
     {name = "Обо мне", url = "$BASE_URL/ru/about"},

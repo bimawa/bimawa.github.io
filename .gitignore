@@ -47,5 +47,5 @@ docs_notIndex/
 
 # Genie ephemeral files
 .genie/.tasks/
-.genie/state/token-cache.json
+.genie/state/
 /tmp/genie/

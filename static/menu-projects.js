@@ -2,13 +2,13 @@
     'use strict';
 
     function addCSS() {
-        if (document.querySelector('link[href="/menu-projects.css"]')) {
+        if (document.querySelector('link[href="menu-projects.css"]')) {
             return;
         }
 
         const link = document.createElement('link');
         link.rel = 'stylesheet';
-        link.href = '/menu-projects.css';
+        link.href = 'menu-projects.css';
         document.head.appendChild(link);
     }
 
@@ -41,17 +41,25 @@
             { name: 'SyncLProj', path: '/projects/SyncLProj/' },
             { name: 'BlazeFM', path: '/projects/BlazeFM/' },
             { name: 'NetMonRS', path: '/projects/Netmonrs/' },
+            { name: 'F-Skating Acc', path: 'https://bimawa.net/FSkatingAcc/', external: true },
         ];
 
         projects.forEach(project => {
             const li = document.createElement('li');
             const a = document.createElement('a');
-            a.href = langPrefix + project.path;
-            a.textContent = project.name;
 
-            if (isProjectsPage && currentPath.includes(project.path)) {
-                li.classList.add('active');
+            if (project.external) {
+                a.href = project.path;
+                a.target = '_blank';
+                a.rel = 'noopener noreferrer';
+            } else {
+                a.href = langPrefix + project.path;
+                if (isProjectsPage && currentPath.includes(project.path)) {
+                    li.classList.add('active');
+                }
             }
+
+            a.textContent = project.name;
 
             li.appendChild(a);
             subMenu.appendChild(li);
