@@ -22,3 +22,13 @@
 ## Known Issues
 - Don't commit `.genie/state/` files (ephemeral token usage data)
 - CSS paths in JS should be relative, not absolute (for path validator)
+
+## Git Hooks Setup
+- **Pre-commit**: REMOVED (was trying to find `.genie/scripts/` locally, not needed for blog)
+- **Pre-push**: Custom wrapper in `.git/hooks/pre-push` that calls `.git/hooks/pre-push.original`
+  - Wrapper exports: `GENIE_SKIP_TESTS=1`, `GENIE_ALLOW_MAIN_PUSH=1`
+  - Original hook is symlink to global Genie: `/opt/homebrew/lib/node_modules/automagik-genie/.genie/scripts/hooks/pre-push.cjs`
+
+## Important: Don't Add `.genie` to .gitignore
+- Never add `.genie` or `.genie/` to `.gitignore` - it will hide all Genie configuration
+- Only ignore: `.genie/.tasks/` and `.genie/state/` (ephemeral data)
