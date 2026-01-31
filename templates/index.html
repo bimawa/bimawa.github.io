@@ -9,8 +9,25 @@
 
 {% block content %}
 <div class="posts">
-    {%- set blog_section = get_section(path="blog/_index.md", lang=lang) -%}
-    {%- for page in blog_section.pages %}
+    {%- set blog_section = get_section(path="blog/_index.md") -%}
+    {%- set all_pages = [] -%}
+
+    {%- for page in blog_section.pages -%}
+        {%- set_global all_pages = all_pages | concat(with=[page]) -%}
+    {%- endfor -%}
+
+    {%- set projects_section = get_section(path="projects/_index.md") -%}
+
+    {%- for subsection in projects_section.subsections -%}
+        {%- set project_section = get_section(path=subsection) -%}
+        {%- for page in project_section.pages -%}
+            {%- set_global all_pages = all_pages | concat(with=[page]) -%}
+        {%- endfor -%}
+    {%- endfor -%}
+
+    {%- set sorted_pages = all_pages | sort(attribute="date") | reverse -%}
+
+    {%- for page in sorted_pages %}
         <div class="post on-list">
             {{ post_macros::header(page=page) }}
             {{ post_macros::content(page=page, summary=true, show_only_description=page.extra.show_only_description | default(value=false)) }}
