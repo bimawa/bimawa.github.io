@@ -14,10 +14,10 @@ taxonomies = [
     {name = "tags", feed = true},
 ]
 
-[markdown]
-# Whether to do syntax highlighting
-# Theme can be customised by setting the `highlight_theme` variable to a theme supported by Zola
-highlight_code = true
+[markdown.highlighting]
+# Syntax highlighting configuration
+style = "inline"
+theme = "monokai"
 
 [translations]
 newer_posts = "Newer posts"
