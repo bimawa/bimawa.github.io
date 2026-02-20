@@ -1,15 +1,15 @@
 +++
 title = "TradeTerminal"
-description = "Торговый терминал для Bybit с CLI интерфейсом и минимальной задержкой"
+description = "Торговый терминал для Bybit и Binance с CLI интерфейсом и минимальной задержкой"
 date = 2026-02-20T00:00:00Z
 author = "Maxim Bunkov"
-tags = ["Rust", "Trading", "CLI", "Bybit", "WebSocket", "Docker"]
+tags = ["Rust", "Trading", "CLI", "Bybit", "Binance", "WebSocket", "Docker"]
 template = "project.html"
 +++
 
 ## TradeTerminal
 
-Торговый терминал для Bybit с CLI интерфейсом и архитектурой клиент-сервер, разработанный для минимизации задержки при работе с биржей. Проект создан на Rust и предоставляет мощный набор инструментов для профессиональной торговли криптовалютой.
+Универсальный торговый терминал для Bybit и Binance с CLI интерфейсом и архитектурой клиент-сервер, разработанный для минимизации задержки при работе с биржами. Проект создан на Rust и предоставляет мощный набор инструментов для профессиональной торговли криптовалютой.
 
 ![TradeTerminal Interface](/images/tradeTerminalInterface.png)
 
@@ -67,7 +67,9 @@ template = "project.html"
 
 - **Язык**: Rust (высокая производительность и безопасность памяти)
 - **Протокол**: WebSocket для real-time коммуникации
-- **Биржа**: Bybit API v5 (Testnet и Production)
+- **Биржи**:
+  - Bybit API v5 (Testnet и Production)
+  - Binance API (Spot и Futures)
 - **Развёртывание**: Docker, Docker Compose
 - **UI**: TUI (Text User Interface) с поддержкой вкладок
 
@@ -223,7 +225,7 @@ BYBIT_TESTNET=true
 
 ### Развёртывание на VPS
 
-Для минимизации задержки рекомендуется размещать сервер в регионе, близком к серверам Bybit (Singapore, Tokyo):
+Для минимизации задержки рекомендуется размещать сервер в регионе, близком к серверам бирж (Bybit/Binance: Singapore, Tokyo):
 
 1. Установить Docker на VPS
 2. Создать `.env` с API ключами
@@ -251,5 +253,5 @@ BYBIT_TESTNET=true
 ## Ссылки
 
 - **Статус**: В стадии разработки (приватный репозиторий)
-- **Технологии**: Rust, WebSocket, Docker, Bybit API
+- **Технологии**: Rust, WebSocket, Docker, Bybit API, Binance API
 - **Лицензия**: MIT

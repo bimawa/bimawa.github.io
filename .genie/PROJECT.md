@@ -19,6 +19,21 @@
 - **Blog posts**: Located in `content/blog/`
 - **Multilingual**: English + Russian (ru)
 
+### Project Pages Structure
+Projects have two locations with language-specific files:
+
+1. **Short description** in `content/projects/`:
+   - `YYYY-MM-DD_projectname.md` (English)
+   - `YYYY-MM-DD_projectname.ru.md` (Russian)
+   - Both files required for multilingual support
+
+2. **Full article** in `content/projects/ProjectName/`:
+   - `YYYY-MM-DDTHH:MM:SSZ_project_name.md` (English)
+   - `YYYY-MM-DDTHH:MM:SSZ_project_name.ru.md` (Russian)
+   - `_index.ru.md` for Russian index
+
+**Important**: Always create BOTH language versions when adding new projects!
+
 ## Known Issues
 - Don't commit `.genie/state/` files (ephemeral token usage data)
 - CSS paths in JS should be relative, not absolute (for path validator)
