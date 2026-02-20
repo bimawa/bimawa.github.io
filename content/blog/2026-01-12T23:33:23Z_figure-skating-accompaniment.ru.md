@@ -17,6 +17,8 @@ tags = ["sports", "mobile-app", "training", "figure-skating", "productivity"]
 
 Обычные музыкальные плееры просто не были созданы для такого рабочего процесса.
 
+<!-- more -->
+
 ## Решение
 
 Именно поэтому я создал **[Figure Skating Accompaniment](https://bimawa.net/FSkatingAcc/)** - специализированное приложение, разработанное специально для тренировочных сессий по фигурному катанию.

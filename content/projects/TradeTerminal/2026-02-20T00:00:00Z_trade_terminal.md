@@ -31,6 +31,7 @@ A universal trading terminal for Bybit and Binance with CLI interface and client
   - Perfect for profit taking on volatile moves
 - **Hedge Mode**: Support for simultaneous Long/Short positions on the same instrument
 
+<!-- more -->
 ### Interface and Management
 
 - **CLI Interface**: Convenient command line with command shortcuts

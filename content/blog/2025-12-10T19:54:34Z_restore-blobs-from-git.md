@@ -17,6 +17,8 @@ For those who are not yet familiar with this problem, `git reflog` won't help he
 - Or if you're good at recovering data from an SSD
 - etc
 
+<!-- more -->
+
 ## Solution
 
 The solution is available if you did `git add .`. This means Git has stored the blobs in its database but hasn't linked them to a specific commit. 

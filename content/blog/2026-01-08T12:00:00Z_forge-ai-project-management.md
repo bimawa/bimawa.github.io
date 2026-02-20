@@ -20,6 +20,8 @@ I thought: "This is it! Exactly what I need!"
 
 But I decided not to stop there. I went to Grok and said: "Scan the market, are there better solutions?" And guess what? It actually found some!
 
+<!-- more -->
+
 ## Meet Forge
 
 The folks at Automagik were inspired by the **vibe-kanban** idea (and this project is much more convenient than auto-claude and less buggy). They integrated their **Genie** into this fork — a fine-tuned AI that transforms human language into proper tasks.

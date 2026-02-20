@@ -14,6 +14,16 @@
 - Auto-exports: `GENIE_SKIP_TESTS=1`, `GENIE_ALLOW_MAIN_PUSH=1`
 - No pnpm/npm tests (this is not a Node.js project)
 
+## Commit Message Format
+- Follow Semantic Release conventions:
+  - `feat:` - new feature
+  - `fix:` - bug fix
+  - `docs:` - documentation changes
+  - `style:` - formatting, no code changes
+  - `refactor:` - code refactoring
+  - `test:` - adding tests
+  - `chore:` - dependencies, configuration updates
+
 ## Content Rules
 - **Tags**: Must be in English (Zola taxonomy requirement)
 - **Blog posts**: Located in `content/blog/`

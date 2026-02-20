@@ -17,6 +17,8 @@ Every figure skating trainer knows these situations:
 
 Traditional music players just weren't designed for this workflow.
 
+<!-- more -->
+
 ## The Solution
 
 That's why I built **[Figure Skating Accompaniment](https://bimawa.net/FSkatingAcc/)** - a specialized app designed specifically for figure skating training sessions.
