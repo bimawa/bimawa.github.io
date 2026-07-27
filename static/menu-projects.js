@@ -37,12 +37,14 @@
         subMenu.className = 'menu__sub-inner-projects';
 
         const projects = [
+            { name: 'TradeTerminal', path: '/projects/TradeTerminal/' },
+            { name: 'SpeedReaderRust', path: '/projects/SpeedReaderRust/' },
             { name: 'WireDeskVR', path: '/projects/WireDeskVR/' },
             { name: 'SyncLProj', path: '/projects/SyncLProj/' },
             { name: 'BlazeFM', path: '/projects/BlazeFM/' },
             { name: 'NetMonRS', path: '/projects/Netmonrs/' },
             { name: 'RFIDReader', path: '/projects/RFIDReader/' },
-            { name: 'F-Skating Acc', path: 'https://bimawa.net/FSkatingAcc/', external: true },
+            { name: 'FSkatingAcc', path: 'https://bimawa.net/FSkatingAcc/', external: true },
         ];
 
         projects.forEach(project => {
