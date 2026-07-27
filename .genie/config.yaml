@@ -1,7 +1,0 @@
-defaults:
-  executor: opencode
-  variant: DEFAULT
-
-hooks:
-  skip_tests: true
-  allow_main_push: true
