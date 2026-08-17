@@ -185,10 +185,17 @@ project name title:
             echo "title = \"${title}\""
             echo 'sort_by = "date"'
             echo 'paginate_by = 10'
+            echo "template = \"index${name}.html\""
             echo '+++'
         } > "$f"
     done
-    # 3. First article (RU + EN)
+    # 3. Section template (custom per project, like other projects)
+    mkdir -p templates
+    tpl="templates/index${name}.html"
+    if [[ ! -f "$tpl" ]]; then
+        sed "s/__PROJECT__/${name}/g" templates/project-section-template.html > "$tpl"
+    fi
+    # 4. First article (RU + EN)
     {
         echo '+++'
         echo "title = \"Добро пожаловать в ${title}\""

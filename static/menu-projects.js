@@ -38,6 +38,7 @@
 
         const projects = [
             { name: 'TradeTerminal', path: '/projects/TradeTerminal/' },
+            { name: 'KnowledgeQuery', path: '/projects/KnowledgeQuery/' },
             { name: 'SpeedReaderRust', path: '/projects/SpeedReaderRust/' },
             { name: 'WireDeskVR', path: '/projects/WireDeskVR/' },
             { name: 'SyncLProj', path: '/projects/SyncLProj/' },
