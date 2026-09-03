@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Создание CLI-инструмента на Rust для синхронизации файлов .strings между несколькими локализациями с сохранением переводов и порядка ключей.">
+
+    <meta property="og:description" content="Создание CLI-инструмента на Rust для синхронизации файлов .strings между несколькими локализациями с сохранением переводов и порядка ключей.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Создание CLI-инструмента на Rust для синхронизации файлов .strings между несколькими локализациями с сохранением переводов и порядка ключей.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;SyncLProj&#x2F;ios-strings-sync&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/">Создание инструмента синхронизации локализации для iOS&#x2F;macOS</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/i18n/">#i18n</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/ios/">#ios</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/localization/">#localization</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rust/">#rust</a></span>
+    
+
+        <div class="post-content">
+            <h1 id="vvedenie">Введение</h1>
+<p>Управление файлами локализации в проектах iOS и macOS может стать сложной задачей по мере роста приложения. Когда вы добавляете новые строки в файл базового языка, синхронизация всех файлов переводов становится утомительной и подверженной ошибкам. В этой статье рассматривается <a href="https://github.com/bimawa/syncLproj">syncLproj</a> — CLI-инструмент на Rust, предназначенный для автоматизации этого процесса синхронизации.</p>
+<h2 id="problema-lokalizatsii">Проблема локализации</h2>
+<p>В разработке iOS/macOS локализация использует файлы <code>.strings</code> с простым форматом ключ-значение:</p>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&#x2F;* User interface strings *&#x2F;
+&quot;welcome_message&quot; = &quot;Welcome to our app!&quot;;
+&quot;login_button&quot; = &quot;Log In&quot;;
+&quot;signup_button&quot; = &quot;Sign Up&quot;;
+</code></pre>
+<p>При управлении несколькими языками возникает ряд проблем:</p>
+<ul>
+<li><strong>Отсутствующие ключи</strong>: новые ключи, добавленные в базовый язык, автоматически не появляются в переводах</li>
+<li><strong>Несогласованность порядка ключей</strong>: разные файлы имеют ключи в разном порядке, что затрудняет просмотр diff-ов</li>
+<li><strong>Осиротевшие ключи</strong>: удалённые ключи остаются в файлах переводов</li>
+<li><strong>Ручная работа</strong>: копирование ключей между десятками файлов занимает много времени и подвержено ошибкам</li>
+</ul>
+<p>Традиционные подходы включают ручное редактирование или встроенные инструменты Xcode, которые не имеют возможностей автоматизации для CI/CD пайплайнов.</p>
+<span id="continue-reading"></span><h2 id="tseli-proektirovaniia">Цели проектирования</h2>
+<p>Инструмент syncLproj был разработан с учётом конкретных ограничений:</p>
+<ol>
+<li><strong>Нулевые зависимости</strong>: максимальная портативность и минимальный размер бинарника</li>
+<li><strong>Сохранение переводов</strong>: никогда не перезаписывать существующие переводы</li>
+<li><strong>Сохранение порядка</strong>: обеспечить одинаковый порядок ключей во всех файлах согласно базовому файлу</li>
+<li><strong>Поддержка многострочных значений</strong>: обработка строк с экранированными переносами</li>
+<li><strong>Сохранение комментариев</strong>: сохранение заголовков файлов и документации</li>
+<li><strong>Рекурсивное сканирование</strong>: автоматическая обработка всех директорий проекта</li>
+</ol>
+<h2 id="struktura-proekta">Структура проекта</h2>
+<p>Весь инструмент реализован в одном файле <code>main.rs</code> (~250 строк), демонстрируя способность Rust создавать мощные утилиты с минимальным количеством кода. <code>Cargo.toml</code> удивительно прост:</p>
+<pre data-lang="toml" class="language-toml "><code class="language-toml" data-lang="toml">[package]
+name = &quot;synclproj&quot;
+version = &quot;0.1.0&quot;
+edition = &quot;2024&quot;
+
+[dependencies]
+# Ноль runtime-зависимостей!
+</code></pre>
+<p>Использование только стандартной библиотеки Rust сохраняет скомпилированный бинарник маленьким (~400КБ) и устраняет проблемы безопасности цепочки поставок.</p>
+<h2 id="obzor-arkhitektury">Обзор архитектуры</h2>
+<p>Инструмент следует простому конвейеру:</p>
+<ol>
+<li><strong>Парсинг</strong> оригинального/базового файла <code>.strings</code> для извлечения ключей и их порядка</li>
+<li><strong>Сканирование</strong> целевой директории рекурсивно для всех файлов <code>.strings</code></li>
+<li><strong>Синхронизация</strong> каждого найденного файла:
+<ul>
+<li>Чтение существующих переводов</li>
+<li>Переупорядочивание записей в соответствии с базовым файлом</li>
+<li>Добавление отсутствующих ключей со значениями базового языка в качестве заглушек</li>
+<li>Сохранение комментариев заголовка файла</li>
+</ul>
+</li>
+<li><strong>Отчёт</strong> о том, какие ключи были добавлены в каждый файл</li>
+</ol>
+<h3 id="osnovnaia-struktura-dannykh">Основная структура данных</h3>
+<p>Фундаментальная структура данных проста, но эффективна:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Debug, Clone)]
+struct StringEntry {
+    key: String,
+    raw_lines: Vec&lt;String&gt;,
+}
+</code></pre>
+<p>Хранение <code>raw_lines</code> вместо распарсенных значений критически важно — это сохраняет форматирование, комментарии и многострочную структуру точно так, как они появляются в исходном файле.</p>
+<h2 id="parsing-failov-strings">Парсинг файлов .strings</h2>
+<p>Парсинг формата <code>.strings</code> от Apple требует обработки нескольких пограничных случаев:</p>
+<h3 id="bazovyi-format">Базовый формат</h3>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&quot;key&quot; = &quot;value&quot;;
+</code></pre>
+<h3 id="mnogostrochnye-znacheniia">Многострочные значения</h3>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&quot;long_message&quot; = &quot;This is a very long \
+message that spans \
+multiple lines&quot;;
+</code></pre>
+<h3 id="kommentarii">Комментарии</h3>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&#x2F;* Section header *&#x2F;
+&#x2F;&#x2F; Inline comment
+&quot;key&quot; = &quot;value&quot;;
+</code></pre>
+<p>Реализация парсера использует подход конечного автомата:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn parse_multiline_entry(lines: &amp;[&amp;str], start: usize) -&gt; (Option&lt;StringEntry&gt;, usize) {
+    let mut i = start;
+    let mut raw_lines = Vec::new();
+    let mut full_text = String::new();
+    let mut key = None;
+
+    while i &lt; lines.len() {
+        let line = lines[i];
+        raw_lines.push(line.to_string());
+        full_text.push_str(line);
+        full_text.push(&#x27;\n&#x27;);
+
+        let trimmed = line.trim();
+        
+        &#x2F;&#x2F; Пропуск пустых строк и комментариев
+        if trimmed.is_empty() || trimmed.starts_with(&quot;&#x2F;*&quot;) || trimmed.starts_with(&quot;&#x2F;&#x2F;&quot;) {
+            i += 1;
+            continue;
+        }
+
+        &#x2F;&#x2F; Извлечение ключа, если ещё не найден
+        if key.is_none() {
+            if let Some(eq_pos) = full_text.find(&#x27;=&#x27;) {
+                let before = &amp;full_text[..eq_pos];
+                if let Some(k) = extract_key_from_text(before) {
+                    key = Some(k);
+                }
+            }
+        }
+
+        &#x2F;&#x2F; Проверка продолжения строки
+        if line.trim_end().ends_with(&#x27;\\&#x27;) {
+            i += 1;
+            continue;
+        }
+
+        &#x2F;&#x2F; Найдена полная запись
+        if key.is_some() {
+            return (
+                Some(StringEntry {
+                    key: key.unwrap(),
+                    raw_lines,
+                }),
+                i + 1,
+            );
+        }
+
+        i += 1;
+    }
+
+    (None, i)
+}
+</code></pre>
+<p>Этот подход:</p>
+<ul>
+<li>Накапливает строки до нахождения полной записи</li>
+<li>Обрабатывает продолжения строк с обратным слэшем</li>
+<li>Сохраняет точное форматирование для восстановления</li>
+<li>Возвращает как запись, так и индекс следующей строки для обработки</li>
+</ul>
+<h3 id="izvlechenie-kliucha">Извлечение ключа</h3>
+<p>Извлечение ключа требует тщательной обработки escape-последовательностей:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn extract_key_from_text(text: &amp;str) -&gt; Option&lt;String&gt; {
+    let trimmed = text.trim();
+    if !trimmed.starts_with(&#x27;&quot;&#x27;) {
+        return None;
+    }
+
+    let mut chars = trimmed[1..].chars();
+    let mut key = String::new();
+    let mut escape = false;
+
+    while let Some(c) = chars.next() {
+        if escape {
+            key.push(c);
+            escape = false;
+            continue;
+        }
+        if c == &#x27;\\&#x27; {
+            escape = true;
+            continue;
+        }
+        if c == &#x27;&quot;&#x27; {
+            return Some(key);
+        }
+        key.push(c);
+    }
+    None
+}
+</code></pre>
+<p>Это правильно обрабатывает ключи типа <code>"message.\"quoted\""</code>, отслеживая состояние экранирования посимвольно.</p>
+<h2 id="algoritm-sinkhronizatsii">Алгоритм синхронизации</h2>
+<p>Процесс синхронизации — сердце инструмента:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn sync_strings_file(
+    path: &amp;Path,
+    original_entries: &amp;Vec&lt;StringEntry&gt;,
+) -&gt; io::Result&lt;()&gt; {
+    let content = fs::read_to_string(path)?;
+    let lines: Vec&lt;&amp;str&gt; = content.lines().collect();
+    
+    &#x2F;&#x2F; Фаза 1: Сбор существующих данных
+    let mut preserved_comments = Vec::new();
+    let mut existing_keys = HashSet::new();
+    
+    &#x2F;&#x2F; Парсинг существующего файла для определения того, что уже присутствует
+    &#x2F;&#x2F; ... (детали в полной реализации)
+    
+    &#x2F;&#x2F; Фаза 2: Построение синхронизированного вывода
+    let mut output_lines = Vec::new();
+    
+    &#x2F;&#x2F; Добавление сохранённых комментариев заголовка
+    for comment in &amp;preserved_comments {
+        if !comment.trim().is_empty() {
+            output_lines.push(comment.clone());
+        }
+    }
+    
+    &#x2F;&#x2F; Итерация в порядке оригинального файла
+    for orig_entry in original_entries {
+        let key = &amp;orig_entry.key;
+        
+        if existing_keys.contains(key) {
+            &#x2F;&#x2F; Копирование существующего перевода
+            &#x2F;&#x2F; ... (поиск и копирование из целевого файла)
+        } else {
+            &#x2F;&#x2F; Добавление отсутствующего ключа со значением базового языка
+            println!(&quot;   Adding missing key: {}&quot;, key);
+            for line in &amp;orig_entry.raw_lines {
+                output_lines.push(line.clone());
+            }
+        }
+    }
+    
+    &#x2F;&#x2F; Фаза 3: Очистка и запись
+    &#x2F;&#x2F; Удаление лишних пустых строк, обрезка пробелов, запись на диск
+    &#x2F;&#x2F; ...
+    
+    Ok(())
+}
+</code></pre>
+<h3 id="kliuchevye-idei">Ключевые идеи</h3>
+<p><strong>Двухпроходный подход</strong>: первый проход определяет существующие ключи, второй проход строит вывод. Это гарантирует, что мы случайно не дублируем записи.</p>
+<p><strong>Сохранение порядка</strong>: итерируя через <code>original_entries</code>, а не через порядок целевого файла, мы гарантируем согласованный порядок.</p>
+<p><strong>Сохранение переводов</strong>: когда ключ существует в обоих файлах, мы берём запись из целевого файла, сохраняя переведённое значение.</p>
+<p><strong>Вставка заглушек</strong>: отсутствующие ключи копируются из оригинального файла с их значениями на базовом языке, что делает очевидным, что нужно перевести.</p>
+<h2 id="rekursivnyi-poisk-failov">Рекурсивный поиск файлов</h2>
+<p>Поиск всех файлов <code>.strings</code> в директории проекта:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn find_strings_files(folder: &amp;Path) -&gt; Vec&lt;PathBuf&gt; {
+    let mut result = Vec::new();
+    if folder.is_dir() {
+        for entry in fs::read_dir(folder).unwrap() {
+            let entry = entry.unwrap();
+            let path = entry.path();
+            if path.is_dir() {
+                result.extend(find_strings_files(&amp;path));
+            } else if path.extension().and_then(|s| s.to_str()) == Some(&quot;strings&quot;) {
+                result.push(path);
+            }
+        }
+    }
+    result
+}
+</code></pre>
+<p>Эта простая рекурсивная функция:</p>
+<ul>
+<li>Обходит директории в глубину</li>
+<li>Фильтрует по расширению <code>.strings</code></li>
+<li>Возвращает все подходящие пути</li>
+</ul>
+<p>В production-инструменте вы, возможно, захотите использовать крейт <code>walkdir</code> для лучшей обработки ошибок и производительности, но стандартной библиотеки достаточно для большинства проектов.</p>
+<h2 id="primery-ispol-zovaniia">Примеры использования</h2>
+<h3 id="bazovaia-sinkhronizatsiia">Базовая синхронизация</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash"># Синхронизация всех локализаций с использованием en.lproj как эталона
+synclproj en.lproj&#x2F;Localizable.strings .&#x2F;Resources&#x2F;
+
+# Вывод:
+# Scanning folder: .&#x2F;Resources&#x2F;
+# Syncing: .&#x2F;Resources&#x2F;fr.lproj&#x2F;Localizable.strings
+#    Adding missing key: new_feature_title
+#    Adding missing key: settings_privacy
+# Syncing: .&#x2F;Resources&#x2F;de.lproj&#x2F;Localizable.strings
+#    Adding missing key: new_feature_title
+#    Adding missing key: settings_privacy
+# All .strings files synchronized successfully!
+</code></pre>
+<h3 id="integratsiia-v-ci-cd">Интеграция в CI/CD</h3>
+<p>Добавьте в ваш <code>.gitlab-ci.yml</code> или GitHub Actions:</p>
+<pre data-lang="yaml" class="language-yaml "><code class="language-yaml" data-lang="yaml">- name: Sync localizations
+  run: |
+    .&#x2F;synclproj en.lproj&#x2F;Localizable.strings .&#x2F;Resources&#x2F;
+    git diff --exit-code || (echo &quot;Localizations out of sync!&quot; &amp;&amp; exit 1)
+</code></pre>
+<p>Это гарантирует, что разработчики не забудут синхронизировать переводы при добавлении новых строк.</p>
+<h2 id="real-nyi-primer">Реальный пример</h2>
+<p>До синхронизации:</p>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&#x2F;&#x2F; en.lproj&#x2F;Localizable.strings
+&quot;welcome&quot; = &quot;Welcome!&quot;;
+&quot;login&quot; = &quot;Log In&quot;;
+&quot;new_feature&quot; = &quot;Try our new feature&quot;;
+
+&#x2F;&#x2F; fr.lproj&#x2F;Localizable.strings  
+&quot;login&quot; = &quot;Se connecter&quot;;
+&quot;welcome&quot; = &quot;Bienvenue!&quot;;
+&#x2F;&#x2F; Отсутствует: new_feature
+</code></pre>
+<p>После запуска <code>synclproj</code>:</p>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&#x2F;&#x2F; fr.lproj&#x2F;Localizable.strings
+&quot;welcome&quot; = &quot;Bienvenue!&quot;;
+&quot;login&quot; = &quot;Se connecter&quot;;
+&quot;new_feature&quot; = &quot;Try our new feature&quot;;  &#x2F;&#x2F; ← Добавлено, требует перевода
+</code></pre>
+<p>Обратите внимание:</p>
+<ul>
+<li>Ключи переупорядочены в соответствии с <code>en.lproj</code></li>
+<li>Существующие переводы сохранены</li>
+<li>Отсутствующий ключ добавлен с английской заглушкой</li>
+</ul>
+<h2 id="pogranichnye-sluchai-i-ogranicheniia">Пограничные случаи и ограничения</h2>
+<h3 id="udalionnye-kliuchi">Удалённые ключи</h3>
+<p>В настоящее время инструмент не удаляет ключи, которые существуют в переводах, но не в базовом файле. Это сделано намеренно — безопаснее оставить лишние ключи, чем случайно удалить переводы. Вы можете вручную удалить устаревшие ключи во время code review.</p>
+<h3 id="obrabotka-probelov">Обработка пробелов</h3>
+<p>Инструмент нормализует избыточные пустые строки, но сохраняет намеренные отступы вокруг записей. Это сохраняет чистоту diff-ов при поддержании читаемости.</p>
+<h3 id="kodirovka-simvolov">Кодировка символов</h3>
+<p>Тип <code>String</code> в Rust нативно обрабатывает UTF-8, поэтому эмодзи и международные символы работают без проблем:</p>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&quot;welcome_emoji&quot; = &quot;👋 Welcome!&quot;;
+&quot;chinese_greeting&quot; = &quot;欢迎！&quot;;
+</code></pre>
+<h3 id="variatsii-formata-failov">Вариации формата файлов</h3>
+<p>Парсер обрабатывает как записи с точкой с запятой, так и без неё, что делает его совместимым с разными версиями Xcode и стилями форматирования.</p>
+<h2 id="kharakteristiki-proizvoditel-nosti">Характеристики производительности</h2>
+<p>Для типичного iOS-проекта:</p>
+<ul>
+<li><strong>Маленький проект</strong> (5 языков, 200 ключей каждый): ~50мс</li>
+<li><strong>Средний проект</strong> (15 языков, 1000 ключей каждый): ~200мс</li>
+<li><strong>Большой проект</strong> (30 языков, 5000 ключей каждый): ~800мс</li>
+</ul>
+<p>Инструмент ограничен I/O, тратя большую часть времени на чтение и запись файлов. Сама логика парсинга и синхронизации незначительна.</p>
+<p>Размер бинарника ~400КБ, что делает его идеальным для включения в репозитории или CI-контейнеры.</p>
+<h2 id="izvlechionnye-uroki">Извлечённые уроки</h2>
+<h3 id="pochemu-rust">Почему Rust?</h3>
+<ol>
+<li><strong>Развёртывание единого бинарника</strong>: нет runtime-зависимостей означает, что <code>cargo build --release</code> производит портативный исполняемый файл</li>
+<li><strong>Обработка ошибок</strong>: <code>Result&lt;T, E&gt;</code> заставляет явно обрабатывать ошибки файлового I/O</li>
+<li><strong>Обработка строк</strong>: UTF-8 по умолчанию устраняет головную боль с кодировками</li>
+<li><strong>Производительность</strong>: достаточно быстро, чтобы пользователи не замечали, даже на больших проектах</li>
+</ol>
+<h3 id="pochemu-ne-swift">Почему не Swift?</h3>
+<p>Хотя может показаться логичным использовать Swift для инструмента, связанного с iOS, Rust предлагает:</p>
+<ul>
+<li>Лучшую кроссплатформенную поддержку (включая Linux CI runners)</li>
+<li>Меньшие бинарники без накладных расходов runtime</li>
+<li>Более зрелую экосистему CLI</li>
+</ul>
+<h3 id="prostota-pobezhdaet">Простота побеждает</h3>
+<p>Подход с нулевыми зависимостями доказал свою надёжность. Стандартная библиотека предоставляет всё необходимое для этого случая использования, а избегание внешних крейтов:</p>
+<ul>
+<li>Уменьшает поверхность атаки</li>
+<li>Устраняет проблемы совместимости версий</li>
+<li>Делает аудит кода тривиальным</li>
+</ul>
+<h2 id="budushchie-uluchsheniia">Будущие улучшения</h2>
+<p>Потенциальные улучшения для инструмента:</p>
+<h3 id="rezhim-validatsii">Режим валидации</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">synclproj --check en.lproj&#x2F;Localizable.strings .&#x2F;Resources&#x2F;
+# Код выхода 1, если какие-либо файлы не синхронизированы
+</code></pre>
+<h3 id="vyvod-diff">Вывод diff</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">synclproj --diff en.lproj&#x2F;Localizable.strings .&#x2F;Resources&#x2F;
+# Показать, что изменилось бы, без модификации файлов
+</code></pre>
+<h3 id="udalenie-ustarevshikh-kliuchei">Удаление устаревших ключей</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">synclproj --prune en.lproj&#x2F;Localizable.strings .&#x2F;Resources&#x2F;
+# Удалить ключи из переводов, которых нет в базовом файле
+</code></pre>
+<h3 id="eksport-v-json">Экспорт в JSON</h3>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">synclproj --export-json en.lproj&#x2F;Localizable.strings &gt; translations.json
+# Экспорт в JSON для интеграции с сервисами перевода
+</code></pre>
+<h3 id="parallel-naia-obrabotka">Параллельная обработка</h3>
+<p>Использование <code>rayon</code> для параллельной синхронизации нескольких файлов для больших проектов с множеством локализаций.</p>
+<h2 id="strategiia-testirovaniia">Стратегия тестирования</h2>
+<p>Для production-инструмента рассмотрите:</p>
+<p><strong>Unit-тесты</strong> для пограничных случаев парсинга:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
+fn test_multiline_parsing() {
+    let input = r#&quot;&quot;key&quot; = &quot;line1 \
+line2&quot;;&quot;#;
+    let entries = parse_strings_with_order(input);
+    assert_eq!(entries.len(), 1);
+    assert_eq!(entries[0].key, &quot;key&quot;);
+}
+</code></pre>
+<p><strong>Интеграционные тесты</strong> с образцами файлов <code>.strings</code>:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[test]
+fn test_sync_preserves_translations() {
+    let temp = create_test_directory();
+    sync_strings_file(&#x2F;* ... *&#x2F;);
+    let result = fs::read_to_string(&#x2F;* ... *&#x2F;);
+    assert!(result.contains(&quot;translated_value&quot;));
+}
+</code></pre>
+<p><strong>Golden file тесты</strong> для гарантии, что форматирование вывода не регрессирует.</p>
+<h2 id="integratsiia-s-xcode">Интеграция с Xcode</h2>
+<p>Вы можете добавить фазу сборки для автоматического запуска инструмента:</p>
+<ol>
+<li>Добавьте фазу "Run Script" в Build Phases</li>
+<li>Вставьте:<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">if which synclproj &gt; &#x2F;dev&#x2F;null; then
+    synclproj &quot;${SRCROOT}&#x2F;en.lproj&#x2F;Localizable.strings&quot; &quot;${SRCROOT}&quot;
+else
+    echo &quot;warning: synclproj not found, skipping localization sync&quot;
+fi
+</code></pre>
+</li>
+</ol>
+<p>Это гарантирует синхронизацию локализаций во время разработки без ручного вмешательства.</p>
+<h2 id="al-ternativnye-podkhody">Альтернативные подходы</h2>
+<p>Другие решения в этой области:</p>
+<ul>
+<li><strong>bartycrouch</strong>: инструмент на Ruby с большим количеством функций, но медленнее</li>
+<li><strong>Xcode</strong>: встроенный экспорт/импорт XLIFF, ручной и неудобный</li>
+<li><strong>fastlane</strong>: может интегрироваться с сервисами перевода, но требует настройки</li>
+<li><strong>genstrings</strong>: извлекает строки из кода, но не синхронизирует существующие файлы</li>
+</ul>
+<p>syncLproj заполняет конкретную нишу: быстрая синхронизация существующих файлов <code>.strings</code> без конфигурации и внешних зависимостей.</p>
+<h2 id="zakliuchenie">Заключение</h2>
+<p>Создание CLI-инструментов на Rust демонстрирует сильные стороны языка в системном программировании за пределами только критически важных для производительности приложений. С нулевыми runtime-зависимостями мы создали бинарник ~400КБ, который решает реальную проблему рабочего процесса разработки.</p>
+<p>Ключевые выводы:</p>
+<ul>
+<li><strong>Достаточность стандартной библиотеки</strong>: многим CLI-инструментам не нужны внешние зависимости</li>
+<li><strong>Простота парсера</strong>: конечные автоматы обрабатывают сложные форматы простым кодом</li>
+<li><strong>Сохранение важнее преобразования</strong>: сохранение оригинального форматирования делает diff-ы чище</li>
+<li><strong>Единственная ответственность</strong>: фокус на одной задаче (синхронизации), а не на попытках решить все проблемы локализации</li>
+</ul>
+<p>Полный исходный код доступен на <a href="https://github.com/bimawa/syncLproj">github.com/bimawa/syncLproj</a>. Независимо от того, управляете ли вы локализациями iOS или создаёте собственные инструменты синхронизации файлов, рассмотренные здесь паттерны обеспечивают прочную основу.</p>
+<p>Успешной локализации!</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

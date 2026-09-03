@@ -1,0 +1,685 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title></title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-08-17T06:09:20+00:00</updated>
+    <id>https://bimawa.net/ru/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>Добро пожаловать в KnowledgeQuery</title>
+        <published>2026-08-17T06:09:20+00:00</published>
+        <updated>2026-08-17T06:09:20+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/KnowledgeQuery/welcome/"/>
+        <id>https://bimawa.net/ru/projects/KnowledgeQuery/welcome/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;knowledgequery&quot;&gt;KnowledgeQuery&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;strong&gt;kqs&lt;&#x2F;strong&gt; — Git-native платформа для управления знаниями и документацией. Документация, задачи, спецификации данных и связи между ними — обычные Markdown-файлы в Git-репозитории, а один бинарник &lt;code&gt;kqs&lt;&#x2F;code&gt; добавляет к ним поиск, AI-ассистента, трекинг задач и трассировку требований до кода. Без серверов, без внешних баз данных, без vendor lock.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;zachem-eto-nuzhno&quot;&gt;Зачем это нужно&lt;&#x2F;h3&gt;
+&lt;p&gt;Obsidian и любой markdown-редактор отлично подходят для чтения и редактирования заметок. Но за пределами одной папки начинаются проблемы: нет синхронизации между репозиториями, нет кросс-репозиторного поиска, документация живёт отдельно от кода, и никто не знает, покрыты ли требования реализацией.&lt;&#x2F;p&gt;
+&lt;p&gt;kqs не заменяет Obsidian — он дополняет его тем, чего там нет: multi-repo sync, полнотекстовый и семантический поиск, AI-ассистент в CLI, задачи в Git и глубокая трассировка цепочки «требование → дизайн → код».&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>KnowledgeQuery</title>
+        <published>2026-08-17T00:00:00+00:00</published>
+        <updated>2026-08-17T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/knowledgequery/"/>
+        <id>https://bimawa.net/ru/projects/knowledgequery/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/knowledgequery/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>SpeedReaderRust: История одной идеи</title>
+        <published>2026-07-27T05:00:00+00:00</published>
+        <updated>2026-07-27T05:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/speedreader-rust-concept/"/>
+        <id>https://bimawa.net/ru/blog/speedreader-rust-concept/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;s-chego-vsio-nachalos&quot;&gt;С чего всё началось&lt;&#x2F;h2&gt;
+&lt;p&gt;Я читаю много технической документации. SDD (Specification Driven Development), RFC, спецификации — всё это приходится проглатывать в больших объёмах. Обычное чтение глазами упирается в скорость: вы всё равно тратите время на саккады (скачки глаза от слова к слову) и регрессии (возвраты назад по строке).&lt;&#x2F;p&gt;
+&lt;p&gt;В какой-то момент я вспомнил про технику RSVP — Rapid Serial Visual Presentation. Это когда слова показываются одно за другим в одной точке экрана, а скорость задаётся количеством слов в минуту. Глазу не нужно двигаться — он просто смотрит в центр и схватывает слова.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Добро пожаловать в SpeedReaderRust</title>
+        <published>2026-07-27T04:46:41+00:00</published>
+        <updated>2026-07-27T04:46:41+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/SpeedReaderRust/welcome/"/>
+        <id>https://bimawa.net/ru/projects/SpeedReaderRust/welcome/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/SpeedReaderRust/welcome/">&lt;h2 id=&quot;speedreaderrust&quot;&gt;SpeedReaderRust&lt;&#x2F;h2&gt;
+&lt;p&gt;RSVP (Rapid Serial Visual Presentation) оверлей для скорочтения. Открывает файл и показывает слова одно за другим в центре экрана. Ключевая особенность — &lt;strong&gt;подсветка центральной буквы&lt;&#x2F;strong&gt; (ORP — Optimal Recognition Point), которая позволяет глазу быстрее схватывать слово.&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;vozmozhnosti&quot;&gt;Возможности&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Пауза и прыжок в редактор на точную позицию (пробел)&lt;&#x2F;li&gt;
+&lt;li&gt;Настройка скорости (WPM) и команды редактора&lt;&#x2F;li&gt;
+&lt;li&gt;Перетаскивание оверлея мышью&lt;&#x2F;li&gt;
+&lt;li&gt;Работает с любым редактором: Zed, VS Code, Vim, Helix&lt;&#x2F;li&gt;
+&lt;li&gt;Открытый исходный код (MIT)&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h3 id=&quot;ustanovka&quot;&gt;Установка&lt;&#x2F;h3&gt;
+&lt;pre data-lang=&quot;sh&quot; class=&quot;language-sh &quot;&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;cargo install speed-reader
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Или из репозитория: &lt;code&gt;cargo install --path gui&lt;&#x2F;code&gt;&lt;&#x2F;p&gt;
+&lt;h3 id=&quot;ispol-zovanie-v-zed&quot;&gt;Использование в Zed&lt;&#x2F;h3&gt;
+&lt;h4 id=&quot;1-global-nyi-task&quot;&gt;1. Глобальный таск&lt;&#x2F;h4&gt;
+&lt;p&gt;Сделай так, чтобы &lt;code&gt;speed-reader&lt;&#x2F;code&gt; был доступен из любого проекта. Для этого добавь таск в глобальный конфиг Zed:&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;~&#x2F;.config&#x2F;zed&#x2F;tasks.json&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;[
+  {
+    &amp;quot;label&amp;quot;: &amp;quot;SpeedReader: Read current file&amp;quot;,
+    &amp;quot;command&amp;quot;: &amp;quot;speed-reader&amp;quot;,
+    &amp;quot;args&amp;quot;: [&amp;quot;$ZED_FILE&amp;quot;],
+    &amp;quot;tags&amp;quot;: [&amp;quot;speed-reader&amp;quot;],
+    &amp;quot;hide&amp;quot;: &amp;quot;on_success&amp;quot;
+  }
+]
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Файл — это массив тасков. Если там уже есть другие таски — просто добавь этот объект в массив.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;code&gt;&quot;tags&quot;: [&quot;speed-reader&quot;]&lt;&#x2F;code&gt; не обязателен, но помогает фильтровать в палитре команд. &lt;code&gt;&quot;hide&quot;: &quot;on_success&quot;&lt;&#x2F;code&gt; убирает терминал после закрытия оверлея — не захламляет интерфейс.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;2-zapusk&quot;&gt;2. Запуск&lt;&#x2F;h4&gt;
+&lt;p&gt;&lt;code&gt;Cmd+Shift+P&lt;&#x2F;code&gt; → начни печатать &lt;code&gt;SpeedReader&lt;&#x2F;code&gt; → выбери таск.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;3-khotkei-rekomenduetsia&quot;&gt;3. Хоткей (рекомендуется)&lt;&#x2F;h4&gt;
+&lt;p&gt;Чтобы читать любой файл одной кнопкой — назначь хоткей в &lt;code&gt;~&#x2F;.config&#x2F;zed&#x2F;keybindings.json&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+  &amp;quot;context&amp;quot;: &amp;quot;Editor&amp;quot;,
+  &amp;quot;bindings&amp;quot;: {
+    &amp;quot;cmd-shift-r&amp;quot;: [&amp;quot;task::Spawn&amp;quot;, { &amp;quot;task_name&amp;quot;: &amp;quot;SpeedReader: Read current file&amp;quot; }]
+  }
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;После этого &lt;code&gt;Cmd+Shift+R&lt;&#x2F;code&gt; из любого открытого буфера запускает RSVP-чтение.&lt;&#x2F;p&gt;
+&lt;h4 id=&quot;4-konfiguratsiia-redaktora-ne-tol-ko-zed&quot;&gt;4. Конфигурация редактора (не только Zed)&lt;&#x2F;h4&gt;
+&lt;p&gt;По умолчанию &lt;code&gt;speed-reader&lt;&#x2F;code&gt; открывает редактор по адресу &lt;code&gt;файл:строка:колонка&lt;&#x2F;code&gt;. Можно настроить команду редактора в &lt;code&gt;~&#x2F;.config&#x2F;speed-reader&#x2F;config.json&lt;&#x2F;code&gt;:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;json&quot; class=&quot;language-json &quot;&gt;&lt;code class=&quot;language-json&quot; data-lang=&quot;json&quot;&gt;{
+  &amp;quot;editor_cmd&amp;quot;: &amp;quot;code&amp;quot;,
+  &amp;quot;wpm&amp;quot;: 300
+}
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Поддерживаются Zed, VS Code, Vim, Helix и любой редактор с CLI-синтаксисом &lt;code&gt;editor file:line:col&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>SpeedReaderRust</title>
+        <published>2026-07-27T00:00:00+00:00</published>
+        <updated>2026-07-27T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/speedreaderrust/"/>
+        <id>https://bimawa.net/ru/projects/speedreaderrust/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/speedreaderrust/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>TradeTerminal</title>
+        <published>2026-02-20T00:00:00+00:00</published>
+        <updated>2026-02-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/TradeTerminal/trade-terminal/"/>
+        <id>https://bimawa.net/ru/projects/TradeTerminal/trade-terminal/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;tradeterminal&quot;&gt;TradeTerminal&lt;&#x2F;h2&gt;
+&lt;p&gt;Универсальный торговый терминал для Bybit и Binance с CLI интерфейсом и архитектурой клиент-сервер, разработанный для минимизации задержки при работе с биржами. Проект создан на Rust и предоставляет мощный набор инструментов для профессиональной торговли криптовалютой.&lt;&#x2F;p&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;tradeTerminalInterface.png&quot; alt=&quot;TradeTerminal Interface&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;osnovnye-vozmozhnosti&quot;&gt;Основные возможности&lt;&#x2F;h2&gt;
+&lt;h3 id=&quot;torgovye-operatsii&quot;&gt;Торговые операции&lt;&#x2F;h3&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Размещение ордеров&lt;&#x2F;strong&gt;: Market и Limit ордера с быстрым исполнением&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Риск-менеджмент&lt;&#x2F;strong&gt;: Автоматический расчёт размера позиции от риска в USDT с учётом комиссий биржи&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Take Profit&lt;&#x2F;strong&gt;: Настройка выхода из позиции в процентах от входа&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Trailing Stop&lt;&#x2F;strong&gt;: Гибкая система трейлинг-стопов с поддержкой:
+&lt;ul&gt;
+&lt;li&gt;Абсолютных значений цены и callback в долларах&lt;&#x2F;li&gt;
+&lt;li&gt;Процентов от текущей цены&lt;&#x2F;li&gt;
+&lt;li&gt;Соотношений (ratio) для активации на основе расстояния до Stop Loss&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Auto-Stop (AS)&lt;&#x2F;strong&gt;: Умный выход из позиции на активных рынках
+&lt;ul&gt;
+&lt;li&gt;Клик по цене копирует её для быстрого ввода&lt;&#x2F;li&gt;
+&lt;li&gt;Триггер активируется по достижению цены или процента&lt;&#x2F;li&gt;
+&lt;li&gt;Таймер ликвидности (2 сек) - закрывает позицию если торговля останавливается&lt;&#x2F;li&gt;
+&lt;li&gt;Идеально для фиксации прибыли на волатильных участках&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Hedge Mode&lt;&#x2F;strong&gt;: Поддержка одновременных Long&#x2F;Short позиций на одном инструменте&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>TradeTerminal</title>
+        <published>2026-02-20T00:00:00+00:00</published>
+        <updated>2026-02-20T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/tradeterminal/"/>
+        <id>https://bimawa.net/ru/projects/tradeterminal/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/tradeterminal/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>RFIDReader</title>
+        <published>2026-01-31T00:00:00+00:00</published>
+        <updated>2026-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/RFIDReader/rfid-reader/"/>
+        <id>https://bimawa.net/ru/projects/RFIDReader/rfid-reader/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;rfidreader&quot;&gt;RFIDReader&lt;&#x2F;h2&gt;
+&lt;p&gt;Прошивка на Rust для чтения и записи RFID-чипов ST25TB с использованием устройства LilyGO T-Embed CC1101 (ESP32-S3 с NFC-модулем PN532). Этот инструмент особенно полезен для работы с RFID-чипами, которые обычно встречаются в картриджах принтеров и других промышленных приложениях.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;osnovnye-vozmozhnosti&quot;&gt;Основные возможности&lt;&#x2F;h2&gt;
+&lt;p&gt;Прошивка обеспечивает полный функционал для работы с чипами ST25TB через удобный сенсорный интерфейс:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Полноценные операции с чипом&lt;&#x2F;strong&gt;: Чтение всего содержимого чипа (до 256 блоков) и запись модифицированных данных обратно&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Управление данными&lt;&#x2F;strong&gt;: Экспорт дампов чипа через последовательное соединение и импорт hex-данных для записи&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Интерактивный интерфейс&lt;&#x2F;strong&gt;: TFT-дисплей с навигацией через поворотный энкодер для удобного управления меню&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Звуковая обратная связь&lt;&#x2F;strong&gt;: Звуковое подтверждение успешных операций чтения&#x2F;записи&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Встроенный hex-редактор&lt;&#x2F;strong&gt;: Изменение данных чипа непосредственно на устройстве перед записью&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;tekhnologicheskii-stek&quot;&gt;Технологический стек&lt;&#x2F;h2&gt;
+&lt;p&gt;Проект использует современные технологии разработки для встраиваемых систем на Rust:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Аппаратное обеспечение&lt;&#x2F;strong&gt;: Двухядерный процессор ESP32-S3 (240 МГц) с TFT-дисплеем ST7789V (170x320)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;NFC-контроллер&lt;&#x2F;strong&gt;: Модуль PN532 через I2C-интерфейс&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Язык программирования&lt;&#x2F;strong&gt;: Rust (bare metal программирование no_std)&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Фреймворк&lt;&#x2F;strong&gt;: Уровень аппаратной абстракции esp-hal&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Протокол&lt;&#x2F;strong&gt;: Стандарт ISO14443-B&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>RFIDReader</title>
+        <published>2026-01-31T00:00:00+00:00</published>
+        <updated>2026-01-31T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/rfidreader/"/>
+        <id>https://bimawa.net/ru/projects/rfidreader/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/rfidreader/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>FSkatingAcc: Когда тренировка встречается с технологией</title>
+        <published>2026-01-12T23:33:23+00:00</published>
+        <updated>2026-01-12T23:33:23+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/figure-skating-accompaniment/"/>
+        <id>https://bimawa.net/ru/blog/figure-skating-accompaniment/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;problema&quot;&gt;Проблема&lt;&#x2F;h2&gt;
+&lt;p&gt;Каждый тренер по фигурному катанию знает эти ситуации:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Вы на льду, спортсмен откатывает программу, и вам нужно остановить музыку после проката. Чтобы дать конкретные рекомендации спортсмену, а не искать проигрыватель, чтобы поставить его на паузу.&lt;&#x2F;li&gt;
+&lt;li&gt;А если надо что бы поработать над конкретным элементом? Вы можете с конкретной секунды начинать и повторять элемент и композицию. для точки мастерства спортсмена.&lt;&#x2F;li&gt;
+&lt;li&gt;Или нужно мгновенно вернуться к началу? Очень часто бывает, что старт проспали, прослушали, и приходится вернуться на начало композиции.&lt;&#x2F;li&gt;
+&lt;li&gt;Или поставить в очередь музыку следующего спортсмена, пока текущий заканчивает? Подготовьте следующий аккомпанемент для следующего проката. Заранее. Чтобы спортсмен не ждал, когда вы найдете нужную композицию в своем проигрывателе.&lt;&#x2F;li&gt;
+&lt;li&gt;А если у вас тренерровочный процесс для постановки &quot;рук&quot;. И аккомпанемент нужно постоянно находить в плейлисте. В очереди всегда будет стоять аккомпанемент, который предназначен для постановки рук. Теперь вам не нужно его каждый раз искать после прокатов других спортсменов. Он у вас сюда будет следующим.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Обычные музыкальные плееры просто не были созданы для такого рабочего процесса.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>FSkatingAcc</title>
+        <published>2026-01-12T00:00:00+00:00</published>
+        <updated>2026-01-12T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/fskatingacc/"/>
+        <id>https://bimawa.net/ru/projects/fskatingacc/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/fskatingacc/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Forge: Когда программисты становятся менеджерами (с AI котами в помощниках)</title>
+        <published>2026-01-08T12:00:00+00:00</published>
+        <updated>2026-01-08T12:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/forge-ai-project-management/"/>
+        <id>https://bimawa.net/ru/blog/forge-ai-project-management/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;ot-bezrabotnogo-k-otkrytiiu&quot;&gt;От безработного к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Я пока без работы, вайбкодю без остановки. И вот что заметил: программисты не вымрут, они просто теперь не нуждаются в менеджерах. &lt;strong&gt;Программисты и есть менеджеры с котами в виде AI.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;С такой мыслью я пошёл гуглить решения, ведь мысль ко мне приходит последней в мире и кто-то уже начал проект и зарабатывает деньги.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;put-k-otkrytiiu&quot;&gt;Путь к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Наткнулся на &lt;strong&gt;auto-claude&lt;&#x2F;strong&gt;. Система, позволяющая отдельно в каждой worktree запускать агентов, чтобы они решали задачи независимо друг от друга. Ну и контекст, конечно, сохраняли.&lt;&#x2F;p&gt;
+&lt;p&gt;Думаю: &quot;Вот оно! То, что нужно!&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Но я решил не останавливаться. Пошёл в Grok, говорю: &quot;Ну-ка рынок посканируй, есть решения получше?&quot; И что вы думаете? Он нашёл таки!&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Восстановление блобов из git</title>
+        <published>2025-12-10T19:54:34+00:00</published>
+        <updated>2025-12-10T19:54:34+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/restore-blobs-from-git/"/>
+        <id>https://bimawa.net/ru/blog/restore-blobs-from-git/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;problema&quot;&gt;Проблема&lt;&#x2F;h2&gt;
+&lt;p&gt;Часто мысли приходят быстрее, чем действия, и в очередной раз я попал в ситуацию, когда добавил файлы в stage, но забыл закоммитить, и тут же побежал прыгать по коммитам с помощью &lt;code&gt;git reset&lt;&#x2F;code&gt; и &lt;code&gt;git checkout&lt;&#x2F;code&gt;.&lt;&#x2F;p&gt;
+&lt;p&gt;Для тех, кто ещё не знаком с этой проблемой, &lt;code&gt;git reflog&lt;&#x2F;code&gt; здесь не поможет. Если вы не сделали &lt;code&gt;git add .&lt;&#x2F;code&gt;, ваша последняя надежда на восстановление файлов — только через:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Time Machine&lt;&#x2F;li&gt;
+&lt;li&gt;Локальные изменения, если вы работаете в IDE от JetBrains&lt;&#x2F;li&gt;
+&lt;li&gt;Или если вы хороши в восстановлении данных с SSD&lt;&#x2F;li&gt;
+&lt;li&gt;и т.д.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>NetMonRS</title>
+        <published>2025-12-10T18:26:24+00:00</published>
+        <updated>2025-12-10T18:26:24+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/Netmonrs/network-monitor/"/>
+        <id>https://bimawa.net/ru/projects/Netmonrs/network-monitor/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/Netmonrs/network-monitor/">&lt;h2 id=&quot;net-monitor-rust&quot;&gt;Net Monitor Rust&lt;&#x2F;h2&gt;
+&lt;p&gt;NetRS — это инструмент мониторинга сети, написанный на Rust, который показывает сетевые соединения в реальном времени, используя библиотеку Ratatui для терминального пользовательского интерфейса. Приложение позволяет пользователям отслеживать активные сетевые соединения и просматривать детали соединений, включая локальные и удалённые адреса, протоколы и состояния соединений. Пользователи могут фильтровать соединения по различным критериям. Инструмент использует сетевые возможности системы для сбора информации о соединениях и отображает её в интерактивном, удобном терминальном интерфейсе. Этот инструмент помогает системным администраторам, сетевым инженерам и разработчикам быстро проверять сетевую активность на своих системах прямо из командной строки.&lt;&#x2F;p&gt;
+&lt;p&gt;Это предлагает более эффективный способ мониторинга исходящих соединений от конкретного процесса.&lt;&#x2F;p&gt;
+&lt;p&gt;Я разработал этот инструмент для проекта WireDeskVR для проверки статуса подключения агента.&lt;&#x2F;p&gt;
+&lt;p&gt;Его также можно использовать для других целей. Например, чтобы найти, куда подключается конкретный процесс на вашем компьютере.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;primer-ispol-zovaniia&quot;&gt;Пример использования&lt;&#x2F;h2&gt;
+&lt;pre data-lang=&quot;bash&quot; class=&quot;language-bash &quot;&gt;&lt;code class=&quot;language-bash&quot; data-lang=&quot;bash&quot;&gt;sudo netmonrs &amp;#x2F;Applications&amp;#x2F;Zed.app&amp;#x2F;Contents&amp;#x2F;MacOS&amp;#x2F;zed
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;Нам нужен доступ sudo для lsof.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;kak-eto-vygliadit&quot;&gt;Как это выглядит&lt;&#x2F;h2&gt;
+&lt;p&gt;&lt;img src=&quot;&#x2F;images&#x2F;netMonrsInterface.png&quot; alt=&quot;Интерфейс NetMonRS&quot; &#x2F;&gt;&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;upravlenie&quot;&gt;Управление&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;Tab&lt;&#x2F;code&gt; — переключение фокуса между активными соединениями и историей&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;Up&lt;&#x2F;code&gt; &#x2F; &lt;code&gt;k&lt;&#x2F;code&gt; — движение вверх по списку&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;Down&lt;&#x2F;code&gt; &#x2F; &lt;code&gt;j&lt;&#x2F;code&gt; — движение вниз по списку&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;PageUp&lt;&#x2F;code&gt; &#x2F; &lt;code&gt;Ctrl+u&lt;&#x2F;code&gt; — страница вверх&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;PageDown&lt;&#x2F;code&gt; &#x2F; &lt;code&gt;Ctrl+d&lt;&#x2F;code&gt; — страница вниз&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;code&gt;q&lt;&#x2F;code&gt; — выход из приложения&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>NetMonRS</title>
+        <published>2025-12-10T00:00:00+00:00</published>
+        <updated>2025-12-10T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/netmonrs/"/>
+        <id>https://bimawa.net/ru/projects/netmonrs/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/netmonrs/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>WireDeskVR</title>
+        <published>2025-11-20T14:30:00+00:00</published>
+        <updated>2025-11-20T14:30:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/WireDeskVR/wiredesk-agent/"/>
+        <id>https://bimawa.net/ru/projects/WireDeskVR/wiredesk-agent/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/WireDeskVR/wiredesk-agent/">&lt;h2 id=&quot;tsel&quot;&gt;Цель&lt;&#x2F;h2&gt;
+&lt;p&gt;Начальный этап и первый шаг включают создание функциональности захвата экрана для агента, позволяющей транслировать, транскодировать и передавать захваченный контент по сети.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;proekt&quot;&gt;Проект&lt;&#x2F;h2&gt;
+&lt;p&gt;Сначала мы создаём отдельный проект для изучения возможностей. Поскольку это агент, он будет работать на macOS как сервис или фоновый демон. Его основная задача проста — поскольку у него нет UI, мы реализуем его на Swift и Swift Package Manager как стандартный исполняемый файл.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;iskhodnyi-kod&quot;&gt;Исходный код&lt;&#x2F;h2&gt;
+&lt;p&gt;Основная функция агента инициализирует сокет для каждого обнаруженного дисплея. Посмотрим, как эта функциональность будет работать.&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;Swift&quot; class=&quot;language-Swift &quot;&gt;&lt;code class=&quot;language-Swift&quot; data-lang=&quot;Swift&quot;&gt;
+    func start() async throws {
+        let sender = NetworkSender(host: &amp;quot;127.0.0.1&amp;quot;, port: port); sender.start(); self.network = sender
+
+        let content = try await SCShareableContent.current
+        guard let display = content.displays.first(where: { $0.displayID == displayID }) else { return }
+
+        let encoder = VideoEncoder(width: display.width, height: display.height, bitrate: 20_000_000)
+        encoder.delegate = self; self.encoder = encoder
+
+        let captureSession = ScreenCapture(displayID: displayID)
+        captureSession.delegate = self
+        self.capture = captureSession
+
+        try await captureSession.start()
+    }
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+</content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Автоматизация рабочих процессов в YouTrack с помощью JavaScript-правил</title>
+        <published>2025-11-16T04:28:00+00:00</published>
+        <updated>2025-11-16T04:28:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/youtrack-workflow/"/>
+        <id>https://bimawa.net/ru/blog/youtrack-workflow/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;JetBrains YouTrack предоставляет мощный движок рабочих процессов, который позволяет командам автоматизировать и применять политики управления проектами с помощью JavaScript. В отличие от простых переходов статусов, рабочие процессы YouTrack могут валидировать данные, применять бизнес-правила и обеспечивать согласованность в процессе разработки.&lt;&#x2F;p&gt;
+&lt;p&gt;В этой статье рассматривается практическая автоматизация рабочих процессов на трёх реальных примерах: валидация развёртывания тестового окружения, контроль учёта времени и обеспечение оценки задач. Эти паттерны применимы для любой команды, использующей YouTrack для agile-разработки.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;zachem-nuzhna-avtomatizatsiia-rabochikh-protsessov&quot;&gt;Зачем нужна автоматизация рабочих процессов?&lt;&#x2F;h2&gt;
+&lt;p&gt;Ручное применение политик проекта подвержено ошибкам и требует много времени. Типичные проблемы включают:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Неполный учёт времени&lt;&#x2F;strong&gt;: разработчики забывают логировать затраченное время&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Отсутствие оценок&lt;&#x2F;strong&gt;: задачи переходят в статус «В работе» без оценки трудозатрат&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Некорректные переходы состояний&lt;&#x2F;strong&gt;: тестовые сборки случайно развёртываются в продакшен&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Несогласованные процессы&lt;&#x2F;strong&gt;: разные члены команды следуют разным рабочим процессам&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;JavaScript-рабочие процессы YouTrack решают эти проблемы:&lt;&#x2F;p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Предотвращение недопустимых переходов&lt;&#x2F;strong&gt;: блокировка изменений состояния, нарушающих политики&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Обеспечение обязательных полей&lt;&#x2F;strong&gt;: гарантия захвата критически важных данных&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Валидация бизнес-логики&lt;&#x2F;strong&gt;: программная реализация сложных правил&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Мгновенная обратная связь&lt;&#x2F;strong&gt;: показ понятных сообщений об ошибках пользователям&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание инструмента синхронизации локализации для iOS&#x2F;macOS</title>
+        <published>2025-11-16T00:00:00+00:00</published>
+        <updated>2025-11-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/"/>
+        <id>https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;Управление файлами локализации в проектах iOS и macOS может стать сложной задачей по мере роста приложения. Когда вы добавляете новые строки в файл базового языка, синхронизация всех файлов переводов становится утомительной и подверженной ошибкам. В этой статье рассматривается &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;syncLproj&quot;&gt;syncLproj&lt;&#x2F;a&gt; — CLI-инструмент на Rust, предназначенный для автоматизации этого процесса синхронизации.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;problema-lokalizatsii&quot;&gt;Проблема локализации&lt;&#x2F;h2&gt;
+&lt;p&gt;В разработке iOS&#x2F;macOS локализация использует файлы &lt;code&gt;.strings&lt;&#x2F;code&gt; с простым форматом ключ-значение:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;swift&quot; class=&quot;language-swift &quot;&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&amp;#x2F;* User interface strings *&amp;#x2F;
+&amp;quot;welcome_message&amp;quot; = &amp;quot;Welcome to our app!&amp;quot;;
+&amp;quot;login_button&amp;quot; = &amp;quot;Log In&amp;quot;;
+&amp;quot;signup_button&amp;quot; = &amp;quot;Sign Up&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;При управлении несколькими языками возникает ряд проблем:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Отсутствующие ключи&lt;&#x2F;strong&gt;: новые ключи, добавленные в базовый язык, автоматически не появляются в переводах&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Несогласованность порядка ключей&lt;&#x2F;strong&gt;: разные файлы имеют ключи в разном порядке, что затрудняет просмотр diff-ов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Осиротевшие ключи&lt;&#x2F;strong&gt;: удалённые ключи остаются в файлах переводов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ручная работа&lt;&#x2F;strong&gt;: копирование ключей между десятками файлов занимает много времени и подвержено ошибкам&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Традиционные подходы включают ручное редактирование или встроенные инструменты Xcode, которые не имеют возможностей автоматизации для CI&#x2F;CD пайплайнов.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание инструмента синхронизации локализации для iOS&#x2F;macOS</title>
+        <published>2025-11-16T00:00:00+00:00</published>
+        <updated>2025-11-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/ios-string-sync/"/>
+        <id>https://bimawa.net/ru/projects/ios-string-sync/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/ios-string-sync/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание терминального файлового менеджера на Rust</title>
+        <published>2025-11-15T00:00:00+00:00</published>
+        <updated>2025-11-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/"/>
+        <id>https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;В этой статье рассматривается путь создания терминального пользовательского интерфейса (TUI) файлового менеджера на Rust. Мы изучим &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;blaze-file-manager&quot;&gt;Blaze Ultra&lt;&#x2F;a&gt; — практическое CLI-приложение, демонстрирующее ключевые концепции разработки на Rust, включая манипуляции с терминалом, обработку событий и современные UI-фреймворки.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pochemu-rust-dlia-cli-prilozhenii&quot;&gt;Почему Rust для CLI-приложений?&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust становится всё более популярным для CLI-инструментов благодаря нескольким убедительным преимуществам:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Производительность&lt;&#x2F;strong&gt;: производительность уровня C с абстракциями нулевой стоимости&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Безопасность&lt;&#x2F;strong&gt;: безопасность памяти без сборщика мусора предотвращает распространённые ошибки&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Эргономика&lt;&#x2F;strong&gt;: современные инструменты с Cargo делают распространение тривиальным&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Кроссплатформенность&lt;&#x2F;strong&gt;: пишем один раз, компилируем везде с минимальным платформо-специфичным кодом&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Богатая экосистема&lt;&#x2F;strong&gt;: зрелые крейты вроде &lt;code&gt;clap&lt;&#x2F;code&gt;, &lt;code&gt;ratatui&lt;&#x2F;code&gt; и &lt;code&gt;tokio&lt;&#x2F;code&gt; ускоряют разработку&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Популярные примеры включают &lt;code&gt;ripgrep&lt;&#x2F;code&gt;, &lt;code&gt;fd&lt;&#x2F;code&gt;, &lt;code&gt;bat&lt;&#x2F;code&gt; и &lt;code&gt;exa&lt;&#x2F;code&gt; — все демонстрируют способность Rust создавать быстрые и надёжные инструменты командной строки.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание терминального файлового менеджера на Rust</title>
+        <published>2025-11-15T00:00:00+00:00</published>
+        <updated>2025-11-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/cli-rust-research/"/>
+        <id>https://bimawa.net/ru/projects/cli-rust-research/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/cli-rust-research/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>WireDeskVR</title>
+        <published>2025-11-14T00:00:00+00:00</published>
+        <updated>2025-11-14T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/wiredeskvr/"/>
+        <id>https://bimawa.net/ru/projects/wiredeskvr/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/wiredeskvr/"></content>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>WireDeskVR</title>
+        <published>2023-05-15T14:30:00+00:00</published>
+        <updated>2023-05-15T14:30:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/WireDeskVR/wiredeskvr/"/>
+        <id>https://bimawa.net/ru/projects/WireDeskVR/wiredeskvr/</id>
+        
+        <content type="html" xml:base="https://bimawa.net/ru/projects/WireDeskVR/wiredeskvr/">&lt;h2 id=&quot;opisanie-proekta&quot;&gt;Описание проекта&lt;&#x2F;h2&gt;
+&lt;p&gt;WireDeskVR — это VR-приложение, позволяющее пользователям работать с интерфейсом WireDesk в виртуальной реальности. Проект реализует полноценную виртуальную рабочую среду с возможностью взаимодействия с элементами интерфейса с помощью жестов и контроллеров. На данном этапе это proof of concept для понимания технической реализуемости. Также были изучены конкуренты и идеи, циркулирующие в сообществе. Предстоит много исследований, и мы столкнёмся со множеством новых задач.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;tekhnologii&quot;&gt;Технологии&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;Swift&lt;&#x2F;li&gt;
+&lt;li&gt;ARKit &#x2F; RealityKit&lt;&#x2F;li&gt;
+&lt;li&gt;Metal&lt;&#x2F;li&gt;
+&lt;li&gt;Core Motion&lt;&#x2F;li&gt;
+&lt;li&gt;SceneKit&lt;&#x2F;li&gt;
+&lt;li&gt;UnrealEngine&lt;&#x2F;li&gt;
+&lt;li&gt;Android&lt;&#x2F;li&gt;
+&lt;li&gt;Oculus&#x2F;Meta Quest&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;h2 id=&quot;vozmozhnosti&quot;&gt;Возможности&lt;&#x2F;h2&gt;
+&lt;ul&gt;
+&lt;li&gt;3D-взаимодействие с интерфейсом&lt;&#x2F;li&gt;
+&lt;li&gt;Поддержка различных типов контроллеров&lt;&#x2F;li&gt;
+&lt;li&gt;Интеграция с WireDesk API&lt;&#x2F;li&gt;
+&lt;li&gt;Оптимизация производительности для VR-устройств&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;У меня давно, ещё с детства, была мечта создать виртуальный рабочий стол для работы с компьютером. Сегодня технологии не только позволяют достичь этого, но и реализовать это с помощью искусственного интеллекта. Этот проект — скорее тест для понимания того, насколько технологии сегодня способны помочь в достижении этой цели. Основная идея первого этапа — создать NoLatency, передавая видеоданные с экранов MacBook на Oculus Quest. На последующих этапах планируется внедрить систему плагинов и собственный бинарный протокол для унификации данных от других приложений и других пользователей в VR.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;dorozhnaia-karta&quot;&gt;Дорожная карта&lt;&#x2F;h2&gt;
+&lt;ol&gt;
+&lt;li&gt;Установить стабильное соединение и настроить рабочие станции.&lt;&#x2F;li&gt;
+&lt;li&gt;Изучить и проанализировать свободное пространство ресурсов компьютера, а также системы Oculus. Если ресурсы позволяют управлять экранами, также рассмотреть создание игровой зоны в виртуальной реальности, чтобы пользователи могли снять эмоциональную нагрузку, разрушая что-нибудь в VR.&lt;&#x2F;li&gt;
+&lt;li&gt;Шаринг экрана и социальный компонент не взлетели и не популярны среди конкурентов, поэтому эту часть опускаем. На третьем этапе сразу переходим к бета-тестированию бинарного протокола для передачи пользовательских данных с macOS и хоста на VR-шлемы.&lt;&#x2F;li&gt;
+&lt;li&gt;Систематизировать и стандартизировать протокол, а также начать разработку маркетплейса для пользователей.&lt;&#x2F;li&gt;
+&lt;li&gt;Захватить мир и найти того, кому его продать.&lt;&#x2F;li&gt;
+&lt;&#x2F;ol&gt;
+</content>
+        
+    </entry>
+</feed>

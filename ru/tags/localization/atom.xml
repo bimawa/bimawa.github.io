@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title> - localization</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/tags/localization/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-11-16T00:00:00+00:00</updated>
+    <id>https://bimawa.net/ru/tags/localization/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>Создание инструмента синхронизации локализации для iOS&#x2F;macOS</title>
+        <published>2025-11-16T00:00:00+00:00</published>
+        <updated>2025-11-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/"/>
+        <id>https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;Управление файлами локализации в проектах iOS и macOS может стать сложной задачей по мере роста приложения. Когда вы добавляете новые строки в файл базового языка, синхронизация всех файлов переводов становится утомительной и подверженной ошибкам. В этой статье рассматривается &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;syncLproj&quot;&gt;syncLproj&lt;&#x2F;a&gt; — CLI-инструмент на Rust, предназначенный для автоматизации этого процесса синхронизации.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;problema-lokalizatsii&quot;&gt;Проблема локализации&lt;&#x2F;h2&gt;
+&lt;p&gt;В разработке iOS&#x2F;macOS локализация использует файлы &lt;code&gt;.strings&lt;&#x2F;code&gt; с простым форматом ключ-значение:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;swift&quot; class=&quot;language-swift &quot;&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&amp;#x2F;* User interface strings *&amp;#x2F;
+&amp;quot;welcome_message&amp;quot; = &amp;quot;Welcome to our app!&amp;quot;;
+&amp;quot;login_button&amp;quot; = &amp;quot;Log In&amp;quot;;
+&amp;quot;signup_button&amp;quot; = &amp;quot;Sign Up&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;При управлении несколькими языками возникает ряд проблем:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Отсутствующие ключи&lt;&#x2F;strong&gt;: новые ключи, добавленные в базовый язык, автоматически не появляются в переводах&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Несогласованность порядка ключей&lt;&#x2F;strong&gt;: разные файлы имеют ключи в разном порядке, что затрудняет просмотр diff-ов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Осиротевшие ключи&lt;&#x2F;strong&gt;: удалённые ключи остаются в файлах переводов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ручная работа&lt;&#x2F;strong&gt;: копирование ключей между десятками файлов занимает много времени и подвержено ошибкам&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Традиционные подходы включают ручное редактирование или встроенные инструменты Xcode, которые не имеют возможностей автоматизации для CI&#x2F;CD пайплайнов.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

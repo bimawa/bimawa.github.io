@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Глубокое погружение в создание молниеносного TUI-файлового менеджера с использованием Rust, изучение асинхронного I/O, манипуляций с терминалом и современных паттернов CLI.">
+
+    <meta property="og:description" content="Глубокое погружение в создание молниеносного TUI-файлового менеджера с использованием Rust, изучение асинхронного I/O, манипуляций с терминалом и современных паттернов CLI.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Глубокое погружение в создание молниеносного TUI-файлового менеджера с использованием Rust, изучение асинхронного I/O, манипуляций с терминалом и современных паттернов CLI.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;BlazeFM&#x2F;cli-rust-research&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/">Создание терминального файлового менеджера на Rust</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-15
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rust/">#rust</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/tui/">#tui</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/tutorial/">#tutorial</a></span>
+    
+
+        <div class="post-content">
+            <h1 id="vvedenie">Введение</h1>
+<p>В этой статье рассматривается путь создания терминального пользовательского интерфейса (TUI) файлового менеджера на Rust. Мы изучим <a href="https://github.com/bimawa/blaze-file-manager">Blaze Ultra</a> — практическое CLI-приложение, демонстрирующее ключевые концепции разработки на Rust, включая манипуляции с терминалом, обработку событий и современные UI-фреймворки.</p>
+<h2 id="pochemu-rust-dlia-cli-prilozhenii">Почему Rust для CLI-приложений?</h2>
+<p>Rust становится всё более популярным для CLI-инструментов благодаря нескольким убедительным преимуществам:</p>
+<ul>
+<li><strong>Производительность</strong>: производительность уровня C с абстракциями нулевой стоимости</li>
+<li><strong>Безопасность</strong>: безопасность памяти без сборщика мусора предотвращает распространённые ошибки</li>
+<li><strong>Эргономика</strong>: современные инструменты с Cargo делают распространение тривиальным</li>
+<li><strong>Кроссплатформенность</strong>: пишем один раз, компилируем везде с минимальным платформо-специфичным кодом</li>
+<li><strong>Богатая экосистема</strong>: зрелые крейты вроде <code>clap</code>, <code>ratatui</code> и <code>tokio</code> ускоряют разработку</li>
+</ul>
+<p>Популярные примеры включают <code>ripgrep</code>, <code>fd</code>, <code>bat</code> и <code>exa</code> — все демонстрируют способность Rust создавать быстрые и надёжные инструменты командной строки.</p>
+<span id="continue-reading"></span><h2 id="obzor-proekta-blaze-ultra">Обзор проекта: Blaze Ultra</h2>
+<p>Blaze Ultra — это TUI-файловый менеджер, объединяющий несколько мощных функций:</p>
+<ul>
+<li><strong>Интерактивный просмотр файлов</strong> с навигацией с клавиатуры</li>
+<li><strong>Нечёткий поиск</strong> на базе библиотеки <code>skim</code></li>
+<li><strong>Предпросмотр в реальном времени</strong> содержимого файлов</li>
+<li><strong>Многопанельный макет</strong> для эффективного управления файлами</li>
+<li><strong>Vim-подобные горячие клавиши</strong> для опытных пользователей</li>
+</ul>
+<p>Структура проекта намеренно минималистична: основная логика содержится в одном файле <code>main.rs</code> (~200 строк), что делает его отличным учебным ресурсом.</p>
+<h2 id="osnovnye-zavisimosti">Основные зависимости</h2>
+<p>Рассмотрим ключевые зависимости, на которых работает это приложение:</p>
+<pre data-lang="toml" class="language-toml "><code class="language-toml" data-lang="toml">[dependencies]
+clap = { version = &quot;4.5&quot;, features = [&quot;derive&quot;, &quot;wrap_help&quot;, &quot;color&quot;] }
+ratatui = &quot;0.28&quot;
+crossterm = { version = &quot;0.27&quot;, features = [&quot;event-stream&quot;] }
+tokio = { version = &quot;1&quot;, features = [&quot;full&quot;] }
+skim = &quot;0.10&quot;
+walkdir = &quot;2&quot;
+bytesize = &quot;1.3&quot;
+syntect = &quot;5.2&quot;
+</code></pre>
+<h3 id="ob-iasnenie-kliuchevykh-bibliotek">Объяснение ключевых библиотек</h3>
+<p><strong>clap</strong>: де-факто стандарт для парсинга аргументов командной строки. Использование derive-макросов делает определение CLI-интерфейсов декларативным и типобезопасным:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">#[derive(Parser)]
+#[command(name = &quot;blaze&quot;, about = &quot;TUI File Commander 2025&quot;, version)]
+struct Args {
+    #[arg(default_value = &quot;.&quot;)]
+    path: PathBuf,
+}
+</code></pre>
+<p><strong>ratatui</strong>: современный TUI-фреймворк (форк <code>tui-rs</code>), предоставляющий виджеты, макеты и примитивы рендеринга. Он следует архитектуре retained-mode, где вы описываете, что рендерить на каждом кадре.</p>
+<p><strong>crossterm</strong>: кроссплатформенная библиотека манипуляций с терминалом, обрабатывающая raw-режим, события клавиатуры, управление курсором и альтернативные экранные буферы.</p>
+<p><strong>skim</strong>: библиотека нечёткого поиска (аналогичная <code>fzf</code>), обеспечивающая быстрый интерактивный поиск по большим наборам данных.</p>
+<p><strong>walkdir</strong>: эффективный обход директорий с настраиваемой глубиной и фильтрацией.</p>
+<h2 id="arkhitektura-prilozheniia">Архитектура приложения</h2>
+<h3 id="upravlenie-sostoianiem">Управление состоянием</h3>
+<p>Состояние приложения инкапсулировано в простой структуре:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">struct App {
+    current_path: PathBuf,
+    entries: Vec&lt;walkdir::DirEntry&gt;,
+    selected: usize,
+    active_panel: Panel,
+    preview: String,
+    search_query: String,
+}
+</code></pre>
+<p>Этот подход с приоритетом неизменяемости делает переходы состояний предсказуемыми. При навигации в новую директорию мы создаём новый экземпляр <code>App</code>, а не мутируем глубоко вложенное состояние.</p>
+<h3 id="pattern-tsikla-sobytii">Паттерн цикла событий</h3>
+<p>Ядро любого TUI-приложения — это цикл событий:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">loop {
+    terminal.draw(|f| ui(f, &amp;app))?;
+    
+    if let crossterm::event::Event::Key(key) = read()? {
+        match key.code {
+            KeyCode::Char(&#x27;q&#x27;) =&gt; break,
+            KeyCode::Down =&gt; &#x2F;* навигация вниз *&#x2F;,
+            KeyCode::Enter =&gt; &#x2F;* открыть&#x2F;предпросмотр *&#x2F;,
+            _ =&gt; {}
+        }
+    }
+}
+</code></pre>
+<p>Этот паттерн:</p>
+<ol>
+<li>Рендерит текущее состояние</li>
+<li>Блокируется в ожидании пользовательского ввода</li>
+<li>Обрабатывает события и обновляет состояние</li>
+<li>Повторяется</li>
+</ol>
+<p>Этот синхронный подход хорошо работает для приложений, управляемых клавиатурой. Для более сложных сценариев с асинхронным I/O вы бы интегрировали <code>tokio</code> более глубоко.</p>
+<h3 id="upravlenie-terminalom">Управление терминалом</h3>
+<p>Правильная настройка и очистка терминала критически важны:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn setup_terminal() -&gt; Result&lt;Terminal&lt;CrosstermBackend&lt;std::io::Stdout&gt;&gt;, Box&lt;dyn std::error::Error&gt;&gt; {
+    enable_raw_mode()?;
+    let mut stdout = std::io::stdout();
+    execute!(stdout, EnterAlternateScreen, Hide)?;
+    Ok(Terminal::new(CrosstermBackend::new(stdout))?)
+}
+
+fn restore_terminals(terminal: &amp;mut Terminal&lt;CrosstermBackend&lt;std::io::Stdout&gt;&gt;) 
+    -&gt; Result&lt;(), Box&lt;dyn std::error::Error&gt;&gt; {
+    disable_raw_mode()?;
+    execute!(terminal.backend_mut(), LeaveAlternateScreen, Show)?;
+    Ok(())
+}
+</code></pre>
+<p><strong>Raw-режим</strong> отключает буферизацию строк и каноническую обработку, давая приложению прямой доступ к нажатиям клавиш. <strong>Альтернативный экран</strong> сохраняет состояние терминала пользователя, возвращая его к исходному виду при выходе.</p>
+<h2 id="postroenie-ui-s-ratatui">Построение UI с Ratatui</h2>
+<p>Ratatui использует декларативную систему макетов с ограничениями:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn ui(f: &amp;mut Frame, app: &amp;App) {
+    let chunks = Layout::default()
+        .direction(Direction::Horizontal)
+        .constraints([Constraint::Percentage(40), Constraint::Percentage(60)])
+        .split(f.area());
+    
+    &#x2F;&#x2F; Левая панель: список файлов
+    let list = List::new(items)
+        .block(Block::default().title(&quot;Files&quot;).borders(Borders::ALL))
+        .highlight_style(Style::default().bg(Color::Magenta));
+    
+    &#x2F;&#x2F; Правая панель: предпросмотр
+    let preview = Paragraph::new(app.preview.as_str())
+        .block(Block::default().title(&quot;Preview&quot;).borders(Borders::ALL));
+    
+    f.render_widget(list, chunks[0]);
+    f.render_widget(preview, chunks[1]);
+}
+</code></pre>
+<p>Макет пересчитывается на каждом кадре на основе размера терминала, делая UI отзывчивым без дополнительного кода.</p>
+<h2 id="prodvinutye-funktsii">Продвинутые функции</h2>
+<h3 id="integratsiia-nechiotkogo-poiska">Интеграция нечёткого поиска</h3>
+<p>Нечёткий поиск временно выходит из основного TUI, запускает интерфейс <code>skim</code>, затем возвращается:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn fuzzy_search(app: &amp;mut App, terminal: &amp;mut Terminal&lt;...&gt;) -&gt; Result&lt;...&gt; {
+    restore_terminals(terminal)?;  &#x2F;&#x2F; Выход из TUI-режима
+    
+    let items: Vec&lt;String&gt; = app.entries.iter()
+        .map(|e| e.path().display().to_string())
+        .collect();
+    
+    let options = SkimOptionsBuilder::default()
+        .multi(false)
+        .build()?;
+    
+    let (tx, rx) = unbounded();
+    for item in items {
+        tx.send(Arc::new(item))?;
+    }
+    
+    let input = Skim::run_with(&amp;options, Some(rx));
+    
+    &#x2F;&#x2F; Обработка выбора...
+    
+    *terminal = setup_terminal()?;  &#x2F;&#x2F; Возврат в TUI-режим
+    Ok(())
+}
+</code></pre>
+<p>Этот паттерн временной передачи управления терминалом внешним инструментам распространён в TUI-приложениях.</p>
+<h3 id="predprosmotr-failov-s-bezopasnost-iu">Предпросмотр файлов с безопасностью</h3>
+<p>Чтение файлов включает обработку ошибок и ограничения размера:</p>
+<pre data-lang="rust" class="language-rust "><code class="language-rust" data-lang="rust">fn read_preview(path: &amp;Path) -&gt; String {
+    if path.is_dir() {
+        return &quot;📁 DIRECTORY&quot;.to_string();
+    }
+    std::fs::read_to_string(path)
+        .unwrap_or_else(|_| &quot;Cannot read file&quot;.into())
+        .lines()
+        .take(50)  &#x2F;&#x2F; Ограничение размера предпросмотра
+        .collect::&lt;Vec&lt;_&gt;&gt;()
+        .join(&quot;\n&quot;)
+}
+</code></pre>
+<p>Это предотвращает загрузку огромных файлов в память и корректно обрабатывает бинарные файлы.</p>
+<h2 id="optimizatsii-proizvoditel-nosti">Оптимизации производительности</h2>
+<p>Профиль release в <code>Cargo.toml</code> агрессивно оптимизирован:</p>
+<pre data-lang="toml" class="language-toml "><code class="language-toml" data-lang="toml">[profile.release]
+lto = true              # Link-time оптимизация
+opt-level = &#x27;z&#x27;         # Оптимизация по размеру
+strip = true            # Удаление отладочных символов
+panic = &quot;abort&quot;         # Меньший обработчик паники
+codegen-units = 1       # Лучшая оптимизация (медленнее компиляция)
+</code></pre>
+<p>Эти настройки производят бинарник ~2МБ, который молниеносно быстр, сохраняя при этом гарантии безопасности Rust.</p>
+<h2 id="kliuchevye-vyvody">Ключевые выводы</h2>
+<p>Создание CLI-приложений на Rust учит нескольким важным концепциям:</p>
+<ol>
+<li><strong>Абстракции терминала</strong>: понимание raw-режима, альтернативных экранов и обработки событий</li>
+<li><strong>UI-фреймворки</strong>: декларативные макеты с sizing на основе ограничений</li>
+<li><strong>Управление состоянием</strong>: неизменяемые паттерны для предсказуемых обновлений</li>
+<li><strong>Обработка ошибок</strong>: типы <code>Result&lt;T, E&gt;</code> заставляют явно рассматривать ошибки</li>
+<li><strong>Абстракции нулевой стоимости</strong>: высокоуровневые API, компилирующиеся в эффективный машинный код</li>
+</ol>
+<h2 id="sleduiushchie-shagi">Следующие шаги</h2>
+<p>Для расширения этого проекта рассмотрите:</p>
+<ul>
+<li><strong>Асинхронные файловые операции</strong>: использование <code>tokio::fs</code> для неблокирующего I/O</li>
+<li><strong>Подсветка синтаксиса</strong>: интеграция <code>syntect</code> для предпросмотра кода</li>
+<li><strong>Файловые операции</strong>: добавление копирования, перемещения, удаления с диалогами подтверждения</li>
+<li><strong>Закладки</strong>: постоянные избранные директории с <code>serde</code></li>
+<li><strong>Конфигурация</strong>: пользовательские горячие клавиши и цвета</li>
+<li><strong>Тестирование</strong>: unit-тесты для переходов состояний и интеграционные тесты для UI</li>
+</ul>
+<h2 id="resursy">Ресурсы</h2>
+<ul>
+<li><a href="https://github.com/bimawa/blaze-file-manager">Репозиторий Blaze Ultra</a></li>
+<li><a href="https://ratatui.rs/">Документация Ratatui</a></li>
+<li><a href="https://docs.rs/crossterm/">Руководство Crossterm</a></li>
+<li><a href="https://rust-cli.github.io/book/">Command Line Apps in Rust</a></li>
+<li><a href="https://github.com/sxyazi/yazi">Yazi File Manager</a> — продвинутый асинхронный TUI-файловый менеджер</li>
+</ul>
+<h2 id="zakliuchenie">Заключение</h2>
+<p>Комбинация производительности, безопасности и отличной библиотечной экосистемы Rust делает его идеальным для CLI-разработки. Проекты вроде Blaze Ultra демонстрируют, что вы можете создавать сложные терминальные приложения с относительно небольшим количеством кода, сохраняя при этом надёжность, которой известен Rust.</p>
+<p>Паттерны, рассмотренные здесь — циклы событий, управление терминалом, декларативные UI и структурированная обработка ошибок — формируют основу для любого CLI-приложения на Rust. Независимо от того, создаёте ли вы файловые менеджеры, системные мониторы или инструменты разработки, эти концепции будут служить вам хорошо.</p>
+<p>Успешного кодинга!</p>
+
+        </div>
+
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

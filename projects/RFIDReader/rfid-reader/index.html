@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="ST25TB RFID reader and writer for ESP32-S3 with PN532">
+
+    <meta property="og:description" content="ST25TB RFID reader and writer for ESP32-S3 with PN532">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/projects/RFIDReader/rfid-reader/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="ST25TB RFID reader and writer for ESP32-S3 with PN532">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/projects/RFIDReader/rfid-reader/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;projects&#x2F;RFIDReader&#x2F;rfid-reader&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net">Blog</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">RFIDReader</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="rfidreader">RFIDReader</h2>
+<p>A Rust-based firmware application for reading and writing ST25TB RFID chips using the LilyGO T-Embed CC1101 device (ESP32-S3 with PN532 NFC module). This tool is particularly useful for interacting with RFID chips commonly found in printer cartridges and other industrial applications.</p>
+<h2 id="key-features">Key Features</h2>
+<p>The firmware provides comprehensive functionality for working with ST25TB chips through an intuitive touchscreen interface:</p>
+<ul>
+<li><strong>Complete Chip Operations</strong>: Read entire chip contents (up to 256 blocks) and write modified data back</li>
+<li><strong>Data Management</strong>: Export chip dumps via serial connection and import hex data for writing</li>
+<li><strong>Interactive Interface</strong>: TFT display with rotary encoder navigation for easy menu interaction</li>
+<li><strong>Audio Feedback</strong>: Audible beep confirmation for successful read/write operations</li>
+<li><strong>Built-in Hex Editor</strong>: Modify chip data directly on the device before writing</li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<p>The project leverages modern embedded Rust development:</p>
+<ul>
+<li><strong>Hardware</strong>: ESP32-S3 dual-core processor (240MHz) with ST7789V TFT display (170x320)</li>
+<li><strong>NFC Controller</strong>: PN532 module via I2C communication</li>
+<li><strong>Language</strong>: Rust (no_std bare metal programming)</li>
+<li><strong>Framework</strong>: esp-hal hardware abstraction layer</li>
+<li><strong>Protocol</strong>: ISO14443-B standard</li>
+</ul>
+<span id="continue-reading"></span><h2 id="supported-chips">Supported Chips</h2>
+<p>Works with various ST25TB family chips and ISO14443-B compatible devices:</p>
+<ul>
+<li>ST25TB04K (512 bytes)</li>
+<li>ST25TB512</li>
+<li>ST25TB02K</li>
+<li>Legacy SRI512/SRIX4K models</li>
+</ul>
+<h2 id="user-interface">User Interface</h2>
+<p>Navigation is designed for quick and efficient operation:</p>
+<ul>
+<li><strong>Encoder Rotation</strong>: Navigate through menu options</li>
+<li><strong>Encoder Button</strong>: Select items or enter edit mode</li>
+<li><strong>Back Button</strong>: Cancel operations or return to previous menu</li>
+<li><strong>Visual Feedback</strong>: Clear on-screen status and confirmation messages</li>
+</ul>
+<h2 id="installation">Installation</h2>
+<p>The project offers flexible deployment options:</p>
+<ol>
+<li><strong>Pre-compiled Binaries</strong>: Available through GitHub releases</li>
+<li><strong>Standalone Installation</strong>: Flash directly to address 0x0</li>
+<li><strong>Launcher Integration</strong>: Deploy via SD card using the Launcher application</li>
+</ol>
+<h2 id="building-from-source">Building from Source</h2>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">cargo build --release
+espflash flash target&#x2F;riscv32imc-esp-espidf&#x2F;release&#x2F;rfid-reader
+</code></pre>
+<h2 id="known-limitations">Known Limitations</h2>
+<p>The developers document some quirks:</p>
+<ul>
+<li><strong>USB Power Dependency</strong>: Device works reliably when serial monitor is connected (known as "Observer Effect")</li>
+<li><strong>PN532 Initialization</strong>: Occasional automatic firmware retry required for proper setup</li>
+</ul>
+<h2 id="use-cases">Use Cases</h2>
+<p>This tool is valuable for:</p>
+<ul>
+<li>Printer cartridge chip analysis and modification</li>
+<li>RFID security research and testing</li>
+<li>Industrial automation development</li>
+<li>NFC/RFID prototyping and experimentation</li>
+</ul>
+<h2 id="open-source">Open Source</h2>
+<p>Released under the MIT License, the project welcomes community contributions through GitHub. The codebase demonstrates professional embedded Rust development practices and serves as an educational resource for ESP32-S3 and PN532 integration.</p>
+<h2 id="links">Links</h2>
+<ul>
+<li><strong>GitHub Repository</strong>: <a href="https://github.com/bimawa/RFIDReader">bimawa/RFIDReader</a></li>
+<li><strong>Hardware</strong>: LilyGO T-Embed CC1101</li>
+<li><strong>License</strong>: MIT</li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

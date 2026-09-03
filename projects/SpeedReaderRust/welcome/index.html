@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="RSVP reading overlay — displays text word by word with highlighted center letter">
+
+    <meta property="og:description" content="RSVP reading overlay — displays text word by word with highlighted center letter">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/projects/SpeedReaderRust/welcome/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="RSVP reading overlay — displays text word by word with highlighted center letter">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/projects/SpeedReaderRust/welcome/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;projects&#x2F;SpeedReaderRust&#x2F;welcome&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net">Blog</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">Welcome to SpeedReaderRust</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="speedreaderrust">SpeedReaderRust</h2>
+<p>RSVP (Rapid Serial Visual Presentation) speed reading overlay. Opens a file and displays words one by one in the center of the screen. Key feature: <strong>center letter highlighting</strong> (ORP — Optimal Recognition Point) for faster word recognition.</p>
+<h3 id="features">Features</h3>
+<ul>
+<li>Pause and jump to editor at exact reading position (Space)</li>
+<li>Configurable speed (WPM) and editor command</li>
+<li>Drag overlay with mouse</li>
+<li>Works with any editor: Zed, VS Code, Vim, Helix</li>
+<li>Open source (MIT)</li>
+</ul>
+<h3 id="install">Install</h3>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">cargo install speed-reader
+</code></pre>
+<p>Or from source: <code>cargo install --path gui</code></p>
+<h3 id="usage-in-zed">Usage in Zed</h3>
+<h4 id="1-global-task">1. Global Task</h4>
+<p>Add a task to <code>~/.config/zed/tasks.json</code> so <code>speed-reader</code> is available from any project:</p>
+<pre data-lang="json" class="language-json "><code class="language-json" data-lang="json">[
+  {
+    &quot;label&quot;: &quot;SpeedReader: Read current file&quot;,
+    &quot;command&quot;: &quot;speed-reader&quot;,
+    &quot;args&quot;: [&quot;$ZED_FILE&quot;],
+    &quot;tags&quot;: [&quot;speed-reader&quot;],
+    &quot;hide&quot;: &quot;on_success&quot;
+  }
+]
+</code></pre>
+<p>If the file already has tasks, just append this object to the array. <code>"hide": "on_success"</code> closes the terminal panel when the overlay closes.</p>
+<h4 id="2-run">2. Run</h4>
+<p><code>Cmd+Shift+P</code> → type <code>SpeedReader</code> → select the task.</p>
+<h4 id="3-hotkey-recommended">3. Hotkey (recommended)</h4>
+<p>Add a keybinding in <code>~/.config/zed/keybindings.json</code>:</p>
+<pre data-lang="json" class="language-json "><code class="language-json" data-lang="json">{
+  &quot;context&quot;: &quot;Editor&quot;,
+  &quot;bindings&quot;: {
+    &quot;cmd-shift-r&quot;: [&quot;task::Spawn&quot;, { &quot;task_name&quot;: &quot;SpeedReader: Read current file&quot; }]
+  }
+}
+</code></pre>
+<p>Now <code>Cmd+Shift+R</code> launches RSVP reading from any buffer.</p>
+<h4 id="4-editor-config-not-just-zed">4. Editor Config (not just Zed)</h4>
+<p>By default <code>speed-reader</code> opens the editor at <code>file:line:col</code>. Configure in <code>~/.config/speed-reader/config.json</code>:</p>
+<pre data-lang="json" class="language-json "><code class="language-json" data-lang="json">{
+  &quot;editor_cmd&quot;: &quot;code&quot;,
+  &quot;wpm&quot;: 300
+}
+</code></pre>
+<p>Supports Zed, VS Code, Vim, Helix, and any editor with <code>editor file:line:col</code> CLI syntax.</p>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

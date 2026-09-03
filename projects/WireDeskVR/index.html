@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bimawa.net/projects/WireDeskVR/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/projects/WireDeskVR/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;projects&#x2F;WireDeskVR&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net">Blog</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="posts">
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.net/projects/WireDeskVR/wiredesk-agent/">WireDeskVR</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-20
+        </span>
+
+    </div>
+
+    
+
+            <div class="post-content">
+            <h2 id="objective">Objective</h2>
+<p>The initial stage and first step involve creating screen capture functionality for the agent, enabling it to broadcast, transcode, and transmit the captured content over a network.</p>
+<h2 id="project">Project</h2>
+<p>First, we create a dedicated project to explore the possibilities. Since this is an agent, it will run on macOS as a service or background daemon. Its primary task is straightforward—since it has no UI, we will implement it using Swift and Swift Package Manager as a standard executable.</p>
+<h2 id="source-code">Source Code</h2>
+<p>The core function of the agent initializes a socket for each detected display. We will observe how this functionality performs.</p>
+<pre data-lang="Swift" class="language-Swift "><code class="language-Swift" data-lang="Swift">
+    func start() async throws {
+        let sender = NetworkSender(host: &quot;127.0.0.1&quot;, port: port); sender.start(); self.network = sender
+
+        let content = try await SCShareableContent.current
+        guard let display = content.displays.first(where: { $0.displayID == displayID }) else { return }
+
+        let encoder = VideoEncoder(width: display.width, height: display.height, bitrate: 20_000_000)
+        encoder.delegate = self; self.encoder = encoder
+
+        let captureSession = ScreenCapture(displayID: displayID)
+        captureSession.delegate = self
+        self.capture = captureSession
+
+        try await captureSession.start()
+    }
+</code></pre>
+
+        </div>
+
+        </div>
+    
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.net/projects/WireDeskVR/wiredeskvr/">WireDeskVR</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2023-05-15
+        </span>
+
+    </div>
+
+    
+
+            <div class="post-content">
+            <h2 id="project-description">Project Description</h2>
+<p>WireDeskVR is a VR application that allows users to work with the WireDesk interface in virtual reality. The project implements a full virtual workspace environment with the ability to interact with UI elements via gestures and controllers. At this stage, it is a proof of concept to see how technically feasible it is. Competitors and ideas circulating in the community have also been studied. There will be a lot of research and we will encounter many first-time challenges.</p>
+<h2 id="technologies">Technologies</h2>
+<ul>
+<li>Swift</li>
+<li>ARKit / RealityKit</li>
+<li>Metal</li>
+<li>Core Motion</li>
+<li>SceneKit</li>
+<li>UnrealEngine</li>
+<li>Android</li>
+<li>Oculus/Meta Quest</li>
+</ul>
+<h2 id="features">Features</h2>
+<ul>
+<li>3D interaction with the interface</li>
+<li>Support for various controller types</li>
+<li>Integration with the WireDesk API</li>
+<li>Performance optimization for VR devices</li>
+</ul>
+<p>I have had a long-standing dream since childhood to create a virtual desktop for working with a computer. Today, technology not only allows us to achieve that but also to implement it with artificial intelligence. This project is more of a test to understand how capable technology is today in helping achieve this goal. The main idea of the first stage is to create NoLatency, transmitting video data from MacBook screens to Oculus Quest. In subsequent stages, we plan to introduce a plugin system and our own binary protocol to unify data from other applications and other users in VR.</p>
+<h2 id="roadmap">Roadmap</h2>
+<ol>
+<li>Establish a stable connection and configure workstations.</li>
+<li>Examine and analyze the free space on the computer's resources, as well as on the Opulus system. If resources allow managing screens, also consider creating a gaming zone within virtual reality to let users relieve emotional load by dividing something in VR.</li>
+<li>Screen sharing and the social component did not take off and are not popular among competitors, so we omit this part. At the third stage, we immediately move to beta testing of the binary protocol for transmitting custom data from macOS and the host to VR headsets.</li>
+<li>Systematize and standardize the protocol, and also start developing a marketplace for users.</li>
+<li>Capture the world and find someone to sell it to.</li>
+</ol>
+
+        </div>
+
+        </div>
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

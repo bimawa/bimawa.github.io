@@ -1,0 +1,144 @@
+/* Универсальные стили для дополнительного меню Projects */
+:root {
+    --menu-projects-bg: var(--background);
+    --menu-projects-text: var(--text);
+    --menu-projects-accent: var(--accent);
+    --menu-projects-border: var(--border-color);
+    --menu-projects-shadow: var(--shadow);
+    --menu-projects-hover-bg: rgba(139, 212, 255, 0.1);
+}
+
+/* Основной контейнер подменю */
+.header .menu__sub-inner-projects {
+    position: absolute;
+    background: var(--menu-projects-bg);
+    box-shadow: var(--menu-projects-shadow);
+    color: var(--menu-projects-text);
+    border: 1px solid var(--menu-projects-border);
+    margin: 0;
+    padding: 8px 0;
+    list-style: none;
+    z-index: 1000;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    min-width: 200px;
+    max-width: 300px;
+    display: none;
+    flex-direction: column;
+    border-radius: 0 0 4px 4px;
+    overflow: hidden;
+}
+
+/* Показываем подменю при активации */
+.header .menu__sub-inner-projects.active {
+    display: flex;
+}
+
+/* Элементы списка в подменю */
+.header .menu__sub-inner-projects li {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+}
+
+/* Ссылки в подменю */
+.header .menu__sub-inner-projects li a {
+    color: var(--menu-projects-text);
+    text-decoration: none;
+    display: block;
+    padding: 8px 15px;
+    transition: all 0.2s ease;
+    font-size: 0.95rem;
+}
+
+/* Ховер-эффект для ссылок */
+.header .menu__sub-inner-projects li a:hover {
+    color: var(--menu-projects-accent);
+    background-color: var(--menu-projects-hover-bg);
+}
+
+/* Активный элемент в подменю */
+.header .menu__sub-inner-projects li.active a {
+    color: var(--menu-projects-accent);
+    font-weight: 500;
+    background-color: var(--menu-projects-hover-bg);
+}
+
+/* Стили для активного элемента Projects в основном меню */
+.header .menu__inner li.projects-menu-item {
+    position: relative;
+}
+
+/* Для мобильных устройств */
+@media (max-width: 768px) {
+    .header .menu__sub-inner-projects {
+        position: static;
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        box-shadow: none;
+        border-top: 1px solid var(--menu-projects-border);
+        border-radius: 0;
+        max-width: 100%;
+    }
+
+    .header .menu__sub-inner-projects.active {
+        display: flex;
+    }
+
+    .header .menu__inner li.projects-menu-item {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* Убираем отступы между элементами меню на мобильных */
+    .header .menu__inner li.projects-menu-item ~ li {
+        margin-top: 0;
+    }
+}
+
+/* Для десктопов - показываем подменю при наведении */
+@media (min-width: 769px) {
+    .header .menu__sub-inner-projects {
+        min-width: 220px;
+    }
+
+    .header .menu__inner li.projects-menu-item:hover .menu__sub-inner-projects {
+        display: flex;
+    }
+}
+
+/* Анимация появления меню */
+.header .menu__sub-inner-projects {
+    transition: opacity 0.2s ease, transform 0.2s ease;
+    opacity: 0;
+    transform: translateY(-10px);
+}
+
+.header .menu__sub-inner-projects.active {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Улучшаем видимость при наведении на десктопе */
+@media (min-width: 769px) {
+    .header .menu__inner li.projects-menu-item:hover {
+        position: relative;
+    }
+
+    .header .menu__inner li.projects-menu-item:hover .menu__sub-inner-projects {
+        animation: fadeIn 0.2s ease forwards;
+    }
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

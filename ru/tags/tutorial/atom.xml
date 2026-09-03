@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title> - tutorial</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/tags/tutorial/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2025-11-15T00:00:00+00:00</updated>
+    <id>https://bimawa.net/ru/tags/tutorial/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>Создание терминального файлового менеджера на Rust</title>
+        <published>2025-11-15T00:00:00+00:00</published>
+        <updated>2025-11-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/"/>
+        <id>https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;В этой статье рассматривается путь создания терминального пользовательского интерфейса (TUI) файлового менеджера на Rust. Мы изучим &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;blaze-file-manager&quot;&gt;Blaze Ultra&lt;&#x2F;a&gt; — практическое CLI-приложение, демонстрирующее ключевые концепции разработки на Rust, включая манипуляции с терминалом, обработку событий и современные UI-фреймворки.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pochemu-rust-dlia-cli-prilozhenii&quot;&gt;Почему Rust для CLI-приложений?&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust становится всё более популярным для CLI-инструментов благодаря нескольким убедительным преимуществам:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Производительность&lt;&#x2F;strong&gt;: производительность уровня C с абстракциями нулевой стоимости&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Безопасность&lt;&#x2F;strong&gt;: безопасность памяти без сборщика мусора предотвращает распространённые ошибки&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Эргономика&lt;&#x2F;strong&gt;: современные инструменты с Cargo делают распространение тривиальным&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Кроссплатформенность&lt;&#x2F;strong&gt;: пишем один раз, компилируем везде с минимальным платформо-специфичным кодом&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Богатая экосистема&lt;&#x2F;strong&gt;: зрелые крейты вроде &lt;code&gt;clap&lt;&#x2F;code&gt;, &lt;code&gt;ratatui&lt;&#x2F;code&gt; и &lt;code&gt;tokio&lt;&#x2F;code&gt; ускоряют разработку&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Популярные примеры включают &lt;code&gt;ripgrep&lt;&#x2F;code&gt;, &lt;code&gt;fd&lt;&#x2F;code&gt;, &lt;code&gt;bat&lt;&#x2F;code&gt; и &lt;code&gt;exa&lt;&#x2F;code&gt; — все демонстрируют способность Rust создавать быстрые и надёжные инструменты командной строки.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

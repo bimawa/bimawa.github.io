@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Фреймворк мониторинга сетевых соединений на Rust">
+
+    <meta property="og:description" content="Фреймворк мониторинга сетевых соединений на Rust">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/Netmonrs/network-monitor/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Фреймворк мониторинга сетевых соединений на Rust">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/Netmonrs/network-monitor/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;Netmonrs&#x2F;network-monitor&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">NetMonRS</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="net-monitor-rust">Net Monitor Rust</h2>
+<p>NetRS — это инструмент мониторинга сети, написанный на Rust, который показывает сетевые соединения в реальном времени, используя библиотеку Ratatui для терминального пользовательского интерфейса. Приложение позволяет пользователям отслеживать активные сетевые соединения и просматривать детали соединений, включая локальные и удалённые адреса, протоколы и состояния соединений. Пользователи могут фильтровать соединения по различным критериям. Инструмент использует сетевые возможности системы для сбора информации о соединениях и отображает её в интерактивном, удобном терминальном интерфейсе. Этот инструмент помогает системным администраторам, сетевым инженерам и разработчикам быстро проверять сетевую активность на своих системах прямо из командной строки.</p>
+<p>Это предлагает более эффективный способ мониторинга исходящих соединений от конкретного процесса.</p>
+<p>Я разработал этот инструмент для проекта WireDeskVR для проверки статуса подключения агента.</p>
+<p>Его также можно использовать для других целей. Например, чтобы найти, куда подключается конкретный процесс на вашем компьютере.</p>
+<h2 id="primer-ispol-zovaniia">Пример использования</h2>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">sudo netmonrs &#x2F;Applications&#x2F;Zed.app&#x2F;Contents&#x2F;MacOS&#x2F;zed
+</code></pre>
+<p>Нам нужен доступ sudo для lsof.</p>
+<h2 id="kak-eto-vygliadit">Как это выглядит</h2>
+<p><img src="/images/netMonrsInterface.png" alt="Интерфейс NetMonRS" /></p>
+<h2 id="upravlenie">Управление</h2>
+<ul>
+<li><code>Tab</code> — переключение фокуса между активными соединениями и историей</li>
+<li><code>Up</code> / <code>k</code> — движение вверх по списку</li>
+<li><code>Down</code> / <code>j</code> — движение вниз по списку</li>
+<li><code>PageUp</code> / <code>Ctrl+u</code> — страница вверх</li>
+<li><code>PageDown</code> / <code>Ctrl+d</code> — страница вниз</li>
+<li><code>q</code> — выход из приложения</li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

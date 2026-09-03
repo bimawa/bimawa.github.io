@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="How reading documentation led to creating an RSVP reader in Rust with editor integration">
+
+    <meta property="og:description" content="How reading documentation led to creating an RSVP reader in Rust with editor integration">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/blog/speedreader-rust-concept/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="How reading documentation led to creating an RSVP reader in Rust with editor integration">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/blog/speedreader-rust-concept/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;blog&#x2F;speedreader-rust-concept&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.net">Blog</a></li>
+            
+                <li><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.net/blog/speedreader-rust-concept/">SpeedReaderRust: The Story of an Idea</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2026-07-27
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/productivity/">#productivity</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/reading/">#reading</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rsvp/">#rsvp</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rust/">#rust</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/tools/">#tools</a></span>
+    
+
+        <div class="post-content">
+            <h2 id="how-it-started">How It Started</h2>
+<p>I read a lot of technical documentation. SDDs (Specification Driven Development documents), RFCs, specs — I have to digest large volumes constantly. Regular reading hits a speed limit: you waste time on saccades (eye jumps between words) and regressions (backtracking across lines).</p>
+<p>At some point I remembered RSVP — Rapid Serial Visual Presentation. Words appear one at a time in a fixed screen position, driven by words-per-minute. Your eyes don't move — they just stare at the center and absorb words.</p>
+<span id="continue-reading"></span><h2 id="the-problem-with-existing-solutions">The Problem with Existing Solutions</h2>
+<p>I googled around. Web services, mobile apps, browser extensions — all of them share the same issues:</p>
+<ol>
+<li><strong>No editor integration</strong> — can't open a file from Zed and read immediately</li>
+<li><strong>Fixed overlay position</strong> — can't move it where you want</li>
+<li><strong>Closed source</strong> — can't add your own feature</li>
+<li><strong>No center letter highlighting</strong> — which turns out to be critical for recognition speed</li>
+</ol>
+<p>I decided to write my own. In Rust, of course.</p>
+<h2 id="why-rust">Why Rust</h2>
+<p>Because:</p>
+<ul>
+<li>An RSVP reader needs to be <strong>fast</strong> — words flash at 300+ per minute, no time for GC pauses</li>
+<li><strong>Cross-platform</strong> — Linux, macOS, Windows from a single codebase</li>
+<li><strong>No bloat</strong> — didn't want to drag in Electron or Python</li>
+</ul>
+<p>I built a minimal prototype in one evening: <code>winit</code> for the window, <code>ab_glyph</code> for font rendering, <code>pixels</code> for pixel pushing. Exactly what I needed.</p>
+<h2 id="how-it-works">How It Works</h2>
+<p>The program reads a text file, tokenizes it into words, and displays them one by one in the center of the screen. Each word is rendered with a <strong>highlighted center letter</strong> (ORP — Optimal Recognition Point).</p>
+<p>Research shows your eye doesn't focus on the first letter when scanning a word — it lands roughly one third of the way in. Highlighting that letter helps the brain recognize the whole word faster. This isn't a gimmick — it's a scientifically backed technique that genuinely improves reading speed without sacrificing comprehension.</p>
+<h2 id="editor-integration">Editor Integration</h2>
+<p>The killer feature: hit <code>Space</code> — reading pauses, and your editor (Zed, VS Code, Vim, or anything else) opens exactly at the word you stopped on. No searching, no context loss.</p>
+<p>I mapped <code>Cmd+Shift+R</code> in Zed — now I read any open file with a single shortcut. SDDs, logs, code snippets — anything that can be opened can be read via RSVP.</p>
+<h2 id="what-s-next">What's Next</h2>
+<p>The project is open source on GitHub: <a href="https://github.com/bimawa/SpeedReaderRust">github.com/bimawa/SpeedReaderRust</a></p>
+<p>Install with one command:</p>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">cargo install speed-reader
+</code></pre>
+<p>Right now it's a working MVP. Plans:</p>
+<ul>
+<li>PDF support</li>
+<li>Reading stats (average speed, words per session)</li>
+<li>Speed profiles for different content types</li>
+<li>Dark and light themes</li>
+</ul>
+<p>Give it a try — and open an issue if you find a bug or have an idea.</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <a href="https://bimawa.net/blog/figure-skating-accompaniment/">
+                                <span class="button__icon">←</span>&nbsp;
+                                <span class="button__text">FSkatingAcc: When Training Meets Technology</span>
+                            </a>
+                        </span>
+                    
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

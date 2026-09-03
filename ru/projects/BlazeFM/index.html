@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/BlazeFM/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/BlazeFM/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;BlazeFM&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="posts">
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/">Создание терминального файлового менеджера на Rust</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-15
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/cli/">#cli</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rust/">#rust</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/tui/">#tui</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/tutorial/">#tutorial</a></span>
+    
+
+            
+        <div class="post-content">
+            <h1 id="vvedenie">Введение</h1>
+<p>В этой статье рассматривается путь создания терминального пользовательского интерфейса (TUI) файлового менеджера на Rust. Мы изучим <a href="https://github.com/bimawa/blaze-file-manager">Blaze Ultra</a> — практическое CLI-приложение, демонстрирующее ключевые концепции разработки на Rust, включая манипуляции с терминалом, обработку событий и современные UI-фреймворки.</p>
+<h2 id="pochemu-rust-dlia-cli-prilozhenii">Почему Rust для CLI-приложений?</h2>
+<p>Rust становится всё более популярным для CLI-инструментов благодаря нескольким убедительным преимуществам:</p>
+<ul>
+<li><strong>Производительность</strong>: производительность уровня C с абстракциями нулевой стоимости</li>
+<li><strong>Безопасность</strong>: безопасность памяти без сборщика мусора предотвращает распространённые ошибки</li>
+<li><strong>Эргономика</strong>: современные инструменты с Cargo делают распространение тривиальным</li>
+<li><strong>Кроссплатформенность</strong>: пишем один раз, компилируем везде с минимальным платформо-специфичным кодом</li>
+<li><strong>Богатая экосистема</strong>: зрелые крейты вроде <code>clap</code>, <code>ratatui</code> и <code>tokio</code> ускоряют разработку</li>
+</ul>
+<p>Популярные примеры включают <code>ripgrep</code>, <code>fd</code>, <code>bat</code> и <code>exa</code> — все демонстрируют способность Rust создавать быстрые и надёжные инструменты командной строки.</p>
+        </div>
+        <div>
+            <!-- &#xFE0E; -- force text style - some devices render this as emoji -->
+            <a class="read-more button" href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/">
+                <span class="button__text">Read more</span>&nbsp;
+                <span class="button__icon">&#8617;&#xFE0E;</span>
+            </a>
+        </div>
+    
+
+        </div>
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>
