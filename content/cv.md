@@ -2,78 +2,266 @@
 title = "CV"
 +++
 
-# Maxim Bun'kov
+# MAXIM BUNKOV
 
-**iOS Developer**
+## AI-Native Product Engineer
 
-| Section | Details |
-|---------|---------|
-| **Skills** | - Swift: ★★★★★<br>- Objective-C: ★★★★★<br>- Ruby: ★★★★☆<br>- Shell: ★★★★☆<br>- SQL: ★★★★☆<br>- JS: ★★☆☆☆<br>- Rust: ★★☆☆☆<br>- Python: ★☆☆☆☆<br>- etc: |
-| **Education** | **Computer Engineering, RGPPU - [rsvpu.ru](https://rsvpu.ru), September 2001 - June 2006**<br>- Microcontrollers<br>- Databases<br>- Operating Systems<br>- File Systems<br>- Information Technology |
-| **Languages** | - Russian: ★★★★★<br>- English: ★★★☆☆ |
-| **Tools** | - IDEA IDE: ★★★★★<br>- Xcode: ★★★★★<br>- Emacs: ★★★★☆<br>- Org-mode: ★★★★☆<br>- Lookin/Reveal: ★★★★★<br>- Xcode Instruments: ★★★☆☆<br>- Figma/Sketch: ★★★★☆<br>- Documentation: ★★★★★<br>- PlantUML: ★★★★☆<br> |
-| **Personal Info** | - **Homepage:** [bimawa.net](https://bimawa.net)<br>- **Email:** bimawa@gmail.com<br>- **Phone:** +7 950 191 5459<br>- **Location:** Remote<br>- **GitHub:** [bimawa](https://github.com/bimawa) |
+**Remote · Europe**
 
-## Experience
+Senior software engineer with 10+ years of experience building production software across **Apple platforms, mobile, developer tooling and systems engineering**.
 
-### Personal Statement
-> "Systematicity is the key to success."
+I build products end-to-end — from an ambiguous idea and requirements to specification, architecture, implementation, testing and production.
 
-#### Senior iOS Developer - Makeomatic
-November 2018 → Present, Canada
-[Makeomatic](https://makeomatic.ca)
+My core expertise is **Swift, iOS/macOS and React Native**, complemented by **Rust, TypeScript, Python, networking, real-time media and developer infrastructure**.
 
-Working on a startup project [StreamLayer](https://streamlayer.io). Developing an SDK for iOS, as well as a web version for sports applications. Expanding HostApp functionality with features like chat, video calls, game statistics, betting, and more. We were the first to encounter a problem with SPM frameworks and solved it successfully. Of course, big thanks to the iOS community! That was my first huge startup where we came together and solved many problems, worked with a lot of tools, and gained massive experience.
+I work with a **specification-driven, agentic development workflow** built around **Kiro Spec-Driven Development, Oh My Pi and Zed**.
 
-Tags: swift, ReactNative, Tinode, Go, Rust, spm, swiftui, grpc, tinode, amqp, rabbitmq, webrtc, grpc-swift, tvos, objective-c, protofiles, MetalSDK, CI, semantic-release.
+I also build my own AI development infrastructure, including **custom MCP servers and a private semantic knowledge system backed by PostgreSQL and pgvector**.
 
-#### Lead iOS Developer - HappyMama
-March 2017 - November 2018, Russia
-[HappyMama](https://www.baby.ru)
+---
 
-Refinement and implementation of new functionality in the news project for those preparing to become parents. Worked on integrating advertising SDKs from Google, Yandex, and others.
+# AI-NATIVE ENGINEERING
 
-Tags: objective-c, realmDB, Core Data, REST, CI, Yandex SDK, Google SDK
+### Kiro · Oh My Pi · Zed · MCP · PostgreSQL · pgvector
 
-#### Lead iOS Developer - Pravoved.ru
-March 2017 - October 2017, Russia
-[Pravoved.ru](https://www.pravoved.ru)
+I treat AI agents as active engineering collaborators rather than code autocomplete.
 
-Refactoring and updating the app, expanding functionality, translating architecture from MVC to VIPER. Maintaining the app in working condition.
+My development workflow combines structured specifications, agent orchestration, custom tools and a persistent semantic knowledge layer.
 
-Tags: objective-c, realmDB, Core Data, REST
+### Development workflow
 
-#### Lead iOS Developer - TradeAndChat
-April 2012 - March 2017, Russia
+**Idea → Requirements → Kiro Specification → Architecture → Agentic Implementation → MCP Tools / Knowledge → Validation → Review → Production**
 
-Joined this company as a Junior iOS Developer. Fully immersed myself in Objective-C from scratch; in this startup, I learned the entire foundation of iOS development. Tasks in the startup were very complex. Had to study AMQP, RabbitMQ, security, data exchange protocols, working with binary data. Also had to start my own project to implement the AMQP protocol from scratch for Objective-C (https://github.com/bimawa/AMQProtocol). Participated in VIPER adaptation, tested ReactNative, worked with designers using Sketch. Wrote code generators for styles. Before it became mainstream.
+### Kiro Spec-Driven Development
 
-Tags: objective-c, json, xml, rabbitmq, c++, c, yapDatabase, Core Data, REST, Wireshark, Charles.
+I use **Kiro's specification-driven approach** to turn ambiguous product requirements into structured engineering specifications, acceptance criteria and implementation plans before implementation begins.
 
-#### Senior Programmer - P2P Technology
-April 2011 - April 2012, Russia
+This gives both human developers and AI agents an explicit contract to work against.
 
-Created a webinar service. Conducted broadcasts of IT events in the region and Russia. Led FullStack development. Front Flash back Groovy/Grails. Got deeply acquainted with video/audio transmission problems. Participated in WebRTC improvements for switching from Flash to JS.
+### Oh My Pi
 
-Tags: RTMPRTMFP, FLASH-MEDIA-SERVER, WOWZA, VLC, FFMPEG, ACTIVEMQ, GIT, MERCURIAL, GRAILS, AMQP, Flash/Flex, PHP, REST, JSON, RPC, RTMP/RTMFP, FMS, JAVA, CI, GROOVY/GRAILS, AMQP, RESOLUME AVENUE. etc.
+I use **Oh My Pi** as the primary agentic development environment for orchestrating AI-assisted engineering tasks.
 
-#### Senior Engineer - Sberbank of Russia
-October 2006 - April 2011, Russia
+I use multiple agents and isolated Git worktrees when tasks can be developed independently, allowing parallel exploration and implementation.
 
-Installation and maintenance of ATM/POS terminals. In my free time, developed an equipment inventory database, used various technologies such as: PHP backend, ajax front, flash charts for turnover, 2gis(kiz) for plotting routes for engineers, REST for data exchange with other services, JAVA for parsing textual data on turnover, MYSQL for data collection and analysis. To detect TST downtime and timely terminal search or elimination of malfunctions. Thanks to TSTBase, assistance to economists and clients was provided. As well as the possibility of inventory of all ATMs and POS terminals.
+### Custom MCP Infrastructure
 
-Tags: php, java, flash, ajax, rest, xml, json, mysql, 2gis
+I build **custom MCP servers** to expose project-specific capabilities and context to AI agents.
 
-#### Macromedia Flash/Flex Developer - Naumen
-September 2004 - October 2006, Russia
+Instead of relying exclusively on generic tools, I create MCP integrations around the actual development workflow and the information an agent needs to perform useful engineering work.
 
-Moonlighted as an office security guard for programmers and at the same time became interested in Macromedia Flash. Was noticed by local guys and they involved me in developing an Adobe AIR application for the NAULearning system. This was my first large order, which was used by universities in Russia.
+### Semantic Knowledge Base
 
-Tags: flex, flash, php, mysql, xml, scorm, websocket, java, javascript
+I maintain a personal semantic knowledge system backed by:
 
-#### Java Full-Stack Developer - RSVPU
-May 2006 - October 2006, Russia
+**PostgreSQL + pgvector**
 
-Developed a university portal based on IBM WebSphere Portal.
+The database stores project knowledge and embeddings, allowing relevant context to be retrieved semantically rather than relying only on keyword search.
 
-Tags: java SE/EE, flash, php, javascript
+This provides persistent project context that can be accessed by AI tooling and custom MCP integrations.
+
+### Zed
+
+**Zed** is my primary development environment.
+
+I use it together with my agentic workflow for direct code editing, exploration and verification.
+
+---
+
+# CORE ENGINEERING
+
+### Languages
+
+**Swift · Rust · TypeScript · JavaScript · Python · Objective-C · Objective-C++**
+
+### Apple Platforms
+
+**iOS · macOS · SwiftUI · UIKit · AVFoundation · AVPlayer · ScreenCaptureKit · ARKit · RealityKit**
+
+### Mobile
+
+**React Native · Native Modules · CocoaPods · Swift Package Manager**
+
+### AI & Developer Infrastructure
+
+**MCP · AI Agents · Agentic Workflows · Kiro Spec-Driven Development · Oh My Pi · pgvector · PostgreSQL · Semantic Search · LLM Applications**
+
+### Systems
+
+**Networking · Real-time Communication · Streaming · Media Pipelines · Background Services · CLI Tools**
+
+### Infrastructure
+
+**Git · GitHub · CI/CD · Bash · Automation · Developer Tooling**
+
+---
+
+# SELECTED PROJECTS
+
+## AI Development Infrastructure
+
+**MCP · PostgreSQL · pgvector · AI Agents · Semantic Search**
+
+Building a custom AI development environment around my own engineering workflow.
+
+The system combines:
+
+- Custom MCP servers
+- Persistent project knowledge
+- PostgreSQL
+- pgvector embeddings
+- Semantic retrieval
+- AI agents
+- Kiro specifications
+- Git-based development
+- Automated engineering workflows
+
+The goal is to give agents access to relevant project knowledge and tools while keeping the development process structured and reproducible.
+
+Rather than repeatedly providing context to an AI model, relevant information can be retrieved from a persistent semantic knowledge base through custom tooling.
+
+---
+
+## WireDeskVR
+
+**Swift · macOS · ScreenCaptureKit · Networking · VR**
+
+Experimental virtual workspace exploring low-latency desktop streaming into VR.
+
+Designed and implemented a macOS background service responsible for screen capture, video processing and network communication with external devices.
+
+The project combines macOS system programming, Swift, media processing, networking and VR.
+
+---
+
+## KnowledgeQuery
+
+**AI · Developer Tooling · Git · Specifications · Semantic Knowledge**
+
+Experimental developer tooling focused on connecting project knowledge, specifications and implementation.
+
+The project explores how structured specifications and persistent project knowledge can become useful context for AI-assisted engineering.
+
+The underlying concept is:
+
+**Requirements → Knowledge → Context → Implementation → Verification**
+
+---
+
+## syncLproj
+
+**Rust · CLI · Apple Localization · CI/CD**
+
+Zero-dependency Rust command-line utility for synchronizing Apple `.strings` localization files.
+
+Designed for deterministic CI/CD execution while preserving translations, ordering and developer comments.
+
+---
+
+## SpeedReaderRust
+
+**Rust · CLI · Productivity**
+
+RSVP-based reading tool designed to accelerate processing of technical documentation and engineering specifications.
+
+Built around a practical developer workflow problem: reducing the time and cognitive overhead required to consume large amounts of technical information.
+
+---
+
+# ENGINEERING PHILOSOPHY
+
+### Specifications before implementation
+
+I prefer making requirements explicit before writing large amounts of code.
+
+Specifications provide a shared contract between product requirements, developers and AI agents.
+
+### Persistent context
+
+AI systems become significantly more useful when they have access to relevant project knowledge.
+
+I therefore prefer **persistent, searchable knowledge** over repeatedly rebuilding context inside individual conversations.
+
+### Build the tools you need
+
+When an existing tool does not fit the workflow, I build the missing layer myself — whether that means a CLI, MCP server, automation or database-backed service.
+
+### Agents are collaborators
+
+AI agents handle exploration, implementation, refactoring, research and repetitive engineering tasks.
+
+They are not treated as authorities.
+
+Generated code is reviewed, tested and validated before becoming production code.
+
+### Architecture still matters
+
+AI makes implementation faster.
+
+It does not remove the need for architecture, system design, debugging, performance analysis or engineering judgment.
+
+---
+
+# WHAT I'M LOOKING FOR
+
+I'm interested in remote teams building ambitious products where **AI-native engineering is part of the actual development process**.
+
+Particularly interested in:
+
+- AI-native products
+- AI developer infrastructure
+- Agentic systems
+- MCP infrastructure
+- Developer tools
+- Product engineering
+- Web3 / Crypto
+- Mobile & cross-platform software
+- Networking & real-time systems
+- Experimental startups
+- Small autonomous engineering teams
+
+---
+
+# TARGET ROLES
+
+**Senior Product Engineer**
+
+**Staff Product Engineer**
+
+**AI-Native Software Engineer**
+
+**AI Product Engineer**
+
+**Founding Engineer**
+
+**Developer Tools Engineer**
+
+**Senior Mobile Engineer**
+
+---
+
+# TECHNICAL PROFILE
+
+### Primary
+
+Swift · iOS · macOS · React Native
+
+### Systems
+
+Rust · Networking · Streaming · Real-time Communication · Media · Background Services · CLI
+
+### AI Engineering
+
+MCP · AI Agents · Agentic Development · Kiro Spec-Driven Development · Oh My Pi · Semantic Search · LLM Applications
+
+### AI Infrastructure
+
+PostgreSQL · pgvector · Embeddings · Vector Search · Custom MCP Servers · Persistent Knowledge Systems
+
+### Development
+
+Zed · Git · GitHub · Git Worktrees · CI/CD · Bash · Automation
+
+### Engineering Style
+
+Product-oriented · Autonomous · Systems Thinking · Specification-driven · AI-native
