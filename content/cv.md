@@ -8,7 +8,7 @@ title = "CV"
 
 **Remote · Europe**
 
-Senior software engineer with 10+ years of experience building production software across **Apple platforms, mobile, developer tooling and systems engineering**.
+Senior software engineer with 12+ years of experience building production software across **Apple platforms, mobile, developer tooling and systems engineering**.
 
 I build products end-to-end — from an ambiguous idea and requirements to specification, architecture, implementation, testing and production.
 
