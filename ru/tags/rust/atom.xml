@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title> - rust</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/tags/rust/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-11-09T00:00:00+00:00</updated>
+    <id>https://bimawa.net/ru/tags/rust/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>VRDesktopUltra: пять экранов Mac в VR и рабочее место, к которому можно вернуться</title>
+        <published>2026-11-09T00:00:00+00:00</published>
+        <updated>2026-11-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/"/>
+        <id>https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/</id>
+        
+        <summary type="html">&lt;p&gt;В прошлой статье мы рассказывали о четырёх экранах Mac в Quest Pro и о том, как удалось убрать рябь на выбранной конфигурации. С тех пор VRDesktopUltra стал ближе не просто к демонстрации передачи изображения, а к рабочему пространству: с сохранённой расстановкой, своим местом в VR и обычным приложением на Mac.&lt;&#x2F;p&gt;
+&lt;p&gt;Главный результат нового этапа — &lt;strong&gt;пять независимых экранов, одновременно видимых в гарнитуре&lt;&#x2F;strong&gt;. А за ним — изменения, которые делают повседневный запуск и возвращение в VR менее хлопотными.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;piatyi-ekran-nastoiashchii-vneshnii-monitor&quot;&gt;Пятый экран — настоящий внешний монитор&lt;&#x2F;h2&gt;
+&lt;p&gt;Теперь на нашем стенде вместе работают:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;три виртуальных ультрашироких монитора по &lt;strong&gt;5760 × 1200&lt;&#x2F;strong&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;встроенный Retina-дисплей Mac с изображением &lt;strong&gt;4112 × 2658&lt;&#x2F;strong&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;внешний монитор &lt;strong&gt;1920 × 1080&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Внешний монитор подключили при работающем Mac-приложении. Сервер обнаружил его и начал передавать как отдельный источник — без перезапуска сервера и USB-сессии.&lt;&#x2F;p&gt;
+&lt;p&gt;При этом первая проверка оказалась показательной: получить пятый поток ещё не значит показать пятый экран человеку. Данные доходили до Quest, но монитор появился далеко за пределами настроенного рабочего пространства. Исправили начальное размещение: новый экран располагается над последним доступным монитором, с учётом его положения, поворота и размера.&lt;&#x2F;p&gt;
+&lt;p&gt;После исправления проверили не только журналы и контрольные суммы, но и реальную сцену в гарнитуре. &lt;strong&gt;Внешний экран виден и работает рядом с остальными четырьмя.&lt;&#x2F;strong&gt; Затем перезапустили установленное Mac-приложение и подтвердили восстановление всех пяти источников и сохранённой расстановки.&lt;&#x2F;p&gt;
+&lt;p&gt;Это результат конкретной конфигурации с Quest Pro, а не обещание любого числа мониторов при любой нагрузке.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>VRDesktopUltra: четыре экрана Mac в VR — и текст без ряби</title>
+        <published>2026-10-21T00:00:00+00:00</published>
+        <updated>2026-10-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/vrdesktopultra-four-screens-and-clear-text/"/>
+        <id>https://bimawa.net/ru/blog/vrdesktopultra-four-screens-and-clear-text/</id>
+        
+        <summary type="html">&lt;p&gt;Самый приятный результат последних экспериментов с VRDesktopUltra — короткая фраза после очередной проверки в гарнитуре: &lt;strong&gt;«Ура, рябь пропала!»&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;За ней — несколько итераций передачи изображения, смена способа отображения виртуальных мониторов и замеры, которые заставили пересмотреть часть первоначальных решений. Сейчас на нашем стенде работают три виртуальных ультрашироких экрана Mac и основной Retina-дисплей — вместе, в одной VR-сцене на Quest Pro.&lt;&#x2F;p&gt;
+&lt;p&gt;VRDesktopUltra вырос из &lt;strong&gt;&lt;a href=&quot;&#x2F;ru&#x2F;projects&#x2F;WireDeskVR&#x2F;&quot;&gt;WireDeskVR&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; — нашего предыдущего проекта виртуального рабочего пространства на &lt;strong&gt;Unreal Engine 5&lt;&#x2F;strong&gt;. Мы сохранили задачу — удобные экраны Mac в VR, — но в новой реализации перешли от UE5 к собственной связке Rust и OpenXR.&lt;&#x2F;p&gt;
+&lt;p&gt;Рассказываем, к какому устройству системы мы пришли к &lt;strong&gt;21 октября 2026 года&lt;&#x2F;strong&gt;, почему выбрали именно его и где пока проходит граница между работающим экспериментом и готовым инструментом для ежедневной работы.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;nam-nuzhen-rabochii-stol-a-ne-prosto-bol-shoe-video&quot;&gt;Нам нужен рабочий стол, а не просто большое видео&lt;&#x2F;h2&gt;
+&lt;p&gt;Показать картинку с компьютера в шлеме — только начало. Если на ней фильм, небольшая потеря детализации может остаться незаметной. Если перед глазами редактор кода, терминал или пиксельный рисунок, требования совсем другие: тонкие линии не должны рябить при движении головы, мелкий текст должен оставаться читаемым, а прокрутка — отзывчивой.&lt;&#x2F;p&gt;
+&lt;p&gt;И ещё хочется не одного прибитого к взгляду прямоугольника, а рабочего пространства: поставить экраны вокруг себя, менять расстояние, размер и кривизну, перемещаться между ними.&lt;&#x2F;p&gt;
+&lt;p&gt;Отсюда первое важное решение: &lt;strong&gt;Mac передаёт содержимое мониторов, а Quest сам строит и показывает VR-сцену.&lt;&#x2F;strong&gt; Положение головы, контроллеры и геометрия экранов обрабатываются локально. Для поворота головы не нужно ждать, пока компьютер нарисует и пришлёт новое изображение всего виртуального мира. Последняя полученная картинка остаётся на своём месте, даже если обновление рабочего стола ещё в пути.&lt;&#x2F;p&gt;
+&lt;p&gt;Основная логика написана на Rust. На Mac используем ScreenCaptureKit, Metal и аппаратный VideoToolbox; на Quest — OpenXR, OpenGL ES и аппаратное декодирование. Между ними — наш протокол поверх USB-сети NCM. Текущий путь проводной, без переключения на Wi-Fi.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>SpeedReaderRust: История одной идеи</title>
+        <published>2026-07-27T05:00:00+00:00</published>
+        <updated>2026-07-27T05:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/speedreader-rust-concept/"/>
+        <id>https://bimawa.net/ru/blog/speedreader-rust-concept/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;s-chego-vsio-nachalos&quot;&gt;С чего всё началось&lt;&#x2F;h2&gt;
+&lt;p&gt;Я читаю много технической документации. SDD (Specification Driven Development), RFC, спецификации — всё это приходится проглатывать в больших объёмах. Обычное чтение глазами упирается в скорость: вы всё равно тратите время на саккады (скачки глаза от слова к слову) и регрессии (возвраты назад по строке).&lt;&#x2F;p&gt;
+&lt;p&gt;В какой-то момент я вспомнил про технику RSVP — Rapid Serial Visual Presentation. Это когда слова показываются одно за другим в одной точке экрана, а скорость задаётся количеством слов в минуту. Глазу не нужно двигаться — он просто смотрит в центр и схватывает слова.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание инструмента синхронизации локализации для iOS&#x2F;macOS</title>
+        <published>2025-11-16T00:00:00+00:00</published>
+        <updated>2025-11-16T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/"/>
+        <id>https://bimawa.net/ru/projects/SyncLProj/ios-strings-sync/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;Управление файлами локализации в проектах iOS и macOS может стать сложной задачей по мере роста приложения. Когда вы добавляете новые строки в файл базового языка, синхронизация всех файлов переводов становится утомительной и подверженной ошибкам. В этой статье рассматривается &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;syncLproj&quot;&gt;syncLproj&lt;&#x2F;a&gt; — CLI-инструмент на Rust, предназначенный для автоматизации этого процесса синхронизации.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;problema-lokalizatsii&quot;&gt;Проблема локализации&lt;&#x2F;h2&gt;
+&lt;p&gt;В разработке iOS&#x2F;macOS локализация использует файлы &lt;code&gt;.strings&lt;&#x2F;code&gt; с простым форматом ключ-значение:&lt;&#x2F;p&gt;
+&lt;pre data-lang=&quot;swift&quot; class=&quot;language-swift &quot;&gt;&lt;code class=&quot;language-swift&quot; data-lang=&quot;swift&quot;&gt;&amp;#x2F;* User interface strings *&amp;#x2F;
+&amp;quot;welcome_message&amp;quot; = &amp;quot;Welcome to our app!&amp;quot;;
+&amp;quot;login_button&amp;quot; = &amp;quot;Log In&amp;quot;;
+&amp;quot;signup_button&amp;quot; = &amp;quot;Sign Up&amp;quot;;
+&lt;&#x2F;code&gt;&lt;&#x2F;pre&gt;
+&lt;p&gt;При управлении несколькими языками возникает ряд проблем:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Отсутствующие ключи&lt;&#x2F;strong&gt;: новые ключи, добавленные в базовый язык, автоматически не появляются в переводах&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Несогласованность порядка ключей&lt;&#x2F;strong&gt;: разные файлы имеют ключи в разном порядке, что затрудняет просмотр diff-ов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Осиротевшие ключи&lt;&#x2F;strong&gt;: удалённые ключи остаются в файлах переводов&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Ручная работа&lt;&#x2F;strong&gt;: копирование ключей между десятками файлов занимает много времени и подвержено ошибкам&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Традиционные подходы включают ручное редактирование или встроенные инструменты Xcode, которые не имеют возможностей автоматизации для CI&#x2F;CD пайплайнов.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Создание терминального файлового менеджера на Rust</title>
+        <published>2025-11-15T00:00:00+00:00</published>
+        <updated>2025-11-15T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/"/>
+        <id>https://bimawa.net/ru/projects/BlazeFM/cli-rust-research/</id>
+        
+        <summary type="html">&lt;h1 id=&quot;vvedenie&quot;&gt;Введение&lt;&#x2F;h1&gt;
+&lt;p&gt;В этой статье рассматривается путь создания терминального пользовательского интерфейса (TUI) файлового менеджера на Rust. Мы изучим &lt;a href=&quot;https:&#x2F;&#x2F;github.com&#x2F;bimawa&#x2F;blaze-file-manager&quot;&gt;Blaze Ultra&lt;&#x2F;a&gt; — практическое CLI-приложение, демонстрирующее ключевые концепции разработки на Rust, включая манипуляции с терминалом, обработку событий и современные UI-фреймворки.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;pochemu-rust-dlia-cli-prilozhenii&quot;&gt;Почему Rust для CLI-приложений?&lt;&#x2F;h2&gt;
+&lt;p&gt;Rust становится всё более популярным для CLI-инструментов благодаря нескольким убедительным преимуществам:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Производительность&lt;&#x2F;strong&gt;: производительность уровня C с абстракциями нулевой стоимости&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Безопасность&lt;&#x2F;strong&gt;: безопасность памяти без сборщика мусора предотвращает распространённые ошибки&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Эргономика&lt;&#x2F;strong&gt;: современные инструменты с Cargo делают распространение тривиальным&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Кроссплатформенность&lt;&#x2F;strong&gt;: пишем один раз, компилируем везде с минимальным платформо-специфичным кодом&lt;&#x2F;li&gt;
+&lt;li&gt;&lt;strong&gt;Богатая экосистема&lt;&#x2F;strong&gt;: зрелые крейты вроде &lt;code&gt;clap&lt;&#x2F;code&gt;, &lt;code&gt;ratatui&lt;&#x2F;code&gt; и &lt;code&gt;tokio&lt;&#x2F;code&gt; ускоряют разработку&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Популярные примеры включают &lt;code&gt;ripgrep&lt;&#x2F;code&gt;, &lt;code&gt;fd&lt;&#x2F;code&gt;, &lt;code&gt;bat&lt;&#x2F;code&gt; и &lt;code&gt;exa&lt;&#x2F;code&gt; — все демонстрируют способность Rust создавать быстрые и надёжные инструменты командной строки.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

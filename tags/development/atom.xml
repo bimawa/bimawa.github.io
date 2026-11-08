@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
+    <title> - development</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/tags/development/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-11-09T00:00:00+00:00</updated>
+    <id>https://bimawa.net/tags/development/atom.xml</id>
+    <entry xml:lang="en">
+        <title>VRDesktopUltra: five Mac screens in VR and a workspace to return to</title>
+        <published>2026-11-09T00:00:00+00:00</published>
+        <updated>2026-11-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/"/>
+        <id>https://bimawa.net/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/</id>
+        
+        <summary type="html">&lt;p&gt;In our previous post, we described four Mac screens on Quest Pro and how we eliminated shimmer in the configuration we tested. Since then, VRDesktopUltra has moved closer to being a workspace rather than just an image-streaming demo: with a saved layout, a place of your own in VR, and a regular Mac app.&lt;&#x2F;p&gt;
+&lt;p&gt;The main result of this stage is &lt;strong&gt;five independent screens, all visible in the headset at the same time&lt;&#x2F;strong&gt;. Behind that milestone are changes that make everyday startup and returning to VR less cumbersome.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-fifth-screen-is-a-real-external-monitor&quot;&gt;The fifth screen is a real external monitor&lt;&#x2F;h2&gt;
+&lt;p&gt;Our test setup now runs all of these together:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;three virtual ultrawide monitors at &lt;strong&gt;5760 × 1200&lt;&#x2F;strong&gt; each;&lt;&#x2F;li&gt;
+&lt;li&gt;the Mac&#x27;s built-in Retina display, captured at &lt;strong&gt;4112 × 2658&lt;&#x2F;strong&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;an external &lt;strong&gt;1920 × 1080&lt;&#x2F;strong&gt; monitor.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;We connected the external monitor while the Mac app was running. The server detected it and began streaming it as a separate source, without restarting the server or the USB session.&lt;&#x2F;p&gt;
+&lt;p&gt;The first check also taught us something important: receiving a fifth stream is not the same as showing a fifth screen to a person. The data reached Quest, but the monitor appeared far outside the configured workspace. We fixed its initial placement: a new screen now appears above the last available monitor, taking that monitor&#x27;s position, rotation, and size into account.&lt;&#x2F;p&gt;
+&lt;p&gt;After the fix, we checked not only logs and checksums, but also the actual scene in the headset. &lt;strong&gt;The external screen is visible and works alongside the other four.&lt;&#x2F;strong&gt; We then restarted the installed Mac app and confirmed that all five sources and the saved layout were restored.&lt;&#x2F;p&gt;
+&lt;p&gt;This is a result from one specific Quest Pro setup, not a promise of any number of monitors under any workload.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>VRDesktopUltra: four Mac screens in VR — and text without shimmer</title>
+        <published>2026-10-21T00:00:00+00:00</published>
+        <updated>2026-10-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/blog/vrdesktopultra-four-screens-and-clear-text/"/>
+        <id>https://bimawa.net/blog/vrdesktopultra-four-screens-and-clear-text/</id>
+        
+        <summary type="html">&lt;p&gt;The most satisfying result from our recent VRDesktopUltra experiments was a short message after another headset check: &lt;strong&gt;“Hooray, the shimmer is gone!”&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;Behind it were several iterations of image transport, a different way of presenting virtual monitors, and measurements that made us reconsider some early decisions. Our test setup now runs three virtual ultrawide Mac screens alongside the main Retina display, together in a single VR scene on Quest Pro.&lt;&#x2F;p&gt;
+&lt;p&gt;VRDesktopUltra grew out of &lt;strong&gt;&lt;a href=&quot;&#x2F;projects&#x2F;WireDeskVR&#x2F;&quot;&gt;WireDeskVR&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt;, our earlier virtual workspace project built with &lt;strong&gt;Unreal Engine 5&lt;&#x2F;strong&gt;. The goal remains the same — comfortable Mac screens in VR — but the new implementation replaces UE5 with our own Rust and OpenXR stack.&lt;&#x2F;p&gt;
+&lt;p&gt;Here is where the system stands as of &lt;strong&gt;October 21, 2026&lt;&#x2F;strong&gt;: the architecture we chose, why we chose it, and the boundary between a working experiment and an everyday tool.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;we-need-a-workspace-not-just-a-large-video&quot;&gt;We need a workspace, not just a large video&lt;&#x2F;h2&gt;
+&lt;p&gt;Displaying a computer image in a headset is only the beginning. When watching a movie, a small loss of detail might go unnoticed. With a code editor, terminal, or pixel artwork in front of you, the requirements are different: thin lines should not shimmer when you move your head, small text should remain legible, and scrolling should feel responsive.&lt;&#x2F;p&gt;
+&lt;p&gt;We also want more than one rectangle attached to our gaze. We want a workspace: arrange screens around us, adjust their distance, size, and curvature, and move between them.&lt;&#x2F;p&gt;
+&lt;p&gt;That leads to the first important decision: &lt;strong&gt;the Mac sends monitor content; Quest builds and presents the VR scene locally.&lt;&#x2F;strong&gt; Head tracking, controllers, and screen geometry are handled on the headset. Turning your head does not require waiting for the computer to render and transmit a new image of the entire virtual world. The last received desktop image stays in place while its next update is still in transit.&lt;&#x2F;p&gt;
+&lt;p&gt;The core logic is written in Rust. On the Mac, we use ScreenCaptureKit, Metal, and hardware VideoToolbox; on Quest, OpenXR, OpenGL ES, and hardware decoding. Our protocol runs over a USB NCM network connection. The current path is wired, with no Wi-Fi fallback.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="en">
+        <title>Forge: When Developers Become Managers (with AI Cats as Assistants)</title>
+        <published>2026-01-08T12:00:00+00:00</published>
+        <updated>2026-01-08T12:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/blog/forge-ai-project-management/"/>
+        <id>https://bimawa.net/blog/forge-ai-project-management/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;from-unemployment-to-discovery&quot;&gt;From Unemployment to Discovery&lt;&#x2F;h2&gt;
+&lt;p&gt;I&#x27;m currently between jobs, vibing with code non-stop. And here&#x27;s what I noticed: &lt;strong&gt;developers won&#x27;t become extinct, they just don&#x27;t need managers anymore. Developers ARE the managers now, with AI cats as their assistants.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;With this thought, I went googling for solutions, because ideas always come to me last in the world and someone has probably already started a project and is making money from it.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;the-path-to-discovery&quot;&gt;The Path to Discovery&lt;&#x2F;h2&gt;
+&lt;p&gt;I stumbled upon &lt;strong&gt;auto-claude&lt;&#x2F;strong&gt;. A system that allows you to run agents separately in each worktree so they can solve tasks independently from each other. And of course, they preserve context.&lt;&#x2F;p&gt;
+&lt;p&gt;I thought: &quot;This is it! Exactly what I need!&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;But I decided not to stop there. I went to Grok and said: &quot;Scan the market, are there better solutions?&quot; And guess what? It actually found some!&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

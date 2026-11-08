@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title> - forge</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/tags/forge/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-01-08T12:00:00+00:00</updated>
+    <id>https://bimawa.net/ru/tags/forge/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>Forge: Когда программисты становятся менеджерами (с AI котами в помощниках)</title>
+        <published>2026-01-08T12:00:00+00:00</published>
+        <updated>2026-01-08T12:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/forge-ai-project-management/"/>
+        <id>https://bimawa.net/ru/blog/forge-ai-project-management/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;ot-bezrabotnogo-k-otkrytiiu&quot;&gt;От безработного к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Я пока без работы, вайбкодю без остановки. И вот что заметил: программисты не вымрут, они просто теперь не нуждаются в менеджерах. &lt;strong&gt;Программисты и есть менеджеры с котами в виде AI.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;С такой мыслью я пошёл гуглить решения, ведь мысль ко мне приходит последней в мире и кто-то уже начал проект и зарабатывает деньги.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;put-k-otkrytiiu&quot;&gt;Путь к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Наткнулся на &lt;strong&gt;auto-claude&lt;&#x2F;strong&gt;. Система, позволяющая отдельно в каждой worktree запускать агентов, чтобы они решали задачи независимо друг от друга. Ну и контекст, конечно, сохраняли.&lt;&#x2F;p&gt;
+&lt;p&gt;Думаю: &quot;Вот оно! То, что нужно!&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Но я решил не останавливаться. Пошёл в Grok, говорю: &quot;Ну-ка рынок посканируй, есть решения получше?&quot; И что вы думаете? Он нашёл таки!&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>

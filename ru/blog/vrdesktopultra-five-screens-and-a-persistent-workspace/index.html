@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Пять независимых экранов Mac в Quest Pro, сохранённое рабочее пространство, нативное Mac-приложение и оптимизация HEVC. Последние достижения проекта и ограничения, которые ещё предстоит преодолеть.">
+
+    <meta property="og:description" content="Пять независимых экранов Mac в Quest Pro, сохранённое рабочее пространство, нативное Mac-приложение и оптимизация HEVC. Последние достижения проекта и ограничения, которые ещё предстоит преодолеть.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Пять независимых экранов Mac в Quest Pro, сохранённое рабочее пространство, нативное Mac-приложение и оптимизация HEVC. Последние достижения проекта и ограничения, которые ещё предстоит преодолеть.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;blog&#x2F;vrdesktopultra-five-screens-and-a-persistent-workspace&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/">VRDesktopUltra: пять экранов Mac в VR и рабочее место, к которому можно вернуться</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2026-11-09
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/development/">#development</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/productivity/">#productivity</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/rust/">#rust</a></span>
+    
+
+        <div class="post-content">
+            <p>В прошлой статье мы рассказывали о четырёх экранах Mac в Quest Pro и о том, как удалось убрать рябь на выбранной конфигурации. С тех пор VRDesktopUltra стал ближе не просто к демонстрации передачи изображения, а к рабочему пространству: с сохранённой расстановкой, своим местом в VR и обычным приложением на Mac.</p>
+<p>Главный результат нового этапа — <strong>пять независимых экранов, одновременно видимых в гарнитуре</strong>. А за ним — изменения, которые делают повседневный запуск и возвращение в VR менее хлопотными.</p>
+<h2 id="piatyi-ekran-nastoiashchii-vneshnii-monitor">Пятый экран — настоящий внешний монитор</h2>
+<p>Теперь на нашем стенде вместе работают:</p>
+<ul>
+<li>три виртуальных ультрашироких монитора по <strong>5760 × 1200</strong>;</li>
+<li>встроенный Retina-дисплей Mac с изображением <strong>4112 × 2658</strong>;</li>
+<li>внешний монитор <strong>1920 × 1080</strong>.</li>
+</ul>
+<p>Внешний монитор подключили при работающем Mac-приложении. Сервер обнаружил его и начал передавать как отдельный источник — без перезапуска сервера и USB-сессии.</p>
+<p>При этом первая проверка оказалась показательной: получить пятый поток ещё не значит показать пятый экран человеку. Данные доходили до Quest, но монитор появился далеко за пределами настроенного рабочего пространства. Исправили начальное размещение: новый экран располагается над последним доступным монитором, с учётом его положения, поворота и размера.</p>
+<p>После исправления проверили не только журналы и контрольные суммы, но и реальную сцену в гарнитуре. <strong>Внешний экран виден и работает рядом с остальными четырьмя.</strong> Затем перезапустили установленное Mac-приложение и подтвердили восстановление всех пяти источников и сохранённой расстановки.</p>
+<p>Это результат конкретной конфигурации с Quest Pro, а не обещание любого числа мониторов при любой нагрузке.</p>
+<span id="continue-reading"></span><h2 id="rabochee-prostranstvo-bol-she-ne-nuzhno-sobirat-zanovo">Рабочее пространство больше не нужно собирать заново</h2>
+<p>У рабочего места есть две разные расстановки: расположение дисплеев в macOS и положение виртуальных поверхностей вокруг пользователя. Теперь сохраняются обе.</p>
+<p>На Mac запоминаются основной дисплей и взаимное положение экранов. В VR — положение, поворот, размер и кривизна каждого монитора. Перезапуск сервера не должен превращать настроенное пространство обратно в исходный ряд прямоугольников.</p>
+<p>Появилась и сохраняемая напольная метка места пользователя с направлением взгляда. Её можно перемещать контроллером, а телепорт рядом с меткой примагничивается к сохранённой позиции и ориентации. При новом запуске она служит точкой возвращения в рабочее пространство.</p>
+<p>Отдельно разделили паузу и завершение работы. Снятие гарнитуры, переход в системное меню или обрыв USB сами по себе не закрывают рабочее место. Явный выход из Quest-приложения останавливает захват и освобождает созданные виртуальные дисплеи; Mac-сервер остаётся ждать следующего подключения.</p>
+<h2 id="na-mac-prilozhenie-vmesto-obiazatel-nogo-terminala">На Mac — приложение вместо обязательного терминала</h2>
+<p>У VRDesktopUltra появилась нативная оболочка с иконкой в строке меню. Из неё можно запустить или остановить сервер, открыть журнал и изменить параметры экранов.</p>
+<p>В настройках доступны количество виртуальных дисплеев, их разрешение, частота кадров и битрейт. Физические источники можно включать и отключать; их изображение передаётся в исходном пиксельном разрешении.</p>
+<p>Оболочка использует AppKit и SwiftUI поверх существующего Rust-сервера — без Electron и встроенного браузера. Для обычного запуска установленного приложения терминал больше не нужен.</p>
+<p>Пока это установленная разработческая сборка, а не готовый нотарифицированный дистрибутив для публичного скачивания.</p>
+<h2 id="men-she-lishnei-raboty-pri-peredache-izobrazheniia">Меньше лишней работы при передаче изображения</h2>
+<p>После предыдущей публикации изменился и видеопуть. Вместо независимого ключевого кадра на каждое обновление используются постоянные аппаратные HEVC-потоки с предсказательными кадрами.</p>
+<p>При этом сохранили важное для рабочего стола различие: небольшие изменения на точной базе передаются без потерь, а большие изменения обслуживает видеокодек. После 250 мс без крупных изменений полное обновление без потерь возвращает точное изображение. Движение курсора само по себе этому не мешает.</p>
+<p>Quest также сообщает Mac о занятости декодера. Сервер учитывает эту рекомендацию <strong>до кодирования</strong>: сохраняет свежий захват вместо накопления очереди устаревающих кадров.</p>
+<p>Есть и узкий, но хорошо измеримый результат: ускорили CPU-проверку структуры HEVC. В замере на M1 Max проверка ключевого кадра 5760 × 1200 сократилась примерно с <strong>5,07 до 0,22 мс</strong>, а Retina-кадра — с <strong>8,02 до 0,33 мс</strong>. Разрешение и качество изображения для этого не снижали.</p>
+<p>Это ускорение конкретного участка обработки, не всего приложения. Оно не означает такого же прироста FPS или сокращения задержки до изображения в линзах.</p>
+<h2 id="chto-poka-ostaiotsia-otkrytym">Что пока остаётся открытым</h2>
+<p>Пять экранов и сохранённое рабочее место — уже подтверждённый шаг вперёд. Но проект пока нельзя назвать полностью готовым инструментом для ежедневной работы без оговорок.</p>
+<p>Остаются рывки VR-сцены под нагрузкой. Сквозная оптическая задержка менее 20 мс не подтверждена. Предстоят длительные проверки памяти и нагрева, а также повторные циклы физического отключения и подключения внешнего монитора.</p>
+<p>Сохраняется и ограничение точности: HEVC при движении использует сжатие с потерями. Последующее точное обновление полезно для текста и неподвижного рабочего стола, но не превращает весь видеопоток в pixel-perfect передачу во время рисования.</p>
+<p>Главное изменение этого этапа — <strong>в VR уже можно вернуться к своему настроенному рабочему месту из пяти экранов</strong>, а не начинать каждый запуск с его сборки. Следующая задача — добиться устойчивой отзывчивости этого пространства под реальной рабочей нагрузкой.</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                        <span class="button previous">
+                            <a href="https://bimawa.net/ru/blog/vrdesktopultra-four-screens-and-clear-text/">
+                                <span class="button__icon">←</span>&nbsp;
+                                <span class="button__text">VRDesktopUltra: четыре экрана Mac в VR — и текст без ряби</span>
+                            </a>
+                        </span>
+                    
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

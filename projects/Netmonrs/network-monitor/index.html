@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Network monitoring connection framework in Rust">
+
+    <meta property="og:description" content="Network monitoring connection framework in Rust">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/projects/Netmonrs/network-monitor/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Network monitoring connection framework in Rust">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/projects/Netmonrs/network-monitor/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;projects&#x2F;Netmonrs&#x2F;network-monitor&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net">Blog</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">NetMonRS</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="net-monitor-rust">Net Monitor Rust</h2>
+<p>NetRS is a network monitoring tool written in Rust that shows real-time network connections using the Ratatui library for terminal-based user interface. The application lets users monitor active network connections and view connection details including local and remote addresses, protocols, and connection states. Users can filter connections based on different criteria. The tool uses the system's networking features to collect connection information and displays it in an interactive, easy-to-use terminal interface. This tool helps system administrators, network engineers, and developers quickly check network activity on their systems directly from the command line.</p>
+<p>This offers a more efficient way to monitor outgoing connections from a specific process.</p>
+<p>I developed this tool for the WireDeskVR project to check agent connection status.</p>
+<p>It can also be used for other purposes. For example, to find where a specific process connects on your computer.</p>
+<h2 id="example-usage">Example Usage</h2>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">sudo netmonrs &#x2F;Applications&#x2F;Zed.app&#x2F;Contents&#x2F;MacOS&#x2F;zed
+</code></pre>
+<p>We need sudo access for lsof.</p>
+<h2 id="how-it-looks">How it looks</h2>
+<p><img src="/images/netMonrsInterface.png" alt="NetMonRS Interface" /></p>
+<h2 id="controls">Controls</h2>
+<ul>
+<li><code>Tab</code> - Switch focus between active connections and history</li>
+<li><code>Up</code> / <code>k</code> - Move up in list</li>
+<li><code>Down</code> / <code>j</code> - Move down in list</li>
+<li><code>PageUp</code> / <code>Ctrl+u</code> - Page up</li>
+<li><code>PageDown</code> / <code>Ctrl+d</code> - Page down</li>
+<li><code>q</code> - Quit application</li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,410 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Торговый терминал для Bybit и Binance с CLI интерфейсом и минимальной задержкой">
+
+    <meta property="og:description" content="Торговый терминал для Bybit и Binance с CLI интерфейсом и минимальной задержкой">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/TradeTerminal/trade-terminal/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Торговый терминал для Bybit и Binance с CLI интерфейсом и минимальной задержкой">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/TradeTerminal/trade-terminal/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;TradeTerminal&#x2F;trade-terminal&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">TradeTerminal</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="tradeterminal">TradeTerminal</h2>
+<p>Универсальный торговый терминал для Bybit и Binance с CLI интерфейсом и архитектурой клиент-сервер, разработанный для минимизации задержки при работе с биржами. Проект создан на Rust и предоставляет мощный набор инструментов для профессиональной торговли криптовалютой.</p>
+<p><img src="/images/tradeTerminalInterface.png" alt="TradeTerminal Interface" /></p>
+<h2 id="osnovnye-vozmozhnosti">Основные возможности</h2>
+<h3 id="torgovye-operatsii">Торговые операции</h3>
+<ul>
+<li><strong>Размещение ордеров</strong>: Market и Limit ордера с быстрым исполнением</li>
+<li><strong>Риск-менеджмент</strong>: Автоматический расчёт размера позиции от риска в USDT с учётом комиссий биржи</li>
+<li><strong>Take Profit</strong>: Настройка выхода из позиции в процентах от входа</li>
+<li><strong>Trailing Stop</strong>: Гибкая система трейлинг-стопов с поддержкой:
+<ul>
+<li>Абсолютных значений цены и callback в долларах</li>
+<li>Процентов от текущей цены</li>
+<li>Соотношений (ratio) для активации на основе расстояния до Stop Loss</li>
+</ul>
+</li>
+<li><strong>Auto-Stop (AS)</strong>: Умный выход из позиции на активных рынках
+<ul>
+<li>Клик по цене копирует её для быстрого ввода</li>
+<li>Триггер активируется по достижению цены или процента</li>
+<li>Таймер ликвидности (2 сек) - закрывает позицию если торговля останавливается</li>
+<li>Идеально для фиксации прибыли на волатильных участках</li>
+</ul>
+</li>
+<li><strong>Hedge Mode</strong>: Поддержка одновременных Long/Short позиций на одном инструменте</li>
+</ul>
+<span id="continue-reading"></span><h3 id="interfeis-i-upravlenie">Интерфейс и управление</h3>
+<ul>
+<li><strong>CLI интерфейс</strong>: Удобная командная строка с сокращениями команд</li>
+<li><strong>Pipe оператор</strong>: Комбинирование команд через <code>|</code> для создания сложных сценариев
+<ul>
+<li>Например: <code>:br 10 94000 | ts 2% 0.5%</code> - открыть позицию и сразу установить trailing stop</li>
+</ul>
+</li>
+<li><strong>Цепочки команд</strong>: Последовательное выполнение через <code>;</code>
+<ul>
+<li>Например: <code>:ca; br 10 94000</code> - отменить все ордера и открыть новую позицию</li>
+</ul>
+</li>
+<li><strong>Просмотр состояния</strong>: Отображение открытых ордеров, активных позиций и текущего баланса</li>
+<li><strong>Управление ордерами</strong>: Отмена отдельных ордеров или всех сразу</li>
+<li><strong>Мультисимвольность</strong>: Быстрое переключение между торговыми парами</li>
+</ul>
+<h3 id="grafik-i-vizualizatsiia">График и визуализация</h3>
+<ul>
+<li><strong>Встроенный график</strong>: Интерактивный график с поддержкой множества таймфреймов</li>
+<li><strong>Sub-second таймфреймы</strong>: Уникальная возможность работы с таймфреймами 1s, 5s, 10s, 30s
+<ul>
+<li>Использует реальные tick-данные с биржи</li>
+<li>Агрегация происходит на клиенте для максимальной точности</li>
+<li>Отображение реальных сделок без дополнительной нагрузки на сервер</li>
+</ul>
+</li>
+<li><strong>Стандартные таймфреймы</strong>: От 1 минуты до дневных свечей (15m, 1h, 4h, D и др.)</li>
+<li><strong>Уровни цен</strong>: Добавление и удаление горизонтальных уровней</li>
+<li><strong>Навигация</strong>: Прокрутка истории, масштабирование, автоследование за последней ценой</li>
+<li><strong>Звуковая индикация</strong>: Опциональные звуковые сигналы при сделках на бирже
+<ul>
+<li>Высокий тон - покупка, низкий - продажа</li>
+<li>Частота увеличивается при росте торговой активности</li>
+</ul>
+</li>
+</ul>
+<h3 id="arkhitektura">Архитектура</h3>
+<ul>
+<li><strong>Клиент-сервер</strong>: Разделение логики для оптимизации задержки</li>
+<li><strong>WebSocket</strong>: Постоянное соединение для мгновенного получения данных</li>
+<li><strong>Автообновление</strong>: Автоматическое обновление данных о позициях и ордерах</li>
+<li><strong>Docker поддержка</strong>: Простое развёртывание на VPS для минимизации задержки до серверов биржи</li>
+</ul>
+<h2 id="tekhnologicheskii-stek">Технологический стек</h2>
+<ul>
+<li><strong>Язык</strong>: Rust (высокая производительность и безопасность памяти)</li>
+<li><strong>Протокол</strong>: WebSocket для real-time коммуникации</li>
+<li><strong>Биржи</strong>:
+<ul>
+<li>Bybit API v5 (Testnet и Production)</li>
+<li>Binance API (Spot и Futures)</li>
+</ul>
+</li>
+<li><strong>Развёртывание</strong>: Docker, Docker Compose</li>
+<li><strong>UI</strong>: TUI (Text User Interface) с поддержкой вкладок</li>
+</ul>
+<h2 id="raschiot-razmera-pozitsii">Расчёт размера позиции</h2>
+<p>Терминал использует продвинутую формулу расчёта, которая учитывает комиссии биржи:</p>
+<pre><code>quantity = risk_usdt &#x2F; (|entry_price - sl_price| + entry_price * fee * 2)
+</code></pre>
+<p><strong>Параметры:</strong></p>
+<ul>
+<li>Taker fee: 0.055%</li>
+<li>Maker fee: 0.02%</li>
+<li>Комиссия умножается на 2 (вход + выход по SL)</li>
+</ul>
+<p><strong>Пример:</strong></p>
+<ul>
+<li>Риск: $10</li>
+<li>Entry: 95000, SL: 94000</li>
+<li>Разница: $1000</li>
+<li>Fee cost: 95000 × 0.00055 × 2 = $104.5</li>
+<li>Total risk per unit: $1104.5</li>
+<li>Quantity: 10 / 1104.5 = 0.00905 BTC</li>
+</ul>
+<h2 id="trailing-stop-tipy-aktivatsii">Trailing Stop: типы активации</h2>
+<h3 id="absoliutnaia-tsena">Абсолютная цена</h3>
+<p><code>:ts 97000 500</code> - активация при достижении цены 97000, callback $500</p>
+<h3 id="protsent">Процент</h3>
+<p><code>:ts 2% 0.5%</code> - активация при росте на 2% от входа, callback 0.5% от текущей цены</p>
+<h3 id="sootnoshenie-ratio">Соотношение (Ratio)</h3>
+<p><code>:ts 1/3 2%</code> - активация на расстоянии в 3 раза больше, чем до Stop Loss</p>
+<p><strong>Формула:</strong> <code>trigger = entry ± (|SL - entry| × denominator/numerator)</code></p>
+<p><strong>Пример:</strong></p>
+<ul>
+<li>Вход: 100</li>
+<li>SL: 101 (риск 1%)</li>
+<li>Ratio: <code>1/3</code></li>
+<li>Trigger: 103 (в 3 раза дальше от входа, чем SL)</li>
+<li>Затем TS движется с callback 2% от текущей цены</li>
+</ul>
+<h2 id="komandy-terminala">Команды терминала</h2>
+<h3 id="bazovye-ordera">Базовые ордера</h3>
+<pre><code>:buy 0.01              # Market buy 0.01 BTC
+:buy 0.01 95000        # Limit buy @ 95000
+:sell 0.01             # Market sell
+:sell 0.01 96000       # Limit sell @ 96000
+</code></pre>
+<h3 id="ordera-s-risk-menedzhmentom">Ордера с риск-менеджментом</h3>
+<pre><code>:buyrisk 10 94000             # Long market, риск $10, SL @ 94000
+:buyrisk 10 94000 95000       # Long limit @ 95000
+:buyrisk 10 94000 - 2         # Long market + TP 2%
+:sellrisk 10 96000            # Short market, риск $10, SL @ 96000
+:sellrisk 10 96000 95000      # Short limit @ 95000
+:sellrisk 10 96000 95000 1.5  # Short limit + TP 1.5%
+</code></pre>
+<h3 id="trailing-stop">Trailing Stop</h3>
+<pre><code>:ts 2% 0.5%            # Активация +2%, callback 0.5%
+:ts 97000 0.5%         # Активация @ 97000, callback 0.5%
+:ts 2% 500             # Активация +2%, callback $500
+:ts 1&#x2F;3 2%             # Активация на ratio 1:3 от SL, callback 2%
+</code></pre>
+<h3 id="auto-stop">Auto-Stop</h3>
+<pre><code>:as 2 0.545            # Таймер 2 сек, триггер @ 0.545
+:as 2 0.2%             # Таймер 2 сек, триггер +0.2%
+</code></pre>
+<p><strong>Логика работы:</strong></p>
+<ul>
+<li>Цену можно скопировать кликом в интерфейсе</li>
+<li>При достижении триггера запускается таймер ликвидности</li>
+<li>Если за 2 секунды нет сделок на бирже - позиция закрывается</li>
+<li>Защита прибыли на быстрых движениях с последующим затуханием</li>
+</ul>
+<h3 id="kombo-komandy">Комбо команды</h3>
+<pre><code>:br 10 94000 | ts 2% 0.5%     # Long + trailing stop
+:sr 10 96000 | ts 2% 0.5%     # Short + trailing stop
+:ca; br 10 94000              # Отменить все + новый ордер
+</code></pre>
+<h3 id="grafik">График</h3>
+<pre><code>:chart                 # Открыть график
+:tf 1s                 # Таймфрейм 1 секунда
+:tf 5s                 # Таймфрейм 5 секунд
+:tf 15                 # Таймфрейм 15 минут
+:tf D                  # Дневной таймфрейм
+:level 95000           # Добавить уровень
+:levels                # Очистить уровни
+:sound                 # Вкл&#x2F;выкл звук трейдов
+</code></pre>
+<h3 id="upravlenie">Управление</h3>
+<pre><code>:cancel abc123         # Отменить ордер
+:cancelall             # Отменить все ордера
+:symbol ETHUSDT        # Сменить символ
+:help                  # Справка
+</code></pre>
+<h3 id="sokrashcheniia-komand">Сокращения команд</h3>
+<ul>
+<li><code>:b</code> = <code>:buy</code></li>
+<li><code>:s</code> = <code>:sell</code></li>
+<li><code>:br</code> = <code>:buyrisk</code></li>
+<li><code>:sr</code> = <code>:sellrisk</code></li>
+<li><code>:ts</code> = <code>:trailing-stop</code></li>
+<li><code>:as</code> = <code>:auto-stop</code></li>
+<li><code>:c</code> = <code>:cancel</code></li>
+<li><code>:ca</code> = <code>:cancelall</code></li>
+<li><code>:sym</code> = <code>:symbol</code></li>
+<li><code>:h</code> = <code>:help</code></li>
+</ul>
+<h2 id="navigatsiia">Навигация</h2>
+<h3 id="osnovnoi-interfeis">Основной интерфейс</h3>
+<ul>
+<li><code>:</code> - Режим ввода команды</li>
+<li><code>Tab</code> - Переключение вкладок</li>
+<li><code>r</code> - Обновить данные</li>
+<li><code>Esc</code> - Выход из режима ввода</li>
+<li><code>q</code> - Выход из программы</li>
+<li><code>Ctrl+C</code> - Принудительный выход</li>
+</ul>
+<h3 id="grafik-1">График</h3>
+<ul>
+<li><code>h</code> - Прокрутка влево (назад во времени)</li>
+<li><code>l</code> - Прокрутка вправо (вперёд во времени)</li>
+<li><code>+</code> / <code>=</code> - Увеличить масштаб</li>
+<li><code>-</code> - Уменьшить масштаб</li>
+<li><code>0</code> - Сбросить к последним свечам</li>
+</ul>
+<h2 id="razviortyvanie">Развёртывание</h2>
+<h3 id="lokal-nyi-zapusk">Локальный запуск</h3>
+<ol>
+<li>Клонировать репозиторий</li>
+<li>Создать <code>.env</code> файл с API ключами:</li>
+</ol>
+<pre><code>BYBIT_API_KEY=your_api_key
+BYBIT_API_SECRET=your_api_secret
+BYBIT_TESTNET=true
+</code></pre>
+<ol start="3">
+<li>Запустить сервер: <code>cargo run --bin trade-server</code></li>
+<li>Запустить клиент: <code>SERVER_URL=ws://127.0.0.1:9000 cargo run --bin trade-client</code></li>
+</ol>
+<h3 id="razviortyvanie-na-vps">Развёртывание на VPS</h3>
+<p>Для минимизации задержки рекомендуется размещать сервер в регионе, близком к серверам бирж (Bybit/Binance: Singapore, Tokyo):</p>
+<ol>
+<li>Установить Docker на VPS</li>
+<li>Создать <code>.env</code> с API ключами</li>
+<li>Запустить: <code>docker-compose up -d</code></li>
+<li>Подключить клиент: <code>SERVER_URL=ws://vps-ip:9000</code></li>
+</ol>
+<h2 id="stsenarii-ispol-zovaniia">Сценарии использования</h2>
+<p>Этот инструмент полезен для:</p>
+<ul>
+<li>Профессиональной торговли криптовалютой с минимальной задержкой</li>
+<li>Скальпинга и внутридневной торговли</li>
+<li>Автоматизации торговых стратегий через pipe и цепочки команд</li>
+<li>Тестирования торговых идей на Testnet</li>
+<li>Удалённой торговли через VPS</li>
+</ul>
+<h2 id="otkrytyi-iskhodnyi-kod">Открытый исходный код</h2>
+<p>Выпущен под лицензией MIT. Проект демонстрирует профессиональные практики разработки высокопроизводительных приложений на Rust и может служить образовательным ресурсом для изучения:</p>
+<ul>
+<li>Архитектуры клиент-сервер на WebSocket</li>
+<li>Работы с биржевыми API</li>
+<li>Разработки TUI приложений</li>
+<li>Риск-менеджмента в торговле</li>
+</ul>
+<h2 id="ssylki">Ссылки</h2>
+<ul>
+<li><strong>Статус</strong>: В стадии разработки (приватный репозиторий)</li>
+<li><strong>Технологии</strong>: Rust, WebSocket, Docker, Bybit API, Binance API</li>
+<li><strong>Лицензия</strong>: MIT</li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

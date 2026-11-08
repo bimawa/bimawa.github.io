@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Bybit and Binance trading terminal with CLI interface and minimal latency">
+
+    <meta property="og:description" content="Bybit and Binance trading terminal with CLI interface and minimal latency">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/projects/TradeTerminal/trade-terminal/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Bybit and Binance trading terminal with CLI interface and minimal latency">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/projects/TradeTerminal/trade-terminal/">
+
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                <a href="https://bimawa.net" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <span class="active">EN</span>
+                    <span class="separator">|</span>
+                    <a href="/ru&#x2F;projects&#x2F;TradeTerminal&#x2F;trade-terminal&#x2F;">RU</a>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net">Blog</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/projects">Projects</a></li>
+            
+                <li><a href="https://bimawa.net/tags">Tags</a></li>
+            
+                <li><a href="https://bimawa.net/archive">Archive</a></li>
+            
+                <li><a href="https://bimawa.net/about">About me</a></li>
+            
+                <li><a href="https://bimawa.net/cv">CV</a></li>
+            
+                <li><a href="https://bimawa.net/contacts">Contacts</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">TradeTerminal</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="tradeterminal">TradeTerminal</h2>
+<p>A universal trading terminal for Bybit and Binance with CLI interface and client-server architecture, designed to minimize exchange latency. Built in Rust, the project provides a powerful toolkit for professional cryptocurrency trading.</p>
+<p><img src="/images/tradeTerminalInterface.png" alt="TradeTerminal Interface" /></p>
+<h2 id="key-features">Key Features</h2>
+<h3 id="trading-operations">Trading Operations</h3>
+<ul>
+<li><strong>Order Placement</strong>: Market and Limit orders with fast execution</li>
+<li><strong>Risk Management</strong>: Automatic position sizing based on USDT risk with exchange fee consideration</li>
+<li><strong>Take Profit</strong>: Exit position setup as percentage from entry</li>
+<li><strong>Trailing Stop</strong>: Flexible trailing stop system with support for:
+<ul>
+<li>Absolute price values and callback in dollars</li>
+<li>Percentages from current price</li>
+<li>Ratios for activation based on distance to Stop Loss</li>
+</ul>
+</li>
+<li><strong>Auto-Stop (AS)</strong>: Smart exit on active markets
+<ul>
+<li>Click on price to copy it for quick input</li>
+<li>Trigger activates when price or percentage is reached</li>
+<li>Liquidity timer (2 sec) - closes position if trading stops</li>
+<li>Perfect for profit taking on volatile moves</li>
+</ul>
+</li>
+<li><strong>Hedge Mode</strong>: Support for simultaneous Long/Short positions on the same instrument</li>
+</ul>
+<span id="continue-reading"></span><h3 id="interface-and-management">Interface and Management</h3>
+<ul>
+<li><strong>CLI Interface</strong>: Convenient command line with command shortcuts</li>
+<li><strong>Pipe Operator</strong>: Combine commands via <code>|</code> to create complex scenarios
+<ul>
+<li>Example: <code>:br 10 94000 | ts 2% 0.5%</code> - open position and immediately set trailing stop</li>
+</ul>
+</li>
+<li><strong>Command Chains</strong>: Sequential execution via <code>;</code>
+<ul>
+<li>Example: <code>:ca; br 10 94000</code> - cancel all orders and open new position</li>
+</ul>
+</li>
+<li><strong>State Viewing</strong>: Display open orders, active positions and current balance</li>
+<li><strong>Order Management</strong>: Cancel individual orders or all at once</li>
+<li><strong>Multi-symbol</strong>: Quick switching between trading pairs</li>
+</ul>
+<h3 id="chart-and-visualization">Chart and Visualization</h3>
+<ul>
+<li><strong>Built-in Chart</strong>: Interactive chart with multiple timeframe support</li>
+<li><strong>Sub-second Timeframes</strong>: Unique ability to work with 1s, 5s, 10s, 30s timeframes
+<ul>
+<li>Uses real tick data from the exchange</li>
+<li>Aggregation happens on client for maximum accuracy</li>
+<li>Displays real trades without additional server load</li>
+</ul>
+</li>
+<li><strong>Standard Timeframes</strong>: From 1 minute to daily candles (15m, 1h, 4h, D, etc.)</li>
+<li><strong>Price Levels</strong>: Add and remove horizontal levels</li>
+<li><strong>Navigation</strong>: Scroll history, zoom, auto-follow last price</li>
+<li><strong>Sound Indication</strong>: Optional audio signals on exchange trades
+<ul>
+<li>High tone - buy, low - sell</li>
+<li>Frequency increases with trading activity</li>
+</ul>
+</li>
+</ul>
+<h3 id="architecture">Architecture</h3>
+<ul>
+<li><strong>Client-Server</strong>: Logic separation for latency optimization</li>
+<li><strong>WebSocket</strong>: Persistent connection for instant data reception</li>
+<li><strong>Auto-update</strong>: Automatic position and order data updates</li>
+<li><strong>Docker Support</strong>: Easy VPS deployment to minimize latency to exchange servers</li>
+</ul>
+<h2 id="technology-stack">Technology Stack</h2>
+<ul>
+<li><strong>Language</strong>: Rust (high performance and memory safety)</li>
+<li><strong>Protocol</strong>: WebSocket for real-time communication</li>
+<li><strong>Exchanges</strong>:
+<ul>
+<li>Bybit API v5 (Testnet and Production)</li>
+<li>Binance API (Spot and Futures)</li>
+</ul>
+</li>
+<li><strong>Deployment</strong>: Docker, Docker Compose</li>
+<li><strong>UI</strong>: TUI (Text User Interface) with tab support</li>
+</ul>
+<h2 id="position-size-calculation">Position Size Calculation</h2>
+<p>The terminal uses an advanced calculation formula that accounts for exchange fees:</p>
+<pre><code>quantity = risk_usdt &#x2F; (|entry_price - sl_price| + entry_price * fee * 2)
+</code></pre>
+<p><strong>Parameters:</strong></p>
+<ul>
+<li>Taker fee: 0.055%</li>
+<li>Maker fee: 0.02%</li>
+<li>Fee multiplied by 2 (entry + SL exit)</li>
+</ul>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Risk: $10</li>
+<li>Entry: 95000, SL: 94000</li>
+<li>Difference: $1000</li>
+<li>Fee cost: 95000 × 0.00055 × 2 = $104.5</li>
+<li>Total risk per unit: $1104.5</li>
+<li>Quantity: 10 / 1104.5 = 0.00905 BTC</li>
+</ul>
+<h2 id="trailing-stop-activation-types">Trailing Stop: Activation Types</h2>
+<h3 id="absolute-price">Absolute Price</h3>
+<p><code>:ts 97000 500</code> - activate when price reaches 97000, callback $500</p>
+<h3 id="percentage">Percentage</h3>
+<p><code>:ts 2% 0.5%</code> - activate on 2% growth from entry, callback 0.5% from current price</p>
+<h3 id="ratio">Ratio</h3>
+<p><code>:ts 1/3 2%</code> - activate at distance 3 times greater than to Stop Loss</p>
+<p><strong>Formula:</strong> <code>trigger = entry ± (|SL - entry| × denominator/numerator)</code></p>
+<p><strong>Example:</strong></p>
+<ul>
+<li>Entry: 100</li>
+<li>SL: 101 (1% risk)</li>
+<li>Ratio: <code>1/3</code></li>
+<li>Trigger: 103 (3 times further from entry than SL)</li>
+<li>Then TS moves with 2% callback from current price</li>
+</ul>
+<h2 id="terminal-commands">Terminal Commands</h2>
+<h3 id="basic-orders">Basic Orders</h3>
+<pre><code>:buy 0.01              # Market buy 0.01 BTC
+:buy 0.01 95000        # Limit buy @ 95000
+:sell 0.01             # Market sell
+:sell 0.01 96000       # Limit sell @ 96000
+</code></pre>
+<h3 id="orders-with-risk-management">Orders with Risk Management</h3>
+<pre><code>:buyrisk 10 94000             # Long market, $10 risk, SL @ 94000
+:buyrisk 10 94000 95000       # Long limit @ 95000
+:buyrisk 10 94000 - 2         # Long market + TP 2%
+:sellrisk 10 96000            # Short market, $10 risk, SL @ 96000
+:sellrisk 10 96000 95000      # Short limit @ 95000
+:sellrisk 10 96000 95000 1.5  # Short limit + TP 1.5%
+</code></pre>
+<h3 id="trailing-stop">Trailing Stop</h3>
+<pre><code>:ts 2% 0.5%            # Activation +2%, callback 0.5%
+:ts 97000 0.5%         # Activation @ 97000, callback 0.5%
+:ts 2% 500             # Activation +2%, callback $500
+:ts 1&#x2F;3 2%             # Activation on 1:3 ratio from SL, callback 2%
+</code></pre>
+<h3 id="auto-stop">Auto-Stop</h3>
+<pre><code>:as 2 0.545            # 2 sec timer, trigger @ 0.545
+:as 2 0.2%             # 2 sec timer, trigger +0.2%
+</code></pre>
+<p><strong>Logic:</strong></p>
+<ul>
+<li>Price can be copied by clicking in the interface</li>
+<li>When trigger is reached, liquidity timer starts</li>
+<li>If no trades occur on exchange in 2 seconds - position closes</li>
+<li>Profit protection on fast moves with subsequent fade</li>
+</ul>
+<h3 id="combo-commands">Combo Commands</h3>
+<pre><code>:br 10 94000 | ts 2% 0.5%     # Long + trailing stop
+:sr 10 96000 | ts 2% 0.5%     # Short + trailing stop
+:ca; br 10 94000              # Cancel all + new order
+</code></pre>
+<h3 id="chart">Chart</h3>
+<pre><code>:chart                 # Open chart
+:tf 1s                 # 1 second timeframe
+:tf 5s                 # 5 second timeframe
+:tf 15                 # 15 minute timeframe
+:tf D                  # Daily timeframe
+:level 95000           # Add level
+:levels                # Clear levels
+:sound                 # Toggle trade sound
+</code></pre>
+<h3 id="management">Management</h3>
+<pre><code>:cancel abc123         # Cancel order
+:cancelall             # Cancel all orders
+:symbol ETHUSDT        # Change symbol
+:help                  # Help
+</code></pre>
+<h3 id="command-shortcuts">Command Shortcuts</h3>
+<ul>
+<li><code>:b</code> = <code>:buy</code></li>
+<li><code>:s</code> = <code>:sell</code></li>
+<li><code>:br</code> = <code>:buyrisk</code></li>
+<li><code>:sr</code> = <code>:sellrisk</code></li>
+<li><code>:ts</code> = <code>:trailing-stop</code></li>
+<li><code>:as</code> = <code>:auto-stop</code></li>
+<li><code>:c</code> = <code>:cancel</code></li>
+<li><code>:ca</code> = <code>:cancelall</code></li>
+<li><code>:sym</code> = <code>:symbol</code></li>
+<li><code>:h</code> = <code>:help</code></li>
+</ul>
+<h2 id="navigation">Navigation</h2>
+<h3 id="main-interface">Main Interface</h3>
+<ul>
+<li><code>:</code> - Command input mode</li>
+<li><code>Tab</code> - Switch tabs</li>
+<li><code>r</code> - Refresh data</li>
+<li><code>Esc</code> - Exit input mode</li>
+<li><code>q</code> - Exit program</li>
+<li><code>Ctrl+C</code> - Force exit</li>
+</ul>
+<h3 id="chart-1">Chart</h3>
+<ul>
+<li><code>h</code> - Scroll left (back in time)</li>
+<li><code>l</code> - Scroll right (forward in time)</li>
+<li><code>+</code> / <code>=</code> - Zoom in</li>
+<li><code>-</code> - Zoom out</li>
+<li><code>0</code> - Reset to last candles</li>
+</ul>
+<h2 id="deployment">Deployment</h2>
+<h3 id="local-run">Local Run</h3>
+<ol>
+<li>Clone repository</li>
+<li>Create <code>.env</code> file with API keys:</li>
+</ol>
+<pre><code>BYBIT_API_KEY=your_api_key
+BYBIT_API_SECRET=your_api_secret
+BYBIT_TESTNET=true
+</code></pre>
+<ol start="3">
+<li>Start server: <code>cargo run --bin trade-server</code></li>
+<li>Start client: <code>SERVER_URL=ws://127.0.0.1:9000 cargo run --bin trade-client</code></li>
+</ol>
+<h3 id="vps-deployment">VPS Deployment</h3>
+<p>To minimize latency, it's recommended to place the server in a region close to exchange servers (Bybit/Binance: Singapore, Tokyo):</p>
+<ol>
+<li>Install Docker on VPS</li>
+<li>Create <code>.env</code> with API keys</li>
+<li>Run: <code>docker-compose up -d</code></li>
+<li>Connect client: <code>SERVER_URL=ws://vps-ip:9000</code></li>
+</ol>
+<h2 id="use-cases">Use Cases</h2>
+<p>This tool is useful for:</p>
+<ul>
+<li>Professional cryptocurrency trading with minimal latency</li>
+<li>Scalping and intraday trading</li>
+<li>Automating trading strategies via pipes and command chains</li>
+<li>Testing trading ideas on Testnet</li>
+<li>Remote trading via VPS</li>
+</ul>
+<h2 id="open-source">Open Source</h2>
+<p>Released under MIT license. The project demonstrates professional practices for developing high-performance Rust applications and can serve as an educational resource for learning:</p>
+<ul>
+<li>Client-server architecture on WebSocket</li>
+<li>Working with exchange APIs</li>
+<li>TUI application development</li>
+<li>Trading risk management</li>
+</ul>
+<h2 id="links">Links</h2>
+<ul>
+<li><strong>Status</strong>: In development (private repository)</li>
+<li><strong>Technologies</strong>: Rust, WebSocket, Docker, Bybit API, Binance API</li>
+<li><strong>License</strong>: MIT</li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/privacy/">Privacy Policy</a>
+                <span class="footer-sep">|</span>
+                <a href="/terms/">User Agreement</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="kqs — Git-native платформа знаний: документация и задачи в Markdown + Git, офлайн-поиск, AI из CLI и трассировка требований до кода в одном бинарнике">
+
+    <meta property="og:description" content="kqs — Git-native платформа знаний: документация и задачи в Markdown + Git, офлайн-поиск, AI из CLI и трассировка требований до кода в одном бинарнике">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/KnowledgeQuery/welcome/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="kqs — Git-native платформа знаний: документация и задачи в Markdown + Git, офлайн-поиск, AI из CLI и трассировка требований до кода в одном бинарнике">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/KnowledgeQuery/welcome/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <link rel="stylesheet" href="/projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;KnowledgeQuery&#x2F;welcome&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="post project-page">
+    <h1 class="post-title">Добро пожаловать в KnowledgeQuery</h1>
+
+    
+
+    
+
+    <div class="project-content">
+        <div class="post-content">
+            <h2 id="knowledgequery">KnowledgeQuery</h2>
+<p><strong>kqs</strong> — Git-native платформа для управления знаниями и документацией. Документация, задачи, спецификации данных и связи между ними — обычные Markdown-файлы в Git-репозитории, а один бинарник <code>kqs</code> добавляет к ним поиск, AI-ассистента, трекинг задач и трассировку требований до кода. Без серверов, без внешних баз данных, без vendor lock.</p>
+<h3 id="zachem-eto-nuzhno">Зачем это нужно</h3>
+<p>Obsidian и любой markdown-редактор отлично подходят для чтения и редактирования заметок. Но за пределами одной папки начинаются проблемы: нет синхронизации между репозиториями, нет кросс-репозиторного поиска, документация живёт отдельно от кода, и никто не знает, покрыты ли требования реализацией.</p>
+<p>kqs не заменяет Obsidian — он дополняет его тем, чего там нет: multi-repo sync, полнотекстовый и семантический поиск, AI-ассистент в CLI, задачи в Git и глубокая трассировка цепочки «требование → дизайн → код».</p>
+<span id="continue-reading"></span><h3 id="vozmozhnosti">Возможности</h3>
+<ul>
+<li><strong>Двойной режим</strong> — <code>--dev</code> для разработчика (сканирование кода, проверки) и <code>--doc</code> для knowledge-репозитория (полный доступ, создание документов).</li>
+<li><strong>Цепочка документов</strong> — от идеи до данных: <code>idea → bft → brd/frd/nfr → adr → rfc → tz → typespec → code</code>.</li>
+<li><strong>Поиск</strong> — полнотекстовый (SQLite FTS5) и векторный (sqlite-vec + Candle, полностью офлайн).</li>
+<li><strong>AI-ассистент</strong> — <code>kqs ask</code> через Ollama, OpenAI или Anthropic любой llm etc..</li>
+<li><strong>Задачи в Git</strong> — один файл = одна задача, CRDT-события вместо перезаписи, никаких merge-конфликтов.</li>
+<li><strong>Watcher</strong> — авто-коммит изменений; push — только по команде <code>kqs push</code>.</li>
+<li><strong>README на автопилоте</strong> — канбан-доска задач и оглавление документов обновляются автоматически.</li>
+<li><strong>Трассировка</strong> — аннотации <code>@doc-anchor</code> в коде, проверка цепочек требований, поиск сирот и устаревших связей.</li>
+<li><strong>llm-help</strong> - контекст для llm для правильного использования kqs.</li>
+</ul>
+<h3 id="tsepochka-dokumentov">Цепочка документов</h3>
+<p>Каждый тип документа отвечает на свой вопрос:</p>
+<table><thead><tr><th>Тип</th><th>Вопрос</th></tr></thead><tbody>
+<tr><td><code>idea</code></td><td>Стоит ли думать об этом?</td></tr>
+<tr><td><code>bft</code></td><td>Чего хочет бизнес и зачем?</td></tr>
+<tr><td><code>brd</code> / <code>frd</code> / <code>nfr</code></td><td>Что должна делать система?</td></tr>
+<tr><td><code>adr</code></td><td>Какое решение принято и почему?</td></tr>
+<tr><td><code>rfc</code></td><td>Что предлагается обсудить?</td></tr>
+<tr><td><code>tz</code></td><td>Как это устроено технически?</td></tr>
+<tr><td><code>typespec</code></td><td>Какие данные реализует код?</td></tr>
+<tr><td><code>code</code></td><td>Реализация, связанная с документацией</td></tr>
+</tbody></table>
+<h3 id="trassirovka-dokumentatsii-i-koda">Трассировка документации и кода</h3>
+<p>Разработчик помечает код аннотацией:</p>
+<pre data-lang="swift" class="language-swift "><code class="language-swift" data-lang="swift">&#x2F;&#x2F; @doc-anchor SecureTokenStorage
+&#x2F;&#x2F; @see docs:&#x2F;&#x2F;architecture&#x2F;ADR-001.md
+class KeychainStorage: TokenStorable { }
+</code></pre>
+<p><code>kqs check scan</code> находит такие аннотации по всем проектам из конфига и строит граф <code>BFT-001 → ADR-001 → TZ-001 → TypeSpec → @doc-anchor → код</code>. <code>kqs check traceability-deep</code> проверяет полноту цепочек требований, <code>kqs check orphans</code> находит документы без связей, а сироты-анкоры превращаются в задачи автоматически.</p>
+<h3 id="ustanovka">Установка</h3>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">cargo install kqs
+</code></pre>
+<p>Или скачай бинарник из <a href="https://github.com/bimawa/KnowledgeQuery/releases">GitHub Releases</a>.</p>
+<h3 id="bystryi-start">Быстрый старт</h3>
+<pre data-lang="sh" class="language-sh "><code class="language-sh" data-lang="sh">kqs init --path ~&#x2F;knowledge --remote https:&#x2F;&#x2F;github.com&#x2F;user&#x2F;knowledge.git
+kqs doc new adr &quot;Database Choice&quot;       # → docs&#x2F;03-architecture&#x2F;adr-001-*.md
+kqs search &quot;system architecture&quot;        # полнотекстовый + векторный
+kqs task new --title &quot;Implement search&quot; --priority high
+kqs check traceability-deep --deep      # полнота цепочек требований
+kqs push                                # readme-gen → push
+</code></pre>
+<h3 id="ssylki">Ссылки</h3>
+<ul>
+<li>Репозиторий: <a href="https://github.com/bimawa/KnowledgeQuery">bimawa/KnowledgeQuery</a></li>
+<li>crates.io: <a href="https://crates.io/crates/kqs"><code>kqs</code></a></li>
+</ul>
+
+        </div>
+
+    </div>
+
+    
+</div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+</body>
+
+</html>

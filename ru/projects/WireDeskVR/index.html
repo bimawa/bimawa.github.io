@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="">
+
+    <meta property="og:description" content="">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://bimawa.net/ru/projects/WireDeskVR/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/projects/WireDeskVR/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;projects&#x2F;WireDeskVR&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li class="active"><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+<div class="posts">
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.net/ru/projects/WireDeskVR/wiredesk-agent/">WireDeskVR</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-20
+        </span>
+
+    </div>
+
+    
+
+            <div class="post-content">
+            <h2 id="tsel">Цель</h2>
+<p>Начальный этап и первый шаг включают создание функциональности захвата экрана для агента, позволяющей транслировать, транскодировать и передавать захваченный контент по сети.</p>
+<h2 id="proekt">Проект</h2>
+<p>Сначала мы создаём отдельный проект для изучения возможностей. Поскольку это агент, он будет работать на macOS как сервис или фоновый демон. Его основная задача проста — поскольку у него нет UI, мы реализуем его на Swift и Swift Package Manager как стандартный исполняемый файл.</p>
+<h2 id="iskhodnyi-kod">Исходный код</h2>
+<p>Основная функция агента инициализирует сокет для каждого обнаруженного дисплея. Посмотрим, как эта функциональность будет работать.</p>
+<pre data-lang="Swift" class="language-Swift "><code class="language-Swift" data-lang="Swift">
+    func start() async throws {
+        let sender = NetworkSender(host: &quot;127.0.0.1&quot;, port: port); sender.start(); self.network = sender
+
+        let content = try await SCShareableContent.current
+        guard let display = content.displays.first(where: { $0.displayID == displayID }) else { return }
+
+        let encoder = VideoEncoder(width: display.width, height: display.height, bitrate: 20_000_000)
+        encoder.delegate = self; self.encoder = encoder
+
+        let captureSession = ScreenCapture(displayID: displayID)
+        captureSession.delegate = self
+        self.capture = captureSession
+
+        try await captureSession.start()
+    }
+</code></pre>
+
+        </div>
+
+        </div>
+    
+        <div class="post on-list">
+            
+    <h1 class="post-title"><a href="https://bimawa.net/ru/projects/WireDeskVR/wiredeskvr/">WireDeskVR</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2023-05-15
+        </span>
+
+    </div>
+
+    
+
+            <div class="post-content">
+            <h2 id="opisanie-proekta">Описание проекта</h2>
+<p>WireDeskVR — это VR-приложение, позволяющее пользователям работать с интерфейсом WireDesk в виртуальной реальности. Проект реализует полноценную виртуальную рабочую среду с возможностью взаимодействия с элементами интерфейса с помощью жестов и контроллеров. На данном этапе это proof of concept для понимания технической реализуемости. Также были изучены конкуренты и идеи, циркулирующие в сообществе. Предстоит много исследований, и мы столкнёмся со множеством новых задач.</p>
+<h2 id="tekhnologii">Технологии</h2>
+<ul>
+<li>Swift</li>
+<li>ARKit / RealityKit</li>
+<li>Metal</li>
+<li>Core Motion</li>
+<li>SceneKit</li>
+<li>UnrealEngine</li>
+<li>Android</li>
+<li>Oculus/Meta Quest</li>
+</ul>
+<h2 id="vozmozhnosti">Возможности</h2>
+<ul>
+<li>3D-взаимодействие с интерфейсом</li>
+<li>Поддержка различных типов контроллеров</li>
+<li>Интеграция с WireDesk API</li>
+<li>Оптимизация производительности для VR-устройств</li>
+</ul>
+<p>У меня давно, ещё с детства, была мечта создать виртуальный рабочий стол для работы с компьютером. Сегодня технологии не только позволяют достичь этого, но и реализовать это с помощью искусственного интеллекта. Этот проект — скорее тест для понимания того, насколько технологии сегодня способны помочь в достижении этой цели. Основная идея первого этапа — создать NoLatency, передавая видеоданные с экранов MacBook на Oculus Quest. На последующих этапах планируется внедрить систему плагинов и собственный бинарный протокол для унификации данных от других приложений и других пользователей в VR.</p>
+<h2 id="dorozhnaia-karta">Дорожная карта</h2>
+<ol>
+<li>Установить стабильное соединение и настроить рабочие станции.</li>
+<li>Изучить и проанализировать свободное пространство ресурсов компьютера, а также системы Oculus. Если ресурсы позволяют управлять экранами, также рассмотреть создание игровой зоны в виртуальной реальности, чтобы пользователи могли снять эмоциональную нагрузку, разрушая что-нибудь в VR.</li>
+<li>Шаринг экрана и социальный компонент не взлетели и не популярны среди конкурентов, поэтому эту часть опускаем. На третьем этапе сразу переходим к бета-тестированию бинарного протокола для передачи пользовательских данных с macOS и хоста на VR-шлемы.</li>
+<li>Систематизировать и стандартизировать протокол, а также начать разработку маркетплейса для пользователей.</li>
+<li>Захватить мир и найти того, кому его продать.</li>
+</ol>
+
+        </div>
+
+        </div>
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

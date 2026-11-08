@@ -1,0 +1,651 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+    <title></title>
+    
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1">
+    <meta name="robots" content="noodp"/>
+
+    <link rel="stylesheet" href="https://bimawa.net/style.css">
+    <link rel="stylesheet" href="https://bimawa.net/color/blue-light.css">
+
+        <link rel="stylesheet" href="https://bimawa.net/color/background_dark.css">
+    
+    <link rel="stylesheet" href="https://bimawa.net/font-hack.css">
+
+    <meta name="description" content="Практическое руководство по созданию пользовательских правил автоматизации рабочих процессов в JetBrains YouTrack с использованием JavaScript, с реальными примерами для контроля учёта времени и переходов состояний.">
+
+    <meta property="og:description" content="Практическое руководство по созданию пользовательских правил автоматизации рабочих процессов в JetBrains YouTrack с использованием JavaScript, с реальными примерами для контроля учёта времени и переходов состояний.">
+    <meta property="og:title" content="">
+    <meta property="og:type" content="article">
+    <meta property="og:url" content="https://bimawa.net/ru/blog/youtrack-workflow/">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:description" content="Практическое руководство по созданию пользовательских правил автоматизации рабочих процессов в JetBrains YouTrack с использованием JavaScript, с реальными примерами для контроля учёта времени и переходов состояний.">
+    <meta name="twitter:title" content="">
+    <meta property="twitter:domain" content="bimawa.net">
+    <meta property="twitter:url" content="https://bimawa.net/ru/blog/youtrack-workflow/">
+
+                <link rel="alternate" type="application/atom+xml" title=" Atom Feed" href="https://bimawa.net/ru/atom.xml" />
+        <link rel="shortcut icon" type="image/ico" href="/favicon.ico">
+    <style>
+        .lang-switcher {
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 0.9em;
+        }
+        .lang-switcher a {
+            color: var(--accent-color);
+            text-decoration: none;
+            padding: 0 5px;
+        }
+        .lang-switcher a:hover {
+            text-decoration: underline;
+        }
+        .lang-switcher .active {
+            font-weight: bold;
+        }
+        .lang-switcher .separator {
+            color: var(--font-color);
+        }
+        .footer__inner {
+            flex-wrap: wrap;
+        }
+        .footer-links {
+            margin-top: 10px;
+            font-size: 0.85em;
+            width: 100%;
+            text-align: center;
+            flex-basis: 100%;
+        }
+        .footer-links a {
+            color: var(--accent-color);
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .footer-sep {
+            margin: 0 8px;
+            color: var(--font-color);
+        }
+    </style>
+    <meta name="description" content="Bimawa's blog"/>
+    <meta name="keywords" content="Hacking, Programming, R&D"/>
+    <link rel="stylesheet" href="/projects.css">
+    <link rel="stylesheet" href="/menu-projects.css">
+</head>
+
+<body class="">
+<div class="container">
+    
+    <header class="header">
+        <div class="header__inner" style="position: relative;">
+            <div class="header__logo">
+                    
+                
+                    
+                <a href="https://bimawa.net/ru" style="text-decoration: none;">
+                    <div class="logo">
+                      
+                            Bimawa&#x27;s blog
+                        
+                    </div>
+                </a>
+            </div>
+            <div class="lang-switcher">
+                    <a href="&#x2F;blog&#x2F;youtrack-workflow&#x2F;">EN</a>
+                    <span class="separator">|</span>
+                    <span class="active">RU</span>
+            </div>
+        </div>
+
+        
+        <nav class="menu">
+            <ul class="menu__inner">
+                <li class="active"><a href="https://bimawa.net/ru">Блог</a></li>
+            
+                <li><a href="https://bimawa.net/ru/projects">Проекты</a></li>
+            
+                <li><a href="https://bimawa.net/ru/tags">Теги</a></li>
+            
+                <li><a href="https://bimawa.net/ru/archive">Архив</a></li>
+            
+                <li><a href="https://bimawa.net/ru/about">Обо мне</a></li>
+            
+                <li><a href="https://bimawa.net/ru/cv">Резюме</a></li>
+            
+                <li><a href="https://bimawa.net/ru/contacts">Контакты</a></li>
+            </ul>
+        </nav>
+    
+        
+    </header>
+    
+
+    <div class="content">
+        
+    <div class="post">
+        
+    <h1 class="post-title"><a href="https://bimawa.net/ru/blog/youtrack-workflow/">Автоматизация рабочих процессов в YouTrack с помощью JavaScript-правил</a></h1>
+    <div class="post-meta-inline">
+        
+    <span class="post-date">
+            2025-11-16
+        </span>
+
+    </div>
+
+    
+        <span class="post-tags-inline">
+                :: tags:&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/automation/">#automation</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/javascript/">#javascript</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/project-management/">#project-management</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/workflow/">#workflow</a>&nbsp;
+                <a class="post-tag" href="https://bimawa.net/tags/youtrack/">#youtrack</a></span>
+    
+
+        <div class="post-content">
+            <h1 id="vvedenie">Введение</h1>
+<p>JetBrains YouTrack предоставляет мощный движок рабочих процессов, который позволяет командам автоматизировать и применять политики управления проектами с помощью JavaScript. В отличие от простых переходов статусов, рабочие процессы YouTrack могут валидировать данные, применять бизнес-правила и обеспечивать согласованность в процессе разработки.</p>
+<p>В этой статье рассматривается практическая автоматизация рабочих процессов на трёх реальных примерах: валидация развёртывания тестового окружения, контроль учёта времени и обеспечение оценки задач. Эти паттерны применимы для любой команды, использующей YouTrack для agile-разработки.</p>
+<h2 id="zachem-nuzhna-avtomatizatsiia-rabochikh-protsessov">Зачем нужна автоматизация рабочих процессов?</h2>
+<p>Ручное применение политик проекта подвержено ошибкам и требует много времени. Типичные проблемы включают:</p>
+<ul>
+<li><strong>Неполный учёт времени</strong>: разработчики забывают логировать затраченное время</li>
+<li><strong>Отсутствие оценок</strong>: задачи переходят в статус «В работе» без оценки трудозатрат</li>
+<li><strong>Некорректные переходы состояний</strong>: тестовые сборки случайно развёртываются в продакшен</li>
+<li><strong>Несогласованные процессы</strong>: разные члены команды следуют разным рабочим процессам</li>
+</ul>
+<p>JavaScript-рабочие процессы YouTrack решают эти проблемы:</p>
+<ol>
+<li><strong>Предотвращение недопустимых переходов</strong>: блокировка изменений состояния, нарушающих политики</li>
+<li><strong>Обеспечение обязательных полей</strong>: гарантия захвата критически важных данных</li>
+<li><strong>Валидация бизнес-логики</strong>: программная реализация сложных правил</li>
+<li><strong>Мгновенная обратная связь</strong>: показ понятных сообщений об ошибках пользователям</li>
+</ol>
+<span id="continue-reading"></span><h2 id="osnovy-rabochikh-protsessov-youtrack">Основы рабочих процессов YouTrack</h2>
+<h3 id="struktura-rabochego-protsessa">Структура рабочего процесса</h3>
+<p>Каждое правило рабочего процесса YouTrack следует этому паттерну:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">const entities = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;entities&#x27;);
+const workflow = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;workflow&#x27;);
+
+exports.rule = entities.Issue.onChange({
+  title: &#x27;Rule_Name&#x27;,
+  
+  guard: (ctx) =&gt; {
+    &#x2F;&#x2F; Когда должно выполняться это правило?
+    return ctx.issue.fields.isChanged(ctx.State);
+  },
+  
+  action: (ctx) =&gt; {
+    &#x2F;&#x2F; Что должно произойти?
+    workflow.check(condition, &#x27;Сообщение об ошибке&#x27;);
+  },
+  
+  requirements: {
+    &#x2F;&#x2F; Определение обязательных полей и их типов
+    State: {
+      type: entities.State.fieldType,
+      IP: { name: &#x27;In Progress&#x27; }
+    }
+  }
+});
+</code></pre>
+<h3 id="kliuchevye-komponenty">Ключевые компоненты</h3>
+<p><strong>Guard</strong>: Определяет, когда выполняется правило. Обычно проверяет, изменились ли определённые поля или достигли определённых значений.</p>
+<p><strong>Action</strong>: Содержит логику валидации или автоматизации. Использует <code>workflow.check()</code> для применения правил.</p>
+<p><strong>Requirements</strong>: Объявляет зависимости полей и определяет именованные константы для значений полей.</p>
+<h2 id="primer-1-validatsiia-razviortyvaniia-testovogo-okruzheniia">Пример 1: Валидация развёртывания тестового окружения</h2>
+<h3 id="problema">Проблема</h3>
+<p>Наша команда использует семантическое версионирование со специальным паттерном для тестов: <code>v0.0.0(BUILD_NUMBER)</code> для тестовых/QA-сборок. Когда тестировщики заканчивают проверку тестовой сборки, они могут случайно перевести её в статус «Production Ready» или «Done» вместо того, чтобы вернуть разработчикам для code review и слияния в основную ветку.</p>
+<h3 id="reshenie">Решение</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">const entities = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;entities&#x27;);
+const workflow = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;workflow&#x27;);
+
+exports.rule = entities.Issue.onChange({
+  title: &#x27;Testqa_should_be_code_review&#x27;,
+  
+  guard: (ctx) =&gt; {
+    &#x2F;&#x2F; Паттерн для определения тестовых QA-версий: v0.0.0(123)
+    const testQAVersion = new RegExp(&#x2F;v0\.0\.0\(\d*\)&#x2F;, &#x27;i&#x27;);
+    const isTestQA = testQAVersion.exec(
+      ctx.issue.fields.oldValue(ctx[&#x27;Fix version&#x27;])
+    ) != null;
+    
+    &#x2F;&#x2F; Выполнять только когда:
+    &#x2F;&#x2F; 1. Состояние изменилось
+    &#x2F;&#x2F; 2. Переход в финальные состояния
+    &#x2F;&#x2F; 3. Переход из QA (Staging)
+    &#x2F;&#x2F; 4. Fix version — тестовая сборка
+    return ctx.issue.fields.isChanged(ctx.State) &amp;&amp; 
+    (
+      ctx.issue.fields.becomes(ctx.State, ctx.State.SR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.PR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.QAP) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.DONE)
+    ) &amp;&amp;
+    ctx.issue.fields.was(ctx.State, ctx.State.QAS) &amp;&amp; 
+    isTestQA;
+  },
+  
+  action: (ctx) =&gt; {
+    workflow.check(
+      false,
+      &quot;Это задача TestQA! После тестирования нужно вернуть её &quot; +
+      &quot;разработчикам для Code Review. Для слияния в &#x27;Base&#x27; ветку!&quot;
+    );
+  },
+  
+  requirements: {
+    State: {
+      type: entities.State.fieldType,
+      CR: { name: &#x27;Code Review&#x27;},
+      DONE: { name: &#x27;Done&#x27;},
+      PR: { name: &#x27;Production Ready&#x27;},
+      SR: { name: &#x27;Staging Ready&#x27;},
+      QAS: { name: &#x27;QA (Staging)&#x27;},
+      QAP: { name: &#x27;QA (Production)&#x27;},
+    },
+    &quot;Fix version&quot;: {
+      type: entities.Field.stringType,
+    }
+  }
+});
+</code></pre>
+<h3 id="kak-eto-rabotaet">Как это работает</h3>
+<ol>
+<li><strong>Определение версии</strong>: использует regex для идентификации тестовых сборок по паттерну версии</li>
+<li><strong>Валидация состояния</strong>: проверяет переход из QA в финальные состояния</li>
+<li><strong>Предотвращение ошибок</strong>: блокирует переход с понятным объяснением</li>
+<li><strong>Руководство пользователю</strong>: сообщение объясняет правильный рабочий процесс</li>
+</ol>
+<h3 id="kliuchevye-tekhniki">Ключевые техники</h3>
+<p><strong>Сопоставление с regex-паттерном</strong>: <code>new RegExp(/v0\.0\.0\(\d*\)/, 'i')</code> соответствует версиям типа <code>v0.0.0(42)</code></p>
+<p><strong>Доступ к старому значению</strong>: <code>ctx.issue.fields.oldValue(ctx['Fix version'])</code> проверяет предыдущее значение поля до изменения</p>
+<p><strong>Проверка нескольких состояний</strong>: комбинирует несколько вызовов <code>becomes()</code> с логикой OR для перехвата всех проблемных переходов</p>
+<p><strong>Проверка с всегда ложным условием</strong>: <code>workflow.check(false, ...)</code> всегда предотвращает переход, действуя как жёсткая блокировка</p>
+<h2 id="primer-2-kontrol-uchiota-vremeni">Пример 2: Контроль учёта времени</h2>
+<h3 id="problema-1">Проблема</h3>
+<p>Разработчики часто забывают логировать затраченное время перед продвижением задач. Это приводит к неточным отчётам о спринтах и затрудняет оценку будущей работы.</p>
+<h3 id="reshenie-1">Решение</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">const entities = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;entities&#x27;);
+const dateTime = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;date-time&#x27;);
+const workflow = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;workflow&#x27;);
+
+exports.rule = entities.Issue.onChange({
+  title: &#x27;Check_spend_time&#x27;,
+  
+  guard: (ctx) =&gt; {
+    &#x2F;&#x2F; Выполнять при переходе в любое из этих состояний
+    return ctx.issue.fields.isChanged(ctx.State) &amp;&amp; (
+      ctx.issue.fields.becomes(ctx.State, ctx.State.CR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.DONE) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.PR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.SR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.QAS)
+    );
+  },
+  
+  action: (ctx) =&gt; {
+    const spentTimeNull = ctx.issue.fields[&quot;Spent Time&quot;] === null;
+    const zeroTime = ctx.issue.fields.is(
+      ctx[&quot;Spent Time&quot;], 
+      dateTime.toPeriod(0)
+    );
+    const isValidSpentTime = !(zeroTime || spentTimeNull);
+    
+    workflow.check(
+      isValidSpentTime, 
+      workflow.i18n(&#x27;Затраченное время равно 0м, пожалуйста, обновите значение.&#x27;)
+    );
+  },
+  
+  requirements: {
+    State: {
+      type: entities.State.fieldType,
+      CR: { name: &#x27;Code Review&#x27;},
+      DONE: { name: &#x27;Done&#x27;},
+      PR: { name: &#x27;Production Ready&#x27;},
+      SR: { name: &#x27;Staging Ready&#x27;},
+      QAS: { name: &#x27;QA (Staging)&#x27;},
+    },
+    &quot;Spent Time&quot;: {
+      type: entities.Field.periodType
+    }
+  }
+});
+</code></pre>
+<h3 id="kak-eto-rabotaet-1">Как это работает</h3>
+<ol>
+<li><strong>Точки срабатывания</strong>: активируется при переходе в ключевые состояния рабочего процесса</li>
+<li><strong>Проверки на null</strong>: валидирует, что поле «Spent Time» существует и имеет значение</li>
+<li><strong>Обнаружение нуля</strong>: проверяет, явно ли время равно нулю с помощью <code>dateTime.toPeriod(0)</code></li>
+<li><strong>Логика валидации</strong>: комбинирует обе проверки с отрицанием</li>
+<li><strong>Обратная связь пользователю</strong>: предоставляет понятное сообщение о том, что нужно исправить</li>
+</ol>
+<h3 id="kliuchevye-tekhniki-1">Ключевые техники</h3>
+<p><strong>Обработка типа Period</strong>: YouTrack хранит время как объекты period, требующие <code>dateTime.toPeriod()</code> для сравнения</p>
+<p><strong>Безопасность при null</strong>: проверяет <code>null</code> и ноль отдельно, так как они представляют разные состояния</p>
+<p><strong>Интернационализация</strong>: использует <code>workflow.i18n()</code> для переводимых сообщений об ошибках</p>
+<p><strong>Срабатывание на нескольких состояниях</strong>: одно правило покрывает несколько переходов состояний, избегая дублирования</p>
+<h2 id="primer-3-obespechenie-otsenki-zadach">Пример 3: Обеспечение оценки задач</h2>
+<h3 id="problema-2">Проблема</h3>
+<p>Задачи, переведённые в статус «В работе» без оценки трудозатрат, делают планирование спринта невозможным и делают диаграммы сгорания ненадёжными.</p>
+<h3 id="reshenie-2">Решение</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">const entities = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;entities&#x27;);
+const dateTime = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;date-time&#x27;);
+const workflow = require(&#x27;@jetbrains&#x2F;youtrack-scripting-api&#x2F;workflow&#x27;);
+
+exports.rule = entities.Issue.onChange({
+  title: &#x27;Check_estimation&#x27;,
+  
+  guard: (ctx) =&gt; {
+    &#x2F;&#x2F; Выполнять при входе в рабочие состояния
+    return ctx.issue.fields.isChanged(ctx.State) &amp;&amp; (
+      ctx.issue.fields.becomes(ctx.State, ctx.State.IP) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.CR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.DONE) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.PR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.SR) ||
+      ctx.issue.fields.becomes(ctx.State, ctx.State.QAS)
+    );
+  },
+  
+  action: (ctx) =&gt; {
+    console.log(&quot;Check_estimation&quot;);
+    
+    &#x2F;&#x2F; Обеспечение обязательного поля
+    if (ctx.issue.fields.Estimation === null) {
+      ctx.issue.fields.required(
+        ctx.Estimation, 
+        &#x27;Установите оценку&#x27;
+      );
+    }
+    
+    &#x2F;&#x2F; Проверка нулевой оценки
+    const zeroTime = ctx.issue.fields.is(
+      ctx.Estimation, 
+      dateTime.toPeriod(0)
+    );
+    
+    workflow.check(
+      !zeroTime,
+      workflow.i18n(&#x27;Оценка равна 0м, пожалуйста, обновите значение.&#x27;)
+    );
+  },
+  
+  requirements: {
+    State: {
+      type: entities.State.fieldType,
+      IP: { name: &#x27;In Progress&#x27; },
+      CR: { name: &#x27;Code Review&#x27;},
+      DONE: { name: &#x27;Done&#x27;},
+      PR: { name: &#x27;Production Ready&#x27;},
+      SR: { name: &#x27;Staging Ready&#x27;},
+      QAS: { name: &#x27;QA (Staging)&#x27;},
+    },
+    Estimation: {
+      type: entities.Field.periodType
+    }
+  }
+});
+</code></pre>
+<h3 id="kak-eto-rabotaet-2">Как это работает</h3>
+<ol>
+<li><strong>Ранняя валидация</strong>: проверяет при входе в «In Progress» и последующие состояния</li>
+<li><strong>Обязательное поле</strong>: использует <code>ctx.issue.fields.required()</code> для пометки поля как обязательного</li>
+<li><strong>Проверка на ноль</strong>: валидирует, что оценка не просто установлена, но имеет значимое значение</li>
+<li><strong>Отладочное логирование</strong>: включает <code>console.log()</code> для устранения неполадок в консоли рабочих процессов YouTrack</li>
+</ol>
+<h3 id="kliuchevye-tekhniki-2">Ключевые техники</h3>
+<p><strong>API обязательных полей</strong>: <code>ctx.issue.fields.required(field, message)</code> принуждает к заполнению поля перед разрешением перехода</p>
+<p><strong>Двойная валидация</strong>: проверяет условия null и нуля отдельно с разными сообщениями об ошибках</p>
+<p><strong>Прогрессивные состояния</strong>: срабатывание на «In Progress» гарантирует, что оценки устанавливаются рано в рабочем процессе</p>
+<p><strong>Консольное логирование</strong>: <code>console.log()</code> помогает отлаживать выполнение рабочего процесса в интерфейсе администрирования YouTrack</p>
+<h2 id="prodvinutye-patterny">Продвинутые паттерны</h2>
+<h3 id="kombinirovanie-neskol-kikh-uslovii">Комбинирование нескольких условий</h3>
+<p>Вы можете объединить несколько валидаций в одном правиле:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">action: (ctx) =&gt; {
+  &#x2F;&#x2F; Проверка нескольких условий
+  const hasEstimation = ctx.issue.fields.Estimation !== null;
+  const hasSpentTime = ctx.issue.fields[&quot;Spent Time&quot;] !== null;
+  const hasAssignee = ctx.issue.fields.Assignee !== null;
+  
+  workflow.check(
+    hasEstimation &amp;&amp; hasSpentTime &amp;&amp; hasAssignee,
+    &#x27;Задача должна иметь оценку, затраченное время и исполнителя перед закрытием&#x27;
+  );
+}
+</code></pre>
+<h3 id="ispol-zovanie-starykh-znachenii-polei">Использование старых значений полей</h3>
+<p>Сравнение текущих и предыдущих значений для обнаружения конкретных изменений:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">guard: (ctx) =&gt; {
+  const oldPriority = ctx.issue.fields.oldValue(ctx.Priority);
+  const newPriority = ctx.issue.fields.Priority;
+  
+  &#x2F;&#x2F; Срабатывать только при повышении приоритета
+  return oldPriority &amp;&amp; newPriority &amp;&amp; 
+         newPriority.ordinal &gt; oldPriority.ordinal;
+}
+</code></pre>
+<h3 id="pol-zovatel-skie-soobshcheniia-ob-oshibkakh">Пользовательские сообщения об ошибках</h3>
+<p>Построение динамических сообщений об ошибках на основе контекста:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">action: (ctx) =&gt; {
+  const estimation = ctx.issue.fields.Estimation;
+  const spentTime = ctx.issue.fields[&quot;Spent Time&quot;];
+  
+  if (spentTime &gt; estimation * 2) {
+    workflow.check(
+      false,
+      `Затраченное время (${spentTime}) более чем в 2 раза превышает оценку (${estimation}). ` +
+      &#x27;Пожалуйста, обновите оценку или добавьте комментарий с объяснением превышения.&#x27;
+    );
+  }
+}
+</code></pre>
+<h3 id="dostup-k-kontekstu-zadachi">Доступ к контексту задачи</h3>
+<p>YouTrack предоставляет богатую контекстную информацию:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">action: (ctx) =&gt; {
+  const assignee = ctx.issue.fields.Assignee;
+  const reporter = ctx.issue.reporter;
+  const currentUser = ctx.currentUser;
+  
+  &#x2F;&#x2F; Только исполнитель или автор могут закрыть задачу
+  workflow.check(
+    currentUser === assignee || currentUser === reporter,
+    &#x27;Только исполнитель или автор могут закрыть эту задачу&#x27;
+  );
+}
+</code></pre>
+<h2 id="luchshie-praktiki">Лучшие практики</h2>
+<h3 id="1-delaite-guard-y-spetsifichnymi">1. Делайте Guard-ы специфичными</h3>
+<p>Пишите узкие guard-ы, которые срабатывают только когда необходимо:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Хорошо: Конкретный триггер
+guard: (ctx) =&gt; {
+  return ctx.issue.fields.isChanged(ctx.State) &amp;&amp;
+         ctx.issue.fields.becomes(ctx.State, ctx.State.DONE);
+}
+
+&#x2F;&#x2F; Плохо: Слишком широко
+guard: (ctx) =&gt; {
+  return true; &#x2F;&#x2F; Выполняется при каждом изменении!
+}
+</code></pre>
+<h3 id="2-predostavliaite-poniatnye-soobshcheniia-ob-oshibkakh">2. Предоставляйте понятные сообщения об ошибках</h3>
+<p>Пользователи должны понимать, что именно не так и как это исправить:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Хорошо: Конкретно и действенно
+workflow.check(
+  hasEstimation,
+  &#x27;Пожалуйста, установите оценку перед переходом в In Progress. &#x27; +
+  &#x27;Нажмите на поле Estimation и введите ожидаемое время.&#x27;
+);
+
+&#x2F;&#x2F; Плохо: Размыто
+workflow.check(hasEstimation, &#x27;Недопустимо&#x27;);
+</code></pre>
+<h3 id="3-ispol-zuite-konsol-noe-logirovanie-dlia-otladki">3. Используйте консольное логирование для отладки</h3>
+<p>Добавляйте стратегическое логирование для понимания выполнения рабочего процесса:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">action: (ctx) =&gt; {
+  console.log(&#x27;Текущее состояние:&#x27;, ctx.issue.fields.State.name);
+  console.log(&#x27;Исполнитель:&#x27;, ctx.issue.fields.Assignee?.login);
+  
+  &#x2F;&#x2F; ... логика валидации
+}
+</code></pre>
+<p>Просмотр логов в YouTrack: <strong>Администрирование → Рабочие процессы → [Ваш рабочий процесс] → Логи</strong></p>
+<h3 id="4-opredeliaite-vse-neobkhodimye-sostoianiia">4. Определяйте все необходимые состояния</h3>
+<p>Явно перечисляйте все состояния в requirements, чтобы избежать ошибок времени выполнения:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">requirements: {
+  State: {
+    type: entities.State.fieldType,
+    &#x2F;&#x2F; Определите каждое состояние, на которое ссылаетесь
+    NEW: { name: &#x27;New&#x27; },
+    IP: { name: &#x27;In Progress&#x27; },
+    CR: { name: &#x27;Code Review&#x27; },
+    DONE: { name: &#x27;Done&#x27; }
+  }
+}
+</code></pre>
+<h3 id="5-tshchatel-no-testiruite">5. Тщательно тестируйте</h3>
+<p>Создавайте тестовые сценарии, охватывающие:</p>
+<ul>
+<li>✅ Допустимые переходы (должны успешно выполняться)</li>
+<li>✅ Недопустимые переходы (должны блокироваться)</li>
+<li>✅ Граничные случаи (null-значения, нулевое время и т.д.)</li>
+<li>✅ Одновременное изменение нескольких полей</li>
+</ul>
+<h2 id="strategiia-razviortyvaniia">Стратегия развёртывания</h2>
+<h3 id="rabochii-protsess-razrabotki">Рабочий процесс разработки</h3>
+<ol>
+<li><strong>Создайте черновик рабочего процесса</strong> в Администрировании YouTrack</li>
+<li><strong>Подключите к тестовому проекту</strong> сначала, не к продакшену</li>
+<li><strong>Тщательно протестируйте</strong> с образцами задач</li>
+<li><strong>Проверьте логи</strong> на наличие ошибок или неожиданного поведения</li>
+<li><strong>Подключите к продакшен</strong>-проектам после валидации</li>
+</ol>
+<h3 id="kontrol-versii">Контроль версий</h3>
+<p>Храните код рабочих процессов в вашем репозитории:</p>
+<pre data-lang="bash" class="language-bash "><code class="language-bash" data-lang="bash">project&#x2F;
+├── .youtrack&#x2F;
+│   ├── workflows&#x2F;
+│   │   ├── check-estimation.js
+│   │   ├── check-spent-time.js
+│   │   └── validate-testqa.js
+│   └── README.md
+</code></pre>
+<p>Документируйте назначение и требования каждого рабочего процесса в README.</p>
+<h3 id="monitoring">Мониторинг</h3>
+<p>Регулярно проверяйте логи рабочих процессов на:</p>
+<ul>
+<li><strong>Неожиданные ошибки</strong>: JavaScript-исключения</li>
+<li><strong>Проблемы производительности</strong>: медленное время выполнения</li>
+<li><strong>Замешательство пользователей</strong>: паттерны заблокированных переходов</li>
+</ul>
+<h2 id="rasprostranionnye-oshibki">Распространённые ошибки</h2>
+<h3 id="1-zabyli-opredelit-requirements">1. Забыли определить Requirements</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Ошибка: ctx.State не определён
+guard: (ctx) =&gt; {
+  return ctx.issue.fields.becomes(ctx.State, ctx.State.DONE);
+}
+
+&#x2F;&#x2F; Отсутствует секция requirements!
+</code></pre>
+<p><strong>Решение</strong>: Всегда включайте полные requirements.</p>
+<h3 id="2-nekorrektnyi-tip-polia">2. Некорректный тип поля</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Ошибка: Несоответствие типов
+requirements: {
+  Estimation: {
+    type: entities.Field.stringType &#x2F;&#x2F; Неправильно!
+  }
+}
+</code></pre>
+<p><strong>Решение</strong>: Используйте <code>entities.Field.periodType</code> для полей времени.</p>
+<h3 id="3-oshibki-null-ssylok">3. Ошибки null-ссылок</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Ошибка: Cannot read property &#x27;name&#x27; of null
+action: (ctx) =&gt; {
+  const assignee = ctx.issue.fields.Assignee.name; &#x2F;&#x2F; Может быть null!
+}
+</code></pre>
+<p><strong>Решение</strong>: Используйте опциональную цепочку или проверки на null:</p>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">const assignee = ctx.issue.fields.Assignee?.name ?? &#x27;Не назначен&#x27;;
+</code></pre>
+<h3 id="4-beskonechnye-tsikly">4. Бесконечные циклы</h3>
+<pre data-lang="javascript" class="language-javascript "><code class="language-javascript" data-lang="javascript">&#x2F;&#x2F; Опасно: Изменение полей в onChange может вызвать рекурсию
+action: (ctx) =&gt; {
+  ctx.issue.fields.State = ctx.State.IP; &#x2F;&#x2F; Снова вызывает onChange!
+}
+</code></pre>
+<p><strong>Решение</strong>: Используйте guard-ы аккуратно или рассмотрите использование schedule-правил вместо onChange.</p>
+<h2 id="real-noe-vliianie">Реальное влияние</h2>
+<p>После внедрения этих трёх рабочих процессов в нашей команде:</p>
+<ul>
+<li><strong>Соблюдение учёта времени</strong>: увеличилось с 60% до 95%</li>
+<li><strong>Точность оценок</strong>: улучшилась на 30% (меньше нулевых оценок)</li>
+<li><strong>Инциденты в продакшене</strong>: сократились на 40% (меньше тестовых сборок развёрнуто в прод)</li>
+<li><strong>Покрытие code review</strong>: увеличилось с 80% до 98%</li>
+</ul>
+<p>Ключ — применение политик в момент действия, а не во время ретроспектив.</p>
+<h2 id="resursy">Ресурсы</h2>
+<ul>
+<li><a href="https://www.jetbrains.com/help/youtrack/devportal/api-entities.html">YouTrack Workflow JavaScript API</a></li>
+<li><a href="https://www.jetbrains.com/help/youtrack/incloud/Quick-Start-Guide-Workflows-JS.html">Краткое руководство по рабочим процессам</a></li>
+<li><a href="https://www.jetbrains.com/help/youtrack/devportal/workflow-api.html">Справочник по Scripting API</a></li>
+</ul>
+<h2 id="zakliuchenie">Заключение</h2>
+<p>Движок JavaScript-рабочих процессов YouTrack предоставляет мощные возможности автоматизации, которые выходят далеко за рамки простых конечных автоматов. Внедряя правила валидации, которые выполняются в момент изменения, вы можете последовательно применять политики проекта по всей команде.</p>
+<p>Три паттерна, рассмотренные здесь — валидация версий, контроль учёта времени и требования к оценкам — демонстрируют, как рабочие процессы могут решать реальные проблемы процесса разработки. Ключевые принципы применимы широко:</p>
+<ul>
+<li><strong>Guard-ы аккуратно</strong>: срабатывайте только когда необходимо</li>
+<li><strong>Валидируйте явно</strong>: проверяйте все граничные случаи</li>
+<li><strong>Сообщайте понятно</strong>: помогайте пользователям понять, что пошло не так</li>
+<li><strong>Тестируйте тщательно</strong>: проверяйте как успешные, так и неудачные пути</li>
+</ul>
+<p>Независимо от того, управляете ли вы небольшой командой или крупной организацией, автоматизация рабочих процессов гарантирует последовательное соблюдение ваших процессов, освобождая команду для фокуса на создании отличного программного обеспечения, а не на запоминании процедурных правил.</p>
+<p>Успешной автоматизации!</p>
+
+        </div>
+
+        
+            <div class="pagination">
+                <div class="pagination__title">
+                    <span class="pagination__title-h">Thanks for reading! Read other posts?</span>
+                    <hr />
+                </div>
+                <div class="pagination__buttons">
+                    
+                        <span class="button next">
+                            <a href="https://bimawa.net/ru/blog/restore-blobs-from-git/">
+                                <span class="button__text">Восстановление блобов из git</span>&nbsp;
+                                <span class="button__icon">→</span>
+                            </a>
+                        </span>
+                    </div>
+            </div>
+        
+    </div>
+
+    </div>
+
+    
+    <footer class="footer">
+        <div class="footer__inner">
+                <div class="copyright copyright--user">IP Bunkov Maksim Vladislavovich (Bimawa) &nbsp;<b>copyright</b></div>
+            <div class="footer-links">
+                <a href="/ru/privacy/">Политика конфиденциальности</a>
+                <span class="footer-sep">|</span>
+                <a href="/ru/terms/">Пользовательское соглашение</a>
+            </div>
+        </div>
+    </footer>
+    
+
+</div>
+    <script src="/menu-projects.js"></script>
+</body>
+
+</html>

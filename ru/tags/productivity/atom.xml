@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom" xml:lang="ru">
+    <title> - productivity</title>
+    <link rel="self" type="application/atom+xml" href="https://bimawa.net/ru/tags/productivity/atom.xml"/>
+    <link rel="alternate" type="text/html" href="https://bimawa.net"/>
+    <generator uri="https://www.getzola.org/">Zola</generator>
+    <updated>2026-11-09T00:00:00+00:00</updated>
+    <id>https://bimawa.net/ru/tags/productivity/atom.xml</id>
+    <entry xml:lang="ru">
+        <title>VRDesktopUltra: пять экранов Mac в VR и рабочее место, к которому можно вернуться</title>
+        <published>2026-11-09T00:00:00+00:00</published>
+        <updated>2026-11-09T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/"/>
+        <id>https://bimawa.net/ru/blog/vrdesktopultra-five-screens-and-a-persistent-workspace/</id>
+        
+        <summary type="html">&lt;p&gt;В прошлой статье мы рассказывали о четырёх экранах Mac в Quest Pro и о том, как удалось убрать рябь на выбранной конфигурации. С тех пор VRDesktopUltra стал ближе не просто к демонстрации передачи изображения, а к рабочему пространству: с сохранённой расстановкой, своим местом в VR и обычным приложением на Mac.&lt;&#x2F;p&gt;
+&lt;p&gt;Главный результат нового этапа — &lt;strong&gt;пять независимых экранов, одновременно видимых в гарнитуре&lt;&#x2F;strong&gt;. А за ним — изменения, которые делают повседневный запуск и возвращение в VR менее хлопотными.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;piatyi-ekran-nastoiashchii-vneshnii-monitor&quot;&gt;Пятый экран — настоящий внешний монитор&lt;&#x2F;h2&gt;
+&lt;p&gt;Теперь на нашем стенде вместе работают:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;три виртуальных ультрашироких монитора по &lt;strong&gt;5760 × 1200&lt;&#x2F;strong&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;встроенный Retina-дисплей Mac с изображением &lt;strong&gt;4112 × 2658&lt;&#x2F;strong&gt;;&lt;&#x2F;li&gt;
+&lt;li&gt;внешний монитор &lt;strong&gt;1920 × 1080&lt;&#x2F;strong&gt;.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Внешний монитор подключили при работающем Mac-приложении. Сервер обнаружил его и начал передавать как отдельный источник — без перезапуска сервера и USB-сессии.&lt;&#x2F;p&gt;
+&lt;p&gt;При этом первая проверка оказалась показательной: получить пятый поток ещё не значит показать пятый экран человеку. Данные доходили до Quest, но монитор появился далеко за пределами настроенного рабочего пространства. Исправили начальное размещение: новый экран располагается над последним доступным монитором, с учётом его положения, поворота и размера.&lt;&#x2F;p&gt;
+&lt;p&gt;После исправления проверили не только журналы и контрольные суммы, но и реальную сцену в гарнитуре. &lt;strong&gt;Внешний экран виден и работает рядом с остальными четырьмя.&lt;&#x2F;strong&gt; Затем перезапустили установленное Mac-приложение и подтвердили восстановление всех пяти источников и сохранённой расстановки.&lt;&#x2F;p&gt;
+&lt;p&gt;Это результат конкретной конфигурации с Quest Pro, а не обещание любого числа мониторов при любой нагрузке.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>VRDesktopUltra: четыре экрана Mac в VR — и текст без ряби</title>
+        <published>2026-10-21T00:00:00+00:00</published>
+        <updated>2026-10-21T00:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/vrdesktopultra-four-screens-and-clear-text/"/>
+        <id>https://bimawa.net/ru/blog/vrdesktopultra-four-screens-and-clear-text/</id>
+        
+        <summary type="html">&lt;p&gt;Самый приятный результат последних экспериментов с VRDesktopUltra — короткая фраза после очередной проверки в гарнитуре: &lt;strong&gt;«Ура, рябь пропала!»&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;За ней — несколько итераций передачи изображения, смена способа отображения виртуальных мониторов и замеры, которые заставили пересмотреть часть первоначальных решений. Сейчас на нашем стенде работают три виртуальных ультрашироких экрана Mac и основной Retina-дисплей — вместе, в одной VR-сцене на Quest Pro.&lt;&#x2F;p&gt;
+&lt;p&gt;VRDesktopUltra вырос из &lt;strong&gt;&lt;a href=&quot;&#x2F;ru&#x2F;projects&#x2F;WireDeskVR&#x2F;&quot;&gt;WireDeskVR&lt;&#x2F;a&gt;&lt;&#x2F;strong&gt; — нашего предыдущего проекта виртуального рабочего пространства на &lt;strong&gt;Unreal Engine 5&lt;&#x2F;strong&gt;. Мы сохранили задачу — удобные экраны Mac в VR, — но в новой реализации перешли от UE5 к собственной связке Rust и OpenXR.&lt;&#x2F;p&gt;
+&lt;p&gt;Рассказываем, к какому устройству системы мы пришли к &lt;strong&gt;21 октября 2026 года&lt;&#x2F;strong&gt;, почему выбрали именно его и где пока проходит граница между работающим экспериментом и готовым инструментом для ежедневной работы.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;nam-nuzhen-rabochii-stol-a-ne-prosto-bol-shoe-video&quot;&gt;Нам нужен рабочий стол, а не просто большое видео&lt;&#x2F;h2&gt;
+&lt;p&gt;Показать картинку с компьютера в шлеме — только начало. Если на ней фильм, небольшая потеря детализации может остаться незаметной. Если перед глазами редактор кода, терминал или пиксельный рисунок, требования совсем другие: тонкие линии не должны рябить при движении головы, мелкий текст должен оставаться читаемым, а прокрутка — отзывчивой.&lt;&#x2F;p&gt;
+&lt;p&gt;И ещё хочется не одного прибитого к взгляду прямоугольника, а рабочего пространства: поставить экраны вокруг себя, менять расстояние, размер и кривизну, перемещаться между ними.&lt;&#x2F;p&gt;
+&lt;p&gt;Отсюда первое важное решение: &lt;strong&gt;Mac передаёт содержимое мониторов, а Quest сам строит и показывает VR-сцену.&lt;&#x2F;strong&gt; Положение головы, контроллеры и геометрия экранов обрабатываются локально. Для поворота головы не нужно ждать, пока компьютер нарисует и пришлёт новое изображение всего виртуального мира. Последняя полученная картинка остаётся на своём месте, даже если обновление рабочего стола ещё в пути.&lt;&#x2F;p&gt;
+&lt;p&gt;Основная логика написана на Rust. На Mac используем ScreenCaptureKit, Metal и аппаратный VideoToolbox; на Quest — OpenXR, OpenGL ES и аппаратное декодирование. Между ними — наш протокол поверх USB-сети NCM. Текущий путь проводной, без переключения на Wi-Fi.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>SpeedReaderRust: История одной идеи</title>
+        <published>2026-07-27T05:00:00+00:00</published>
+        <updated>2026-07-27T05:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/speedreader-rust-concept/"/>
+        <id>https://bimawa.net/ru/blog/speedreader-rust-concept/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;s-chego-vsio-nachalos&quot;&gt;С чего всё началось&lt;&#x2F;h2&gt;
+&lt;p&gt;Я читаю много технической документации. SDD (Specification Driven Development), RFC, спецификации — всё это приходится проглатывать в больших объёмах. Обычное чтение глазами упирается в скорость: вы всё равно тратите время на саккады (скачки глаза от слова к слову) и регрессии (возвраты назад по строке).&lt;&#x2F;p&gt;
+&lt;p&gt;В какой-то момент я вспомнил про технику RSVP — Rapid Serial Visual Presentation. Это когда слова показываются одно за другим в одной точке экрана, а скорость задаётся количеством слов в минуту. Глазу не нужно двигаться — он просто смотрит в центр и схватывает слова.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>FSkatingAcc: Когда тренировка встречается с технологией</title>
+        <published>2026-01-12T23:33:23+00:00</published>
+        <updated>2026-01-12T23:33:23+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/figure-skating-accompaniment/"/>
+        <id>https://bimawa.net/ru/blog/figure-skating-accompaniment/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;problema&quot;&gt;Проблема&lt;&#x2F;h2&gt;
+&lt;p&gt;Каждый тренер по фигурному катанию знает эти ситуации:&lt;&#x2F;p&gt;
+&lt;ul&gt;
+&lt;li&gt;Вы на льду, спортсмен откатывает программу, и вам нужно остановить музыку после проката. Чтобы дать конкретные рекомендации спортсмену, а не искать проигрыватель, чтобы поставить его на паузу.&lt;&#x2F;li&gt;
+&lt;li&gt;А если надо что бы поработать над конкретным элементом? Вы можете с конкретной секунды начинать и повторять элемент и композицию. для точки мастерства спортсмена.&lt;&#x2F;li&gt;
+&lt;li&gt;Или нужно мгновенно вернуться к началу? Очень часто бывает, что старт проспали, прослушали, и приходится вернуться на начало композиции.&lt;&#x2F;li&gt;
+&lt;li&gt;Или поставить в очередь музыку следующего спортсмена, пока текущий заканчивает? Подготовьте следующий аккомпанемент для следующего проката. Заранее. Чтобы спортсмен не ждал, когда вы найдете нужную композицию в своем проигрывателе.&lt;&#x2F;li&gt;
+&lt;li&gt;А если у вас тренерровочный процесс для постановки &quot;рук&quot;. И аккомпанемент нужно постоянно находить в плейлисте. В очереди всегда будет стоять аккомпанемент, который предназначен для постановки рук. Теперь вам не нужно его каждый раз искать после прокатов других спортсменов. Он у вас сюда будет следующим.&lt;&#x2F;li&gt;
+&lt;&#x2F;ul&gt;
+&lt;p&gt;Обычные музыкальные плееры просто не были созданы для такого рабочего процесса.&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+    <entry xml:lang="ru">
+        <title>Forge: Когда программисты становятся менеджерами (с AI котами в помощниках)</title>
+        <published>2026-01-08T12:00:00+00:00</published>
+        <updated>2026-01-08T12:00:00+00:00</updated>
+        
+        <author>
+          <name>
+            
+              Unknown
+            
+          </name>
+        </author>
+        
+        <link rel="alternate" type="text/html" href="https://bimawa.net/ru/blog/forge-ai-project-management/"/>
+        <id>https://bimawa.net/ru/blog/forge-ai-project-management/</id>
+        
+        <summary type="html">&lt;h2 id=&quot;ot-bezrabotnogo-k-otkrytiiu&quot;&gt;От безработного к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Я пока без работы, вайбкодю без остановки. И вот что заметил: программисты не вымрут, они просто теперь не нуждаются в менеджерах. &lt;strong&gt;Программисты и есть менеджеры с котами в виде AI.&lt;&#x2F;strong&gt;&lt;&#x2F;p&gt;
+&lt;p&gt;С такой мыслью я пошёл гуглить решения, ведь мысль ко мне приходит последней в мире и кто-то уже начал проект и зарабатывает деньги.&lt;&#x2F;p&gt;
+&lt;h2 id=&quot;put-k-otkrytiiu&quot;&gt;Путь к открытию&lt;&#x2F;h2&gt;
+&lt;p&gt;Наткнулся на &lt;strong&gt;auto-claude&lt;&#x2F;strong&gt;. Система, позволяющая отдельно в каждой worktree запускать агентов, чтобы они решали задачи независимо друг от друга. Ну и контекст, конечно, сохраняли.&lt;&#x2F;p&gt;
+&lt;p&gt;Думаю: &quot;Вот оно! То, что нужно!&quot;&lt;&#x2F;p&gt;
+&lt;p&gt;Но я решил не останавливаться. Пошёл в Grok, говорю: &quot;Ну-ка рынок посканируй, есть решения получше?&quot; И что вы думаете? Он нашёл таки!&lt;&#x2F;p&gt;</summary>
+        
+    </entry>
+</feed>
