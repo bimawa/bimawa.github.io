@@ -20,6 +20,23 @@ title = "Резюме"
 
 ---
 
+# ОПЫТ РАБОТЫ
+
+## Software Engineer — bimawa.net
+
+**2025–2026 · Удалённо**
+
+- Разрабатываю Wayo Brand для iOS: каталог фестивалей, расписание и персональные маршруты; MasterCRM: заказы, расчёты и PDF-документы.
+- Создал Rust-инструменты: KnowledgeQuery для поиска по документации и связи требований с кодом, emacsclientMCP для работы AI-агентов с Emacs и SpeedReaderRust для скорочтения.
+- Развиваю VRDesktopUltra: передачу экранов Mac в Quest по USB с использованием ScreenCaptureKit, Metal, VideoToolbox и OpenXR.
+- Создал Suchariki: IoT-контроллер обвалочной машины на Rust/Embassy для ESP32-C3 с веб-управлением барабаном и впрыском масла, терморегуляцией и аварийным остановом.
+- Проектировал детали, изготавливал их на CNC и 3D-принтере — от модели до готового прототипа.
+- Настроил агентный процесс разработки по спецификациям и семантическую базу знаний на PostgreSQL/pgvector с локальными LLM.
+
+[Скачать CV на английском (PDF)](/bimawa-resume-en.pdf)
+
+---
+
 # AI-NATIVE ИНЖЕНЕРИЯ
 
 ### Kiro · Oh My Pi · Zed · MCP · PostgreSQL · pgvector

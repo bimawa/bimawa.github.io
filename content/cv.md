@@ -20,6 +20,23 @@ I also build my own AI development infrastructure, including **custom MCP server
 
 ---
 
+# EXPERIENCE
+
+## Software Engineer — bimawa.net
+
+**2025–2026 · Remote**
+
+- Develop Wayo Brand for iOS: festival discovery, schedules and personal itineraries; MasterCRM: orders, financial tracking and PDF documents.
+- Built Rust tools: KnowledgeQuery for documentation search and requirements-to-code traceability, emacsclientMCP for AI agents working with Emacs, and SpeedReaderRust for speed reading.
+- Develop VRDesktopUltra: streaming Mac displays to Quest over USB using ScreenCaptureKit, Metal, VideoToolbox and OpenXR.
+- Built Suchariki: Rust/Embassy firmware on ESP32-C3 for a snack coating machine, with browser-based drum and oil injection controls, temperature regulation and emergency stop.
+- Designed parts and manufactured them using CNC and 3D printing, from models to physical prototypes.
+- Established a specification-driven agentic workflow and a private semantic knowledge base using PostgreSQL/pgvector and local LLMs.
+
+[Download PDF CV](/bimawa-resume-en.pdf)
+
+---
+
 # AI-NATIVE ENGINEERING
 
 ### Kiro · Oh My Pi · Zed · MCP · PostgreSQL · pgvector
